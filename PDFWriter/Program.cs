@@ -203,7 +203,7 @@ namespace PDFWriter
         /// text space units. Word spacing is used by the Tj, TJ, and ' operators. Default
         /// value: 0.
         /// </param>
-        static string CreateText(string text, int yPos, string color, string font, int fontSize) {
+        static string CreateText(string text, double yPos, string color, string font, int fontSize) {
             int charSpace = 0;
             int wordSpace = 0;
             double textWidth = GetTextWidth(text, font, fontSize, charSpace, wordSpace);
@@ -249,7 +249,7 @@ namespace PDFWriter
             );
         }
 
-        static string CreateTextCell(string text, int yPos, string color, string font, int fontSize)
+        static string CreateTextCell(string text, double yPos, string color, string font, int fontSize)
         {
             return string.Format(@"
 % CreateTextCell (
@@ -405,17 +405,22 @@ endobj"
             );
 
             // Page Node
-            _pdf.AppendLine(@"
+
+            const int PAGE_WIDTH = 612;
+            const int PAGE_HEIGHT = 792;
+            const int PAGE_LEFT_RIGHT_MARGIN = 25;
+
+            _pdf.AppendFormat(@"
 % Page Node.
 4 0 obj
     <<
         /Type /Page
         /Parent 3 0 R
-        /MediaBox [0 0 612 792]
+        /MediaBox [0 0 {0} {1}]
         /Contents 5 0 R
         /Resources << /ProcSet 6 0 R >>
     >>
-endobj"
+endobj", PAGE_WIDTH, PAGE_HEIGHT
             );
 
             _pdf.AppendLine(@"
@@ -479,33 +484,26 @@ stream"
                 //These numbers are aggregate inside this variable
                 double countRowWidth = 0;
 
-                //Total width of our table
-                //This is used when scaling the table to fit into the PDF page
-                double scaling = 1;
-
                 //FIXME Height of a row
                 const double height = 13;
 
                 //Contains the column titles "Column 1", "Column 2"...
                 string pdfColumnTitles = string.Empty;
-
-                //FIXME
-                const double initXPosBox = 170.2325;
-                const double initYPosBox = 737;
+                string pdfRowBox = string.Empty;
 
                 //
                 foreach (DataColumn column in table.Columns)
                 {
                     //Gets the largest width possible of a column
-                    double largestTextWidth = GetTextWidth(column.ColumnName, fontBold, fontSize, 0, 0);
+                    double largestColumnWidth = GetTextWidth(column.ColumnName, fontBold, fontSize, 0, 0);
                     foreach (DataRow row in table.Rows)
                     {
                         string rowName = row[column.ColumnName].ToString();
 
                         double tmp = GetTextWidth(rowName, font, fontSize, 0, 0);
-                        if (tmp > largestTextWidth)
+                        if (tmp > largestColumnWidth)
                         {
-                            largestTextWidth = tmp;
+                            largestColumnWidth = tmp;
                         }
                     }
                     ////
@@ -513,9 +511,12 @@ stream"
                     Console.WriteLine("column: " + column.ColumnName);
 
                     //Write all the column titles inside pdfColumnTitles
-                    string cell = CreateTextCell(column.ColumnName, 2, textColor, font, fontSize);
-                    double width = largestTextWidth + 2;
-                    string box = CreateBox(cell, 1, 1, 0, 0, cellBackgroundColor, width, height);
+                    double xPos = 2;
+                    string cell = CreateTextCell(column.ColumnName, xPos, textColor, font, fontSize);
+                    double width = largestColumnWidth + xPos;
+                    int margin = 1;
+                    int padding = 1;
+                    string box = CreateBox(cell, margin, padding, 0, 0, cellBackgroundColor, width, height);
                     pdfColumnTitles += CreateRow(box, countRowWidth);
                     ////
                     
@@ -549,25 +550,44 @@ stream"
                                     color = BLUE;
                                 }
                             }
-                            cell = CreateTextCell(rowName, 2, color, font, fontSize);
+                            cell = CreateTextCell(rowName, xPos, color, font, fontSize);
 
-                            box = CreateBox(cell, 1, 1, 0, yPosBox);
+                            box = CreateBox(cell, margin, padding, 0, yPosBox);
                             pdfRows += box;
 
                             yPosBox -= height;
                         }
 
-                        _pdf.AppendLine(
-                            AppendBox(pdfRows, scaling, initXPosBox + countRowWidth, initYPosBox - height)
-                        );
+                        pdfRowBox += AppendBox(pdfRows, 1, countRowWidth, -height);
                     }
                     ////
 
                     countRowWidth += width + 2;
                 }
 
+                //Total width of our table
+                //This is used when scaling the table to fit into the PDF page
+                double scaling = (PAGE_WIDTH - (PAGE_LEFT_RIGHT_MARGIN * 2)) / (countRowWidth);
+                if (scaling > 1)
+                {
+                    scaling = 1;
+                }
+
+                //FIXME
+                //const double initXPosBox = 170.2325;
+                double initXPosBox = (PAGE_WIDTH / 2) - (countRowWidth / 2);
+                if (initXPosBox < PAGE_LEFT_RIGHT_MARGIN)
+                {
+                    initXPosBox = PAGE_LEFT_RIGHT_MARGIN;
+                }
+                const double initYPosBox = 737;
+
                 _pdf.AppendLine(
                     AppendBox(pdfColumnTitles, scaling, initXPosBox, initYPosBox)
+                );
+
+                _pdf.AppendLine(
+                    AppendBox(pdfRowBox, scaling, initXPosBox, initYPosBox)
                 );
             }
 
