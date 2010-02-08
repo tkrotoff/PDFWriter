@@ -14,42 +14,42 @@ namespace PDFWriter
             DataTable table = new DataTable("Sample");
 
             DataColumn column = new DataColumn();
-            column.DataType = System.Type.GetType("System.String");
+            column.DataType = typeof(string);
             column.ColumnName = "Symbol";
             table.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = System.Type.GetType("System.String");
+            column.DataType = typeof(string);
             column.ColumnName = "Desc";
             table.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = System.Type.GetType("System.String");
+            column.DataType = typeof(double);
             column.ColumnName = "Weight";
             table.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = System.Type.GetType("System.String");
+            column.DataType = typeof(int);
             column.ColumnName = "Price";
             table.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = System.Type.GetType("System.String");
+            column.DataType = typeof(string);
             column.ColumnName = "Cty";
             table.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = System.Type.GetType("System.String");
+            column.DataType = typeof(string);
             column.ColumnName = "Country";
             table.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = System.Type.GetType("System.String");
+            column.DataType = typeof(int);
             column.ColumnName = "Sct";
             table.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = System.Type.GetType("System.String");
+            column.DataType = typeof(string);
             column.ColumnName = "Sector";
             table.Columns.Add(column);
 
@@ -202,8 +202,6 @@ namespace PDFWriter
             int charSpace = 0;
             int wordSpace = 0;
             double textWidth = GetTextWidth(text, font, fontSize, charSpace, wordSpace);
-
-
 
             //Black is the default value so no need to write it down
             string rg = string.Format("{0} rg", color);
@@ -439,30 +437,53 @@ stream"
             _pdf.AppendLine(mark);
 
             DataSet data = CreateDataSet();
+
+            //There should be only one table
             foreach (DataTable table in data.Tables)
             {
-                string font = "FHB";
-                int fontSize = 9;
+                //General algorithm:
+                //
+                // ----------------------------
+                // | Column 1 | Column 2 | ...
+                // ----------------------------
+                // | Row 10   | Row 11   | ...
+                // | Row 20   | Row 21   | ...
+                // | Row 30   | Row 31   | ...
+                // ----------------------------
+                //
+                // The first loop will read the horizontal line containing all the column names
+                // ("Column 1", "Column 2"). 
+                // Then it will read "Row 10", "Row 20", "Row 30" vertically.
+                // One could imagine to read everything horizontally but DataTable does not work this way
+                // and splits columns from rows.
 
+
+                //Basic font attributes
+                const string font = "FHB";
+                const int fontSize = 9;
                 string textColor = BLACK;
+                ////
+
+                //
                 string cellBackgroundColor = SILVER;
 
-                //Le decallage qui va permettre d'ecrire la colonne
+                //Space between each row: for example "Column 1" takes 30, "Column 2" 45 ect...
+                //These numbers are aggregate inside this variable
                 double totalRowWidth = 0;
 
-                //FIXME
-                double height = 13;
+                //FIXME Height of a row
+                const double height = 13;
 
+                //Contains the column titles "Column 1", "Column 2"...
                 string pdfColumnTitles = string.Empty;
 
                 //FIXME
                 const double initXPosBox = 170.2325;
                 const double initYPosBox = 737;
 
-                //For each column
+                //
                 foreach (DataColumn column in table.Columns)
                 {
-                    Console.WriteLine("column: " + column.ColumnName);
 
                     //Gets the largest width possible of a column
                     double largestTextWidth = GetTextWidth(column.ColumnName, font, fontSize, 0, 0); ;
@@ -479,17 +500,17 @@ stream"
                     ////
 
 
+                    Console.WriteLine("column: " + column.ColumnName);
 
-
+                    //Write all the column titles inside pdfColumnTitles
                     string cell = CreateTextCell(column.ColumnName, 2, textColor, font, fontSize);
                     double width = largestTextWidth + 2;
-                    //FIXME
                     string box = CreateBox(cell, 1, 1, 0, 0, cellBackgroundColor, width, height);
-
                     pdfColumnTitles += CreateRow(box, totalRowWidth);
+                    ////
+                    
 
-
-                    //
+                    //Loop over the rows
                     {
                         string pdfRows = string.Empty;
                         double yPosBox = 0;
@@ -497,10 +518,19 @@ stream"
                         foreach (DataRow row in table.Rows)
                         {
                             string rowName = row[column.ColumnName].ToString();
-
                             Console.WriteLine("row: " + rowName);
 
-                            cell = CreateTextCell(rowName, 2, GREEN, "FH", 9);
+                            Type rowType = row[column.ColumnName].GetType();
+                            if (rowType == typeof(int) || rowType == typeof(double))
+                            {
+                                //A number should be blue
+                                cell = CreateTextCell(rowName, 2, BLUE, "FH", 9);
+                            }
+                            else
+                            {
+                                //A string should be green
+                                cell = CreateTextCell(rowName, 2, GREEN, "FH", 9);
+                            }
                             box = CreateBox(cell, 1, 1, 0, yPosBox);
                             pdfRows += box;
 
@@ -512,6 +542,7 @@ stream"
                         );
                     }
                     ////
+
 
                     totalRowWidth += width + 2;
                 }
