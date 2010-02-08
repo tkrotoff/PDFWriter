@@ -24,12 +24,12 @@ namespace PDFWriter
             table.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = typeof(double);
+            column.DataType = typeof(string);
             column.ColumnName = "Weight";
             table.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = typeof(int);
+            column.DataType = typeof(string);
             column.ColumnName = "Price";
             table.Columns.Add(column);
 
@@ -44,7 +44,7 @@ namespace PDFWriter
             table.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = typeof(int);
+            column.DataType = typeof(string);
             column.ColumnName = "Sct";
             table.Columns.Add(column);
 
@@ -76,7 +76,12 @@ namespace PDFWriter
             DataSet dataSet = new DataSet();
             dataSet.Tables.Add(table);
 
-            return dataSet;
+            dataSet.WriteXml("data.xml");
+
+            DataSet newDataSet = new DataSet("Sample");
+            newDataSet.ReadXml("data.xml");
+
+            return newDataSet;
         }
 
         //Helvetica
@@ -327,9 +332,8 @@ namespace PDFWriter
             return tmp.ToString();
         }
 
-        static string AppendBox(string box, double xPos, double yPos)
+        static string AppendBox(string box, double scaling, double xPos, double yPos)
         {
-            double scaling = 1;
             return string.Format(@"
 % AppendBox (
     q {0} 0 0 {0} {1} {2} cm
@@ -443,13 +447,14 @@ stream"
             {
                 //General algorithm:
                 //
-                // ----------------------------
-                // | Column 1 | Column 2 | ...
-                // ----------------------------
-                // | Row 10   | Row 11   | ...
-                // | Row 20   | Row 21   | ...
-                // | Row 30   | Row 31   | ...
-                // ----------------------------
+                //    ----------------------------
+                //    | Column 1 | Column 2 | ...
+                // y  ----------------------------
+                // ^  | Row 10   | Row 11   | ...
+                // |  | Row 20   | Row 21   | ...
+                // |  | Row 30   | Row 31   | ...
+                // |  ----------------------------
+                // 0 ----> x
                 //
                 // The first loop will read the horizontal line containing all the column names
                 // ("Column 1", "Column 2"). 
@@ -459,7 +464,8 @@ stream"
 
 
                 //Basic font attributes
-                const string font = "FHB";
+                const string fontBold = "FHB";
+                const string font = "FH";
                 const int fontSize = 9;
                 string textColor = BLACK;
                 ////
@@ -469,7 +475,12 @@ stream"
 
                 //Space between each row: for example "Column 1" takes 30, "Column 2" 45 ect...
                 //These numbers are aggregate inside this variable
+                double countRowWidth = 0;
+
+                //Total width of our table
+                //This is used when scaling the table to fit into the PDF page
                 double totalRowWidth = 0;
+                double scaling = 1;
 
                 //FIXME Height of a row
                 const double height = 13;
@@ -484,9 +495,8 @@ stream"
                 //
                 foreach (DataColumn column in table.Columns)
                 {
-
                     //Gets the largest width possible of a column
-                    double largestTextWidth = GetTextWidth(column.ColumnName, font, fontSize, 0, 0); ;
+                    double largestTextWidth = GetTextWidth(column.ColumnName, fontBold, fontSize, 0, 0);
                     foreach (DataRow row in table.Rows)
                     {
                         string rowName = row[column.ColumnName].ToString();
@@ -499,6 +509,9 @@ stream"
                     }
                     ////
 
+                    totalRowWidth += largestTextWidth;
+
+
 
                     Console.WriteLine("column: " + column.ColumnName);
 
@@ -506,7 +519,7 @@ stream"
                     string cell = CreateTextCell(column.ColumnName, 2, textColor, font, fontSize);
                     double width = largestTextWidth + 2;
                     string box = CreateBox(cell, 1, 1, 0, 0, cellBackgroundColor, width, height);
-                    pdfColumnTitles += CreateRow(box, totalRowWidth);
+                    pdfColumnTitles += CreateRow(box, countRowWidth);
                     ////
                     
 
@@ -520,17 +533,27 @@ stream"
                             string rowName = row[column.ColumnName].ToString();
                             Console.WriteLine("row: " + rowName);
 
-                            Type rowType = row[column.ColumnName].GetType();
-                            if (rowType == typeof(int) || rowType == typeof(double))
+                            //A string should be green
+                            string color = GREEN;
+                            int rowNameInt32;
+                            bool result = Int32.TryParse(rowName, out rowNameInt32);
+                            if (result)
                             {
                                 //A number should be blue
-                                cell = CreateTextCell(rowName, 2, BLUE, "FH", 9);
+                                color = BLUE;
                             }
                             else
                             {
-                                //A string should be green
-                                cell = CreateTextCell(rowName, 2, GREEN, "FH", 9);
+                                double rowNameDouble;
+                                result = Double.TryParse(rowName, out rowNameDouble);
+                                if (result)
+                                {
+                                    //A number should be blue
+                                    color = BLUE;
+                                }
                             }
+                            cell = CreateTextCell(rowName, 2, color, font, fontSize);
+
                             box = CreateBox(cell, 1, 1, 0, yPosBox);
                             pdfRows += box;
 
@@ -538,17 +561,17 @@ stream"
                         }
 
                         _pdf.AppendLine(
-                            AppendBox(pdfRows, initXPosBox + totalRowWidth, initYPosBox - height)
+                            AppendBox(pdfRows, scaling, initXPosBox + countRowWidth, initYPosBox - height)
                         );
                     }
                     ////
 
 
-                    totalRowWidth += width + 2;
+                    countRowWidth += width + 2;
                 }
 
                 _pdf.AppendLine(
-                    AppendBox(pdfColumnTitles, initXPosBox, initYPosBox)
+                    AppendBox(pdfColumnTitles, scaling, initXPosBox, initYPosBox)
                 );
             }
 
