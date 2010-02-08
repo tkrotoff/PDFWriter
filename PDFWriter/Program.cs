@@ -440,6 +440,18 @@ stream"
             mark = CreateMark(text, 540.475, 766);
             _pdf.AppendLine(mark);
 
+
+            //Basic font attributes
+            const string fontBold = "FHB";
+            const string font = "FH";
+            const int fontSize = 9;
+            string textColor = BLACK;
+            ////
+
+            //
+            string cellBackgroundColor = SILVER;
+
+
             DataSet data = CreateDataSet();
 
             //There should be only one table
@@ -463,23 +475,12 @@ stream"
                 // and splits columns from rows.
 
 
-                //Basic font attributes
-                const string fontBold = "FHB";
-                const string font = "FH";
-                const int fontSize = 9;
-                string textColor = BLACK;
-                ////
-
-                //
-                string cellBackgroundColor = SILVER;
-
                 //Space between each row: for example "Column 1" takes 30, "Column 2" 45 ect...
                 //These numbers are aggregate inside this variable
                 double countRowWidth = 0;
 
                 //Total width of our table
                 //This is used when scaling the table to fit into the PDF page
-                double totalRowWidth = 0;
                 double scaling = 1;
 
                 //FIXME Height of a row
@@ -508,10 +509,6 @@ stream"
                         }
                     }
                     ////
-
-                    totalRowWidth += largestTextWidth;
-
-
 
                     Console.WriteLine("column: " + column.ColumnName);
 
@@ -565,7 +562,6 @@ stream"
                         );
                     }
                     ////
-
 
                     countRowWidth += width + 2;
                 }
