@@ -522,123 +522,6 @@ stream"
             }
 
 
-            /*
-            string cell = CreateTextCell("Symbol", 2, BLACK, "FHB", 9);
-            double totalRowWidth = 0;
-            double width = GetTextWidth("Symbol", "FHB", 9, 0, 0) + 2;
-            double height = 13;
-            string box = CreateBox(cell, 1, 1, 0, 0, SILVER, width, height);
-            string row1 = CreateRow(box, totalRowWidth);
-
-            cell = CreateTextCell("Desc", 2, BLACK, "FHB", 9);
-            totalRowWidth += width + 2;
-            width = GetTextWidth("Desc", "FHB", 9, 0, 0) + 2;
-            height = 13;
-            box = CreateBox(cell, 1, 1, 2.241, 0, SILVER, width, height);
-            string row2 = CreateRow(box, totalRowWidth);
-
-            cell = CreateTextCell("Weight", 2, BLACK, "FHB", 9);
-            totalRowWidth += width + 2;
-            width = GetTextWidth("Weight", "FHB", 9, 0, 0) + 2;
-            height = 13;
-            box = CreateBox(cell, 1, 1, 0, 0, SILVER, width, height);
-            string row3 = CreateRow(box, totalRowWidth);
-
-            cell = CreateTextCell("Price", 2, BLACK, "FHB", 9);
-            totalRowWidth += width + 2;
-            width = GetTextWidth("Price", "FHB", 9, 0, 0) + 2;
-            height = 13;
-            box = CreateBox(cell, 1, 1, 0, 0, SILVER, width, height);
-            string row4 = CreateRow(box, totalRowWidth);
-
-            cell = CreateTextCell("Cty", 2, BLACK, "FHB", 9);
-            totalRowWidth += width + 2;
-            width = GetTextWidth("Cty", "FHB", 9, 0, 0) + 2;
-            height = 13;
-            box = CreateBox(cell, 1, 1, 0, 0, SILVER, width, height);
-            string row5 = CreateRow(box, totalRowWidth);
-
-            cell = CreateTextCell("Country", 2, BLACK, "FHB", 9);
-            totalRowWidth += width + 2;
-            width = GetTextWidth("UNITED STATES", "FHB", 9, 0, 0) + 2;
-            height = 13;
-            box = CreateBox(cell, 1, 1, 18.2565, 0, SILVER, width, height);
-            string row6 = CreateRow(box, totalRowWidth);
-
-            cell = CreateTextCell("Sct", 2, BLACK, "FHB", 9);
-            totalRowWidth += width + 2;
-            width = GetTextWidth("Sct", "FHB", 9, 0, 0) + 2;
-            height = 13;
-            box = CreateBox(cell, 1, 1, 1, 0, SILVER, width, height);
-            string row7 = CreateRow(box, totalRowWidth);
-
-            cell = CreateTextCell("Sector", 2, BLACK, "FHB", 9);
-            totalRowWidth += width + 2;
-            width = GetTextWidth("Sector", "FHB", 9, 0, 0) + 2;
-            height = 13;
-            box = CreateBox(cell, 1, 1, 0.7515, 0, SILVER, width, height);
-            string row8 = CreateRow(box, totalRowWidth);
-
-            string row = AppendBox(
-                row1 + row2 + row3 + row4 + row5 + row6 + row7 + row8,
-                170.2325, 737
-            );
-            _pdf.AppendLine(row);
-            */
-
-            /*
-            cell = CreateTextCell("AAAA", 2, GREEN, "FH", 9);
-            box = CreateBox(cell, 1, 1, 0, 0);
-            row1 = CreateRow(box, 0);
-
-            cell = CreateTextCell("AAAA", 2, GREEN, "FH", 9);
-            box = CreateBox(cell, 1, 1, 0, 0);
-            row2 = CreateRow(box, 36.508);
-
-            cell = CreateTextCell("0.10", 2, BLUE, "FH", 9);
-            box = CreateBox(cell, 1, 1, 12.483, 0);
-            row3 = CreateRow(box, 66.5);
-
-            cell = CreateTextCell("100", 2, BLUE, "FH", 9);
-            box = CreateBox(cell, 1, 1, 7.002, 0);
-            row4 = CreateRow(box, 100.497);
-
-            cell = CreateTextCell("US", 2, GREEN, "FH", 9);
-            box = CreateBox(cell, 1, 1, 0, 0);
-            row5 = CreateRow(box, 126.511);
-
-            cell = CreateTextCell("UNITED STATES", 2, GREEN, "FH", 9);
-            box = CreateBox(cell, 1, 1, 0, 0);
-            row6 = CreateRow(box, 145.01);
-
-            cell = CreateTextCell("10", 2, BLUE, "FH", 9);
-            box = CreateBox(cell, 1, 1, 3.996, 0);
-            row7 = CreateRow(box, 220.20);
-
-            cell = CreateTextCell("ALPHA", 2, GREEN, "FH", 9);
-            box = CreateBox(cell, 1, 1, 0, 0);
-            row8 = CreateRow(box, 238.024);
-
-            row = AppendBox(
-                row1 + row2 + row3 + row4 + row5 + row6 + row7 + row8,
-                170.2325, 722);
-            _pdf.AppendLine(row);
-
-
-            cell = CreateTextCell("BBBB", 2, GREEN, "FH", 9);
-            box = CreateBox(cell, 1, 1, 0, 0);
-            row1 = CreateRow(box, 0);
-
-            cell = CreateTextCell("BBBB", 2, GREEN, "FH", 9);
-            box = CreateBox(cell, 1, 1, 0, 0);
-            row2 = CreateRow(box, 36.508);
-
-            row = AppendBox(
-                row1 + row2,
-                170.2325, 707);
-            _pdf.AppendLine(row);
-            */
-
             text = CreateText("Page 1 out of 1", 2, BLACK, "FH", 9);
             mark = CreateMark(text, 530.953, 15);
             _pdf.AppendLine(mark);
@@ -707,11 +590,13 @@ startxref
             );
 
             _pdf.AppendLine(@"%%EOF");
+            
 
-
+            //Write the PDF to a file
             StreamWriter file = new StreamWriter(@"C:\Users\Krotoff\Desktop\pdfwriter.pdf");
             file.Write(_pdf);
             file.Close();
+            ////
         }
     }
 }
