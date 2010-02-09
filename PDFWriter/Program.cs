@@ -119,20 +119,14 @@ namespace PDFWriter
         /// value: 0.
         /// </param>
         static string CreateText(string text, double yPos, Font font) {
-            //Black is the default value so no need to write it down
             string rg = string.Format("{0} rg", font.Color);
-
-            //If a font name is specified
-            //FIXME and what if we specify the font size without specifying the font name?
             string Tf = string.Format("/{0} {1} Tf", font.Name, font.Size);
-
             string Td = string.Format("0 {0} Td", yPos);
-
             string Tj = string.Format("({0}) Tj", text);
 
             return string.Format(@"
 % CreateText (
-   BT
+    BT
        {0}
        {1}
        {2}
@@ -157,20 +151,6 @@ namespace PDFWriter
     % remove translation x=?,y=?
     Q
 %)", xPos, yPos, box
-            );
-        }
-
-        static string CreateTextCell(string text, double yPos, Font font)
-        {
-            return string.Format(@"
-% CreateTextCell (
-    BT
-        {0} rg
-        /{1} {2} Tf
-        0 {3} Td
-        ({4}) Tj
-    ET
-%)", font.Color, font.Name, font.Size, yPos, text
             );
         }
 
@@ -415,7 +395,7 @@ stream"
 
                     //Write all the column titles inside pdfColumnTitles
                     double xPos = 2;
-                    string cell = CreateTextCell(column.ColumnName, xPos, defaultFont);
+                    string cell = CreateText(column.ColumnName, xPos, defaultFont);
                     double width = largestColumnWidth + xPos;
                     int margin = 1;
                     int padding = 1;
@@ -454,7 +434,7 @@ stream"
                                     font.Color = Color.Blue;
                                 }
                             }
-                            cell = CreateTextCell(rowName, xPos, font);
+                            cell = CreateText(rowName, xPos, font);
 
                             box = CreateBox(cell, margin, padding, 0, yPosBox);
                             pdfRows += box;
