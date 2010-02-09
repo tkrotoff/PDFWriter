@@ -84,91 +84,6 @@ namespace PDFWriter
             return newDataSet;
         }
 
-        //Helvetica
-        static double[] FH = new double[] {
-            .278, .278, .278, .278, .278, .278, .278, .278, .278, .278, .278, .278, .278, .278, .278, .278, 
-            .278, .278, .278, .278, .278, .278, .278, .278, .333, .333, .333, .333, .333, .333, .333, .333, 
-            .278, .278, .355, .556, .556, .889, .667, .191, .333, .333, .389, .584, .278, .333, .278, .278, 
-            .556, .556, .556, .556, .556, .556, .556, .556, .556, .556, .278, .278, .584, .584, .584, .556, 
-            1.015, .667, .667, .722, .722, .667, .611, .778, .722, .278, .500, .667, .556, .833, .722, .778, 
-            .667, .778, .722, .667, .611, .722, .667, .944, .667, .667, .611, .278, .278, .278, .469, .556, 
-            .333, .556, .556, .500, .556, .556, .278, .556, .556, .222, .222, .500, .222, .833, .556, .556, 
-            .556, .556, .333, .500, .278, .556, .500, .722, .500, .500, .500, .334, .260, .334, .584, .278, 
-            .350, .556, .556, 1.00, 1.00, .556, .556, .167, .333, .333, .584, 1.00, .333, .333, .333, .222, 
-            .222, .222, 1.00, .500, .500, .556, 1.00, .667, .667, .611, .278, .222, .944, .500, .500, .278, 
-            .278, .333, .556, .556, .556, .556, .260, .556, .333, .737, .370, .556, .584, .278, .737, .333, 
-            .400, .584, .333, .333, .333, .556, .537, .278, .333, .333, .365, .556, .834, .834, .834, .611, 
-            .667, .667, .667, .667, .667, .667, 1.00, .722, .667, .667, .667, .667, .278, .278, .278, .278, 
-            .722, .722, .778, .778, .778, .778, .778, .584, .778, .722, .722, .722, .722, .667, .667, .611, 
-            .556, .556, .556, .556, .556, .556, .889, .500, .556, .556, .556, .556, .278, .278, .278, .278, 
-            .556, .556, .556, .556, .556, .556, .556, .584, .611, .556, .556, .556, .556, .500, .556, .500, 
-        };
-
-        //Helvetica Bold
-        static double[] FHB = new double[] {
-            .278, .278, .278, .278, .278, .278, .278, .278, .278, .278, .278, .278, .278, .278, .278, .278, 
-            .278, .278, .278, .278, .278, .278, .278, .278, .333, .333, .333, .333, .333, .333, .333, .333, 
-            .278, .333, .474, .556, .556, .889, .722, .238, .333, .333, .389, .584, .278, .333, .278, .278, 
-            .556, .556, .556, .556, .556, .556, .556, .556, .556, .556, .333, .333, .584, .584, .584, .611, 
-            .975, .722, .722, .722, .722, .667, .611, .778, .722, .278, .556, .722, .611, .833, .722, .778, 
-            .667, .778, .722, .667, .611, .722, .667, .944, .667, .667, .611, .333, .278, .333, .584, .556, 
-            .333, .556, .611, .556, .611, .556, .333, .611, .611, .278, .278, .556, .278, .889, .611, .611, 
-            .611, .611, .389, .556, .333, .611, .556, .778, .556, .556, .500, .389, .280, .389, .584, .278, 
-            .350, .556, .556, 1.00, 1.00, .556, .556, .167, .333, .333, .584, 1.00, .500, .500, .500, .278, 
-            .278, .278, 1.00, .611, .611, .611, 1.00, .667, .667, .611, .278, .278, .944, .556, .500, .278, 
-            .278, .333, .556, .556, .556, .556, .280, .556, .333, .737, .370, .556, .584, .278, .737, .333, 
-            .400, .584, .333, .333, .333, .611, .556, .278, .333, .333, .365, .556, .834, .834, .834, .611, 
-            .722, .722, .722, .722, .722, .722, 1.00, .722, .667, .667, .667, .667, .278, .278, .278, .278, 
-            .722, .722, .778, .778, .778, .778, .778, .584, .778, .722, .722, .722, .722, .667, .667, .611, 
-            .556, .556, .556, .556, .556, .556, .889, .556, .556, .556, .556, .556, .278, .278, .278, .278, 
-            .611, .611, .611, .611, .611, .611, .611, .584, .611, .611, .611, .611, .611, .556, .611, .556, 
-        };
-
-        static double GetTextWidth(string text, string font, int fontSize, int charSpace, int wordSpace)
-        {
-            double width = 0;
-
-            foreach (char ch in text)
-            {
-                int asciiCode = (int)ch;
-                int ws = 0;
-                if (ch == 32) {
-                    //Width of a space character
-                    ws = wordSpace;
-                }
-                double charWidth = 0;
-                if (font == "FH")
-                {
-                    charWidth = FH[ch];
-                }
-                else if (font == "FHB")
-                {
-                    charWidth = FHB[ch];
-                }
-                width += charWidth + charSpace + ws;
-            }
-
-            return width * fontSize;
-        }
-
-        static readonly string NO_COLOR = string.Empty;
-        static readonly string BLACK = "0 0 0";
-        static readonly string BLUE = "0 0 1";
-        static readonly string CYAN = "0 1 1";
-        static readonly string GRAY = "0.5 0.5 0.5";
-        static readonly string GREEN = "0 0.5 0";
-        static readonly string LIME = "0 1 0";
-        static readonly string MAGENTA = "1 0 1";
-        static readonly string MAROON = "0.5 0 0";
-        static readonly string NAVY = "0 0 0.5";
-        static readonly string OLIVE = "0.5 0.5 0";
-        static readonly string PURPLE = "0.5 0 0.5";
-        static readonly string RED = "1 0 0";
-        static readonly string SILVER = "0.75 0.75 0.75";
-        static readonly string TEAL = "0 0.5 0.5";
-        static readonly string WHITE = "1 1 1";
-        static readonly string YELLOW = "1 1 0";
-
         static StringBuilder _pdf = new StringBuilder();
 
         /// <summary>
@@ -203,17 +118,13 @@ namespace PDFWriter
         /// text space units. Word spacing is used by the Tj, TJ, and ' operators. Default
         /// value: 0.
         /// </param>
-        static string CreateText(string text, double yPos, string color, string font, int fontSize) {
-            int charSpace = 0;
-            int wordSpace = 0;
-            double textWidth = GetTextWidth(text, font, fontSize, charSpace, wordSpace);
-
+        static string CreateText(string text, double yPos, Font font) {
             //Black is the default value so no need to write it down
-            string rg = string.Format("{0} rg", color);
+            string rg = string.Format("{0} rg", font.Color);
 
             //If a font name is specified
             //FIXME and what if we specify the font size without specifying the font name?
-            string Tf = string.Format("/{0} {1} Tf", font, fontSize);
+            string Tf = string.Format("/{0} {1} Tf", font.Name, font.Size);
 
             string Td = string.Format("0 {0} Td", yPos);
 
@@ -249,7 +160,7 @@ namespace PDFWriter
             );
         }
 
-        static string CreateTextCell(string text, double yPos, string color, string font, int fontSize)
+        static string CreateTextCell(string text, double yPos, Font font)
         {
             return string.Format(@"
 % CreateTextCell (
@@ -259,7 +170,7 @@ namespace PDFWriter
         0 {3} Td
         ({4}) Tj
     ET
-%)", color, font, fontSize, yPos, text
+%)", font.Color, font.Name, font.Size, yPos, text
             );
         }
 
@@ -278,7 +189,7 @@ namespace PDFWriter
 
         static string CreateBox(string box, int margin, int padding, double xPos, double yPos)
         {
-            string backgroundColor = NO_COLOR;
+            string backgroundColor = Color.NoColor;
             int width = 0;
             int height = 0;
             return CreateBox(box, margin, padding, xPos, yPos, backgroundColor, width, height);
@@ -406,9 +317,7 @@ endobj"
 
             // Page Node
 
-            const int PAGE_WIDTH = 612;
-            const int PAGE_HEIGHT = 792;
-            const int PAGE_LEFT_RIGHT_MARGIN = 25;
+            PageLayout pageLayout = new PageLayout();
 
             _pdf.AppendFormat(@"
 % Page Node.
@@ -420,7 +329,7 @@ endobj"
         /Contents 5 0 R
         /Resources << /ProcSet 6 0 R >>
     >>
-endobj", PAGE_WIDTH, PAGE_HEIGHT
+endobj", pageLayout.Width, pageLayout.Height
             );
 
             _pdf.AppendLine(@"
@@ -431,30 +340,24 @@ endobj", PAGE_WIDTH, PAGE_HEIGHT
 stream"
             );
 
-            //612 x 792
+            //Default font
+            Font defaultFont = new Font(Font.Helvetica, 9);
+            Font defaultBoldFont = new Font(Font.HelveticaBold, 9);
 
-            string text = CreateText("Report", 2, BLACK, "FH", 9);
+            string text = CreateText("Report", 2, defaultFont);
             string mark = CreateMark(text, 20, 766);
             _pdf.AppendLine(mark);
 
-            text = CreateText("Source: PDFWR (www.pdfwr.com)", 2, BLACK, "FH", 9);
+            text = CreateText("Source: PDFWR (www.pdfwr.com)", 2, defaultFont);
             mark = CreateMark(text, 20, 15);
             _pdf.AppendLine(mark);
 
-            text = CreateText("04-Feb-2010", 2, BLACK, "FH", 9);
+            text = CreateText("04-Feb-2010", 2, defaultFont);
             mark = CreateMark(text, 540.475, 766);
             _pdf.AppendLine(mark);
 
-
-            //Basic font attributes
-            const string fontBold = "FHB";
-            const string font = "FH";
-            const int fontSize = 9;
-            string textColor = BLACK;
-            ////
-
             //
-            string cellBackgroundColor = SILVER;
+            string cellBackgroundColor = Color.Silver;
 
 
             DataSet data = CreateDataSet();
@@ -495,12 +398,12 @@ stream"
                 foreach (DataColumn column in table.Columns)
                 {
                     //Gets the largest width possible of a column
-                    double largestColumnWidth = GetTextWidth(column.ColumnName, fontBold, fontSize, 0, 0);
+                    double largestColumnWidth = FontMetrics.GetTextWidth(column.ColumnName, defaultBoldFont);
                     foreach (DataRow row in table.Rows)
                     {
                         string rowName = row[column.ColumnName].ToString();
 
-                        double tmp = GetTextWidth(rowName, font, fontSize, 0, 0);
+                        double tmp = FontMetrics.GetTextWidth(rowName, defaultFont);
                         if (tmp > largestColumnWidth)
                         {
                             largestColumnWidth = tmp;
@@ -512,7 +415,7 @@ stream"
 
                     //Write all the column titles inside pdfColumnTitles
                     double xPos = 2;
-                    string cell = CreateTextCell(column.ColumnName, xPos, textColor, font, fontSize);
+                    string cell = CreateTextCell(column.ColumnName, xPos, defaultFont);
                     double width = largestColumnWidth + xPos;
                     int margin = 1;
                     int padding = 1;
@@ -531,14 +434,15 @@ stream"
                             string rowName = row[column.ColumnName].ToString();
                             Console.WriteLine("row: " + rowName);
 
+                            Font font = new Font(Font.Helvetica, 9, Color.Green);
+
                             //A string should be green
-                            string color = GREEN;
                             int rowNameInt32;
                             bool result = Int32.TryParse(rowName, out rowNameInt32);
                             if (result)
                             {
                                 //A number should be blue
-                                color = BLUE;
+                                font.Color = Color.Blue;
                             }
                             else
                             {
@@ -547,10 +451,10 @@ stream"
                                 if (result)
                                 {
                                     //A number should be blue
-                                    color = BLUE;
+                                    font.Color = Color.Blue;
                                 }
                             }
-                            cell = CreateTextCell(rowName, xPos, color, font, fontSize);
+                            cell = CreateTextCell(rowName, xPos, font);
 
                             box = CreateBox(cell, margin, padding, 0, yPosBox);
                             pdfRows += box;
@@ -567,18 +471,17 @@ stream"
 
                 //Total width of our table
                 //This is used when scaling the table to fit into the PDF page
-                double scaling = (PAGE_WIDTH - (PAGE_LEFT_RIGHT_MARGIN * 2)) / (countRowWidth);
+                double scaling = (pageLayout.Width - (pageLayout.RightMargin + pageLayout.LeftMargin)) / (countRowWidth);
                 if (scaling > 1)
                 {
                     scaling = 1;
                 }
 
                 //FIXME
-                //const double initXPosBox = 170.2325;
-                double initXPosBox = (PAGE_WIDTH / 2) - (countRowWidth / 2);
-                if (initXPosBox < PAGE_LEFT_RIGHT_MARGIN)
+                double initXPosBox = (pageLayout.Width / 2) - (countRowWidth / 2);
+                if (initXPosBox < pageLayout.LeftMargin)
                 {
-                    initXPosBox = PAGE_LEFT_RIGHT_MARGIN;
+                    initXPosBox = pageLayout.LeftMargin;
                 }
                 const double initYPosBox = 737;
 
@@ -592,7 +495,7 @@ stream"
             }
 
 
-            text = CreateText("Page 1 out of 1", 2, BLACK, "FH", 9);
+            text = CreateText("Page 1 out of 1", 2, defaultFont);
             mark = CreateMark(text, 530.953, 15);
             _pdf.AppendLine(mark);
            
