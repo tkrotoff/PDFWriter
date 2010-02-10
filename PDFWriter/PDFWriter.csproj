@@ -46,9 +46,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Color.cs" />
+    <Compile Include="CrossReferenceTable.cs" />
     <Compile Include="Font.cs" />
     <Compile Include="FontMetrics.cs" />
     <Compile Include="PageLayout.cs" />
+    <Compile Include="PDFAppendBox.cs" />
+    <Compile Include="PDFBox.cs" />
+    <Compile Include="PDFCatalog.cs" />
+    <Compile Include="PDFContentStream.cs" />
+    <Compile Include="PDFFont.cs" />
+    <Compile Include="PDFInfo.cs" />
+    <Compile Include="PDFMark.cs" />
+    <Compile Include="PDFObject.cs" />
+    <Compile Include="PDFOutlines.cs" />
+    <Compile Include="PDFPage.cs" />
+    <Compile Include="PDFPages.cs" />
+    <Compile Include="PDFRoot.cs" />
+    <Compile Include="PDFRow.cs" />
+    <Compile Include="PDFText.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

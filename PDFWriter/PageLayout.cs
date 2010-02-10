@@ -13,10 +13,18 @@ namespace PDFWriter
             Height = 792;
 
             LeftMargin = 25;
-            RightMargin = RightMargin;
+            RightMargin = LeftMargin;
 
             TopMargin = 55;
             BottomMargin = TopMargin;
+
+            HeaderYPos = 766;
+            HeaderLeftXPos = 20;
+            HeaderRightXLimit = Width - HeaderLeftXPos;
+
+            FooterYPos = 15;
+            FooterLeftXPos = HeaderLeftXPos;
+            FooterRightXLimit = HeaderRightXLimit;
         }
 
         public double Width
@@ -31,6 +39,7 @@ namespace PDFWriter
             set;
         }
 
+        #region Margins
         public double LeftMargin
         {
             get;
@@ -54,5 +63,58 @@ namespace PDFWriter
             get;
             set;
         }
+        #endregion
+
+        #region Header
+        public double HeaderYPos
+        {
+            get;
+            set;
+        }
+
+        public double HeaderLeftXPos
+        {
+            get;
+            set;
+        }
+
+        public double HeaderRightXLimit
+        {
+            get;
+            set;
+        }
+
+        public double GetHeaderRightXPos(string text, Font font)
+        {
+            double textWidth = FontMetrics.GetTextWidth(text, font);
+            return HeaderRightXLimit - textWidth;
+        }
+        #endregion
+
+        #region Footer
+        public double FooterYPos
+        {
+            get;
+            set;
+        }
+
+        public double FooterLeftXPos
+        {
+            get;
+            set;
+        }
+
+        public double FooterRightXLimit
+        {
+            get;
+            set;
+        }
+
+        public double GetFooterRightXPos(string text, Font font)
+        {
+            double textWidth = FontMetrics.GetTextWidth(text, font);
+            return FooterRightXLimit - textWidth;
+        }
+        #endregion
     }
 }
