@@ -5,14 +5,14 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFRow : PDFGraphicObject
+    class PDFTranslation : PDFGraphicObject
     {
-        private PDFBox _box;
+        private PDFGraphicObject _graphicObject;
         private double _width;
 
-        public PDFRow(PDFBox box, double width)
+        public PDFTranslation(PDFGraphicObject graphicObject, double width)
         {
-            _box = box;
+            _graphicObject = graphicObject;
             _width = width;
         }
 
@@ -26,7 +26,7 @@ namespace PDFWriter
     % remove translation width
     Q
 % )
-", _width, _box.ToInnerPDF()
+", _width, _graphicObject.ToInnerPDF()
             );
         }
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFBox : PDFGraphicObject
+    class PDFTextBox : PDFGraphicObject
     {
         private PDFText _text;
         private int _margin;
@@ -17,7 +17,7 @@ namespace PDFWriter
         private double _width;
         private double _height;
 
-        public PDFBox(PDFText text, int margin, int padding, double xPos, double yPos,
+        public PDFTextBox(PDFText text, int margin, int padding, double xPos, double yPos,
                 string backgroundColor, double width, double height)
         {
             _text = text;
@@ -31,7 +31,7 @@ namespace PDFWriter
             _height = height;
         }
 
-        public PDFBox(PDFText text, int margin, int padding, double xPos, double yPos)
+        public PDFTextBox(PDFText text, int margin, int padding, double xPos, double yPos)
             : this(text, margin, padding, xPos, yPos, Color.NoColor, 0, 0)
         {
         }

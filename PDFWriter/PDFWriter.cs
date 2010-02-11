@@ -39,6 +39,49 @@ namespace PDFWriter
         //Page layout
         private PageLayout pageLayout = new PageLayout();
 
+        //FIXME Height of a row
+        private const double rowHeight = 13;
+
+        private PDFTextBox CreateColumnTitle(DataColumn column, double maxColumnWidth)
+        {
+            //Write all the column titles inside pdfColumnTitles
+            PDFText text = new PDFText(column.ColumnName, defaultFont);
+            double width = maxColumnWidth;
+            int margin = 1;
+            int padding = 1;
+            PDFTextBox box = new PDFTextBox(text, margin, padding, 0, 0, cellBackgroundColor, width, rowHeight);
+            return box;
+        }
+
+        private PDFTextBox CreateRow(string rowName, double yPosBox)
+        {
+            Font font = new Font(Font.Helvetica, 9, Color.Green);
+
+            //A string should be green
+            int rowNameInt32;
+            bool result = Int32.TryParse(rowName, out rowNameInt32);
+            if (result)
+            {
+                //A positive number should be blue
+                font.Color = Color.Blue;
+            }
+            else
+            {
+                double rowNameDouble;
+                result = Double.TryParse(rowName, out rowNameDouble);
+                if (result)
+                {
+                    //A positive number should be blue
+                    font.Color = Color.Blue;
+                }
+            }
+            PDFText text = new PDFText(rowName, font);
+            int margin = 1;
+            int padding = 1;
+            PDFTextBox box = new PDFTextBox(text, margin, padding, 0, yPosBox);
+            return box;
+        }
+
         private List<PDFContentStream> CreateContentStreams(DataSet data)
         {
             List<PDFContentStream> contentStreams = new List<PDFContentStream>();
@@ -68,9 +111,6 @@ namespace PDFWriter
                 //These numbers are aggregate inside this variable
                 double countRowWidth = 0;
 
-                //FIXME Height of a row
-                const double height = 13;
-
                 //Contains the column titles "Column 1", "Column 2"...
 
                 List<PDFGraphicObject> pdfColumnTitles = new List<PDFGraphicObject>();
@@ -80,17 +120,12 @@ namespace PDFWriter
                 //
                 foreach (DataColumn column in table.Columns)
                 {
-                    double maxColumnWidth = GetMaxColumnWidth(column, table);
-
                     Console.WriteLine("column: " + column.ColumnName);
 
+                    double maxColumnWidth = GetMaxColumnWidth(column, table);
+                    PDFTextBox columnTitleBox = CreateColumnTitle(column, maxColumnWidth);
                     //Write all the column titles inside pdfColumnTitles
-                    PDFText text = new PDFText(column.ColumnName, defaultFont);
-                    double width = maxColumnWidth;
-                    int margin = 1;
-                    int padding = 1;
-                    PDFBox box = new PDFBox(text, margin, padding, 0, 0, cellBackgroundColor, width, height);
-                    pdfColumnTitles.Add(new PDFRow(box, countRowWidth));
+                    pdfColumnTitles.Add(new PDFTranslation(columnTitleBox, countRowWidth));
                     ////
 
 
@@ -104,39 +139,17 @@ namespace PDFWriter
                         {
                             string rowName = row[column.ColumnName].ToString();
                             Console.WriteLine("row: " + rowName);
+                            PDFTextBox rowBox = CreateRow(rowName, yPosBox);
+                            pdfRows.Add(rowBox);
 
-                            Font font = new Font(Font.Helvetica, 9, Color.Green);
-
-                            //A string should be green
-                            int rowNameInt32;
-                            bool result = Int32.TryParse(rowName, out rowNameInt32);
-                            if (result)
-                            {
-                                //A positive number should be blue
-                                font.Color = Color.Blue;
-                            }
-                            else
-                            {
-                                double rowNameDouble;
-                                result = Double.TryParse(rowName, out rowNameDouble);
-                                if (result)
-                                {
-                                    //A positive number should be blue
-                                    font.Color = Color.Blue;
-                                }
-                            }
-                            text = new PDFText(rowName, font);
-                            box = new PDFBox(text, margin, padding, 0, yPosBox);
-                            pdfRows.Add(box);
-
-                            yPosBox -= height;
+                            yPosBox -= rowHeight;
                         }
 
-                        pdfRowBox.Add(new PDFAppendBox(pdfRows, 1, countRowWidth, -height));
+                        pdfRowBox.Add(new PDFAppendBox(pdfRows, 1, countRowWidth, -rowHeight));
                     }
                     ////
 
-                    countRowWidth += width + 2;
+                    countRowWidth += maxColumnWidth + 2;
                 }
 
                 //Total width of our table
