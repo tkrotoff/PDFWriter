@@ -310,8 +310,8 @@ namespace PDFWriter
 
                 //Page
                 PDFPage page = new PDFPage(fonts, contentStream);
-                pages.AddChild(page);
                 root.AddChild(page);
+                pages.AddChild(page);
                 ///
             }
             ///
