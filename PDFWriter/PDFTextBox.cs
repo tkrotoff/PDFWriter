@@ -44,39 +44,33 @@ namespace PDFWriter
     q"
             );
 
-            if (_margin != 0)
-            {
-                tmp.AppendFormat(@"
-    % translation margin
+            tmp.AppendFormat(@"
+    % Margin
     1 0 0 1 {0} {0} cm", _margin
-                );
-            }
+            );
 
             if (_width != 0 && _height != 0)
             {
                 tmp.AppendFormat(@"
+    % Rectangle
     {0} rg
     0 0 {1} {2} re
     f", _backgroundColor, _width, _height
                 );
             }
 
-            if (_padding != 0)
-            {
-                tmp.AppendFormat(@"
-    % translation padding
+            tmp.AppendFormat(@"
+    % Padding
     1 0 0 1 {0} {0} cm", _padding
-                );
-            }
+            );
 
             tmp.AppendFormat(@"
-    % translation position
+    % Position
     1 0 0 1 {0} {1} cm
     {2}", _xPos, _yPos, _text.ToInnerPDF()
             );
 
             tmp.AppendFormat(@"
-    % remove translation margin, padding, position
     Q
 % )
 "
