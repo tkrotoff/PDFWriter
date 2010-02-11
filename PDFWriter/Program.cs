@@ -149,9 +149,9 @@ namespace PDFWriter
 
                 //Contains the column titles "Column 1", "Column 2"...
 
-                List<PDFObject> pdfColumnTitles = new List<PDFObject>();
+                List<PDFGraphicObject> pdfColumnTitles = new List<PDFGraphicObject>();
 
-                List<PDFObject> pdfRowBox = new List<PDFObject>();
+                List<PDFGraphicObject> pdfRowBox = new List<PDFGraphicObject>();
 
                 //
                 foreach (DataColumn column in table.Columns)
@@ -172,7 +172,7 @@ namespace PDFWriter
 
                     //Loop over the rows
                     {
-                        List<PDFObject> pdfRows = new List<PDFObject>();
+                        List<PDFGraphicObject> pdfRows = new List<PDFGraphicObject>();
 
                         double yPosBox = 0;
 
@@ -311,7 +311,7 @@ namespace PDFWriter
                 //Page
                 PDFPage page = new PDFPage(fonts, contentStream);
                 root.AddChild(page);
-                pages.AddChild(page);
+                pages.AddPage(page);
                 ///
             }
             ///

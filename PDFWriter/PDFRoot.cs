@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFRoot : PDFObject
+    class PDFRoot : PDFStructureObject
     {
         private int _count = 1;
 
@@ -25,9 +25,11 @@ namespace PDFWriter
             set;
         }
 
-        public override void AddChild(PDFObject pdfObject)
+        private List<PDFStructureObject> _childs = new List<PDFStructureObject>();
+
+        public void AddChild(PDFStructureObject pdfObject)
         {
-            base.AddChild(pdfObject);
+            _childs.Add(pdfObject);
             pdfObject.ObjectNumber = _count++;
         }
 
@@ -35,7 +37,7 @@ namespace PDFWriter
         {
             string xref = string.Empty;
             string pdfString = "%PDF-1.3\n";
-            foreach (PDFObject pdfObject in Childs)
+            foreach (PDFStructureObject pdfObject in _childs)
             {
                 xref += string.Format("{0:0000000000} 00000 n\n", pdfString.Length);
                 pdfString += pdfObject.ToInnerPDF();

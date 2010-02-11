@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFFont : PDFObject
+    class PDFFont : PDFStructureObject
     {
         public PDFFont(string fontName, string baseFont)
         {

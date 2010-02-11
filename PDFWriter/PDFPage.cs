@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFPage : PDFObject
+    class PDFPage : PDFStructureObject
     {
         private List<PDFFont> _fonts;
         private PDFContentStream _contentStream;
@@ -14,6 +14,12 @@ namespace PDFWriter
         {
             _fonts = fonts;
             _contentStream = contentStream;
+        }
+
+        public PDFPages Parent
+        {
+            get;
+            set;
         }
 
         public override string ToInnerPDF()

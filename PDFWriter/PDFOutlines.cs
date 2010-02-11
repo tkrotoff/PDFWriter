@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFOutlines : PDFObject
+    class PDFOutlines : PDFStructureObject
     {
         public override string ToInnerPDF()
         {
@@ -14,6 +14,7 @@ namespace PDFWriter
 {0} 0 obj
     <<
         /Type /Outlines
+        /Count 0
     >>
 endobj
 % )

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFCatalog : PDFObject
+    class PDFCatalog : PDFStructureObject
     {
         private PDFOutlines _outlines;
         private PDFPages _pages;

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFBox : PDFObject
+    class PDFBox : PDFGraphicObject
     {
         private PDFText _text;
         private int _margin;
@@ -40,7 +40,7 @@ namespace PDFWriter
         {
             StringBuilder tmp = new StringBuilder();
             tmp.AppendLine(@"
-% CreateBox (
+% PDFBox (
     q"
             );
 

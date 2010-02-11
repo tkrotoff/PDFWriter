@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFRow : PDFObject
+    class PDFRow : PDFGraphicObject
     {
         private PDFBox _box;
         private double _width;

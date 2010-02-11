@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFMark : PDFObject
+    class PDFMark : PDFGraphicObject
     {
         PDFText _text;
         double _xPos;

@@ -5,14 +5,21 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFContentStream : PDFObject
+    class PDFContentStream : PDFStructureObject
     {
+        private List<PDFGraphicObject> _childs = new List<PDFGraphicObject>();
+
+        public virtual void AddChild(PDFGraphicObject pdfGraphicObject)
+        {
+            _childs.Add(pdfGraphicObject);
+        }
+
         public override string ToInnerPDF()
         {
             string tmp = string.Empty;
-            foreach (PDFObject pdfObject in Childs)
+            foreach (PDFGraphicObject pdfGraphicObject in _childs)
             {
-                tmp += pdfObject.ToInnerPDF();
+                tmp += pdfGraphicObject.ToInnerPDF();
             }
 
             return string.Format(@"

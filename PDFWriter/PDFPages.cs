@@ -5,16 +5,24 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFPages : PDFObject
+    class PDFPages : PDFStructureObject
     {
+        private List<PDFPage> _pages = new List<PDFPage>();
+
+        public virtual void AddPage(PDFPage page)
+        {
+            page.Parent = this;
+            _pages.Add(page);
+        }
+
         public override string ToInnerPDF()
         {
             PageLayout layout = new PageLayout();
 
-            string pages = string.Empty;
-            foreach (PDFPage page in Childs)
+            string tmp = string.Empty;
+            foreach (PDFPage page in _pages)
             {
-                pages += string.Format(@"
+                tmp += string.Format(@"
                 {0} 0 R", page.ObjectNumber);
             }
 
@@ -31,7 +39,7 @@ namespace PDFWriter
     >>
 endobj
 % )
-", ObjectNumber, pages, Childs.Count, layout.Width, layout.Height
+", ObjectNumber, tmp, _pages.Count, layout.Width, layout.Height
             );
         }
 

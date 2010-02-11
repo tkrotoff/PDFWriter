@@ -5,11 +5,11 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFInfo : PDFObject
+    class PDFInfo : PDFStructureObject
     {
-        string _title;
-        string _creator;
-        string _producer;
+        private string _title;
+        private string _creator;
+        private string _producer;
 
         public PDFInfo(string title, string creator, string producer)
         {
