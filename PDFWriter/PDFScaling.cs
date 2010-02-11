@@ -5,14 +5,14 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFAppendBox : PDFGraphicObject
+    class PDFScaling : PDFGraphicObject
     {
         private List<PDFGraphicObject> _graphicObjects;
         private double _scaling;
         private double _xPos;
         private double _yPos;
 
-        public PDFAppendBox(List<PDFGraphicObject> graphicObjects, double scaling, double xPos, double yPos)
+        public PDFScaling(List<PDFGraphicObject> graphicObjects, double scaling, double xPos, double yPos)
         {
             _graphicObjects = graphicObjects;
             _scaling = scaling;
@@ -29,7 +29,7 @@ namespace PDFWriter
             }
 
             return string.Format(@"
-% PDFAppendBox (
+% PDFScaling (
     q {0} 0 0 {0} {1} {2} cm
 {3}
     Q

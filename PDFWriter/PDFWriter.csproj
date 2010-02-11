@@ -50,7 +50,7 @@
     <Compile Include="FontMetrics.cs" />
     <Compile Include="IPDFSerialization.cs" />
     <Compile Include="PageLayout.cs" />
-    <Compile Include="PDFAppendBox.cs" />
+    <Compile Include="PDFScaling.cs" />
     <Compile Include="PDFTextBox.cs" />
     <Compile Include="PDFCatalog.cs" />
     <Compile Include="PDFContentStream.cs" />

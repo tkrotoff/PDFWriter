@@ -146,7 +146,7 @@ namespace PDFWriter
                             yPosBox -= rowHeight;
                         }
 
-                        pdfRowBox.Add(new PDFAppendBox(pdfRows, 1, countRowWidth, -rowHeight));
+                        pdfRowBox.Add(new PDFScaling(pdfRows, 1, countRowWidth, -rowHeight));
                     }
                     ////
 
@@ -167,13 +167,13 @@ namespace PDFWriter
                 {
                     initXPosBox = pageLayout.LeftMargin;
                 }
-                const double initYPosBox = 737;
+                double initYPosBox = pageLayout.Height - pageLayout.TopMargin;
 
-                PDFAppendBox appendBox = new PDFAppendBox(pdfColumnTitles, scaling, initXPosBox, initYPosBox);
+                PDFScaling appendBox = new PDFScaling(pdfColumnTitles, scaling, initXPosBox, initYPosBox);
                 PDFContentStream contentStream = new PDFContentStream();
                 contentStream.AddChild(appendBox);
 
-                appendBox = new PDFAppendBox(pdfRowBox, scaling, initXPosBox, initYPosBox);
+                appendBox = new PDFScaling(pdfRowBox, scaling, initXPosBox, initYPosBox);
                 contentStream.AddChild(appendBox);
 
                 contentStreams.Add(contentStream);
