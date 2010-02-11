@@ -57,7 +57,6 @@
     <Compile Include="PDFFont.cs" />
     <Compile Include="PDFGraphicObject.cs" />
     <Compile Include="PDFInfo.cs" />
-    <Compile Include="PDFMark.cs" />
     <Compile Include="PDFStructureObject.cs" />
     <Compile Include="PDFOutlines.cs" />
     <Compile Include="PDFPage.cs" />

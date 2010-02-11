@@ -7,14 +7,14 @@ namespace PDFWriter
 {
     class PDFAppendBox : PDFGraphicObject
     {
-        private List<PDFGraphicObject> _boxes;
+        private List<PDFGraphicObject> _graphicObjects;
         private double _scaling;
         private double _xPos;
         private double _yPos;
 
-        public PDFAppendBox(List<PDFGraphicObject> boxes, double scaling, double xPos, double yPos)
+        public PDFAppendBox(List<PDFGraphicObject> graphicObjects, double scaling, double xPos, double yPos)
         {
-            _boxes = boxes;
+            _graphicObjects = graphicObjects;
             _scaling = scaling;
             _xPos = xPos;
             _yPos = yPos;
@@ -23,9 +23,9 @@ namespace PDFWriter
         public override string ToInnerPDF()
         {
             string tmp = string.Empty;
-            foreach (PDFGraphicObject pdfObject in _boxes)
+            foreach (PDFGraphicObject graphicObject in _graphicObjects)
             {
-                tmp += "    " + pdfObject.ToInnerPDF();
+                tmp += "    " + graphicObject.ToInnerPDF();
             }
 
             return string.Format(@"

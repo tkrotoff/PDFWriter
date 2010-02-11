@@ -125,7 +125,7 @@ namespace PDFWriter
                     double maxColumnWidth = GetMaxColumnWidth(column, table);
                     PDFTextBox columnTitleBox = CreateColumnTitle(column, maxColumnWidth);
                     //Write all the column titles inside pdfColumnTitles
-                    pdfColumnTitles.Add(new PDFTranslation(columnTitleBox, countRowWidth));
+                    pdfColumnTitles.Add(new PDFTranslation(columnTitleBox, countRowWidth, 0));
                     ////
 
 
@@ -139,6 +139,7 @@ namespace PDFWriter
                         {
                             string rowName = row[column.ColumnName].ToString();
                             Console.WriteLine("row: " + rowName);
+
                             PDFTextBox rowBox = CreateRow(rowName, yPosBox);
                             pdfRows.Add(rowBox);
 
@@ -221,21 +222,21 @@ namespace PDFWriter
             {
                 //Header and footer
                 PDFText header = new PDFText("Report", defaultFont);
-                PDFMark mark = new PDFMark(header, pageLayout.HeaderLeftXPos, pageLayout.HeaderYPos);
+                PDFTranslation mark = new PDFTranslation(header, pageLayout.HeaderLeftXPos, pageLayout.HeaderYPos);
                 contentStream.AddChild(mark);
 
                 string tmp = DateTime.Now.ToShortDateString();
                 header = new PDFText(tmp, defaultFont);
-                mark = new PDFMark(header, pageLayout.GetHeaderRightXPos(tmp, defaultFont), pageLayout.HeaderYPos);
+                mark = new PDFTranslation(header, pageLayout.GetHeaderRightXPos(tmp, defaultFont), pageLayout.HeaderYPos);
                 contentStream.AddChild(mark);
 
                 PDFText footer = new PDFText("Source: PDFWR (www.pdfwr.com)", defaultFont);
-                mark = new PDFMark(footer, pageLayout.FooterLeftXPos, pageLayout.FooterYPos);
+                mark = new PDFTranslation(footer, pageLayout.FooterLeftXPos, pageLayout.FooterYPos);
                 contentStream.AddChild(mark);
 
                 tmp = string.Format("Page {0} out of {1}", contentStreamsCount++, contentStreams.Count);
                 footer = new PDFText(tmp, defaultFont);
-                mark = new PDFMark(footer, pageLayout.GetFooterRightXPos(tmp, defaultFont), pageLayout.FooterYPos);
+                mark = new PDFTranslation(footer, pageLayout.GetFooterRightXPos(tmp, defaultFont), pageLayout.FooterYPos);
                 contentStream.AddChild(mark);
                 ///
 

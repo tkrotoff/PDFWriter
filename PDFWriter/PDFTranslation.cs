@@ -8,25 +8,26 @@ namespace PDFWriter
     class PDFTranslation : PDFGraphicObject
     {
         private PDFGraphicObject _graphicObject;
-        private double _width;
+        private double _xPos;
+        private double _yPos;
 
-        public PDFTranslation(PDFGraphicObject graphicObject, double width)
+        public PDFTranslation(PDFGraphicObject graphicObject, double xPos, double yPos)
         {
             _graphicObject = graphicObject;
-            _width = width;
+            _xPos = xPos;
+            _yPos = yPos;
         }
 
         public override string ToInnerPDF()
         {
             return string.Format(@"
-% CreateRow (
-    % translation width
-    q 1 0 0 1 {0} 0 cm
-    {1}
-    % remove translation width
+% PDFTranslation (
+    % Translation
+    q 1 0 0 1 {0} {1} cm
+    {2}
     Q
 % )
-", _width, _graphicObject.ToInnerPDF()
+", _xPos, _yPos, _graphicObject.ToInnerPDF()
             );
         }
 
