@@ -65,6 +65,7 @@
     <Compile Include="PDFRoot.cs" />
     <Compile Include="PDFRow.cs" />
     <Compile Include="PDFText.cs" />
+    <Compile Include="PDFWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

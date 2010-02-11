@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class Color
+    static class Color
     {
         public static readonly string NoColor = string.Empty;
         public static readonly string Black = "0 0 0";
