@@ -257,10 +257,12 @@ namespace PDFWriter
             ///
 
             //Fonts
-            Dictionary<string, string> fonts = Font.PDFFonts;
-            foreach (KeyValuePair<string, string> pair in fonts)
+            List<PDFFont> fonts = new List<PDFFont>();
+            Dictionary<string, string> fontDictionary = Font.PDFFonts;
+            foreach (KeyValuePair<string, string> pair in fontDictionary)
             {
                 PDFFont font = new PDFFont(pair.Key, pair.Value);
+                fonts.Add(font);
                 root.AddChild(font);
             }
             ///
@@ -270,12 +272,13 @@ namespace PDFWriter
             root.AddChild(outlines);
             ///
 
-            //DataSet
-            DataSet data = CreateDataSet();
-            ///
-
             //Pages
             PDFPages pages = new PDFPages();
+            root.AddChild(pages);
+            ///
+
+            //DataSet
+            DataSet data = CreateDataSet();
             ///
 
             //Content streams
@@ -306,27 +309,15 @@ namespace PDFWriter
                 root.AddChild(contentStream);
 
                 //Page
-                PDFPage page = new PDFPage();
-                page.ContentStream = contentStream;
-                foreach (KeyValuePair<string, string> pair in fonts)
-                {
-                    PDFFont font = new PDFFont(pair.Key, pair.Value);
-                    page.AddFont(font);
-                }
+                PDFPage page = new PDFPage(fonts, contentStream);
+                pages.AddChild(page);
                 root.AddChild(page);
-                ///
-
-                //Pages
-                pages.AddPage(page);
-                root.AddChild(pages);
                 ///
             }
             ///
 
             //Catalog
-            PDFCatalog catalog = new PDFCatalog();
-            catalog.Outlines = outlines;
-            catalog.Pages = pages;
+            PDFCatalog catalog = new PDFCatalog(outlines, pages);
             root.Catalog = catalog;
             root.AddChild(catalog);
             ///

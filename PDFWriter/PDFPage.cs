@@ -7,17 +7,13 @@ namespace PDFWriter
 {
     class PDFPage : PDFObject
     {
-        private List<PDFFont> _fonts = new List<PDFFont>();
+        private List<PDFFont> _fonts;
+        private PDFContentStream _contentStream;
 
-        public void AddFont(PDFFont font)
+        public PDFPage(List<PDFFont> fonts, PDFContentStream contentStream)
         {
-            _fonts.Add(font);
-        }
-
-        public PDFContentStream ContentStream
-        {
-            get;
-            set;
+            _fonts = fonts;
+            _contentStream = contentStream;
         }
 
         public override string ToInnerPDF()
@@ -45,8 +41,8 @@ namespace PDFWriter
             >>
     >>
 endobj
-%)
-", ObjectNumber, Parent.ObjectNumber, ContentStream.ObjectNumber, fonts
+% )
+", ObjectNumber, Parent.ObjectNumber, _contentStream.ObjectNumber, fonts
             );
         }
 

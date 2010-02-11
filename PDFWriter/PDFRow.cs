@@ -25,7 +25,8 @@ namespace PDFWriter
     {1}
     % remove translation width
     Q
-%)", _width, _box.ToInnerPDF()
+% )
+", _width, _box.ToInnerPDF()
             );
         }
 

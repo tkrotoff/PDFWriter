@@ -25,7 +25,7 @@ stream
 {2}
 endstream
 endobj
-%)
+% )
 ", ObjectNumber, tmp.Length, tmp
             );
         }

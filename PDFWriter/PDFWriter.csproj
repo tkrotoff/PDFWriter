@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Color.cs" />
-    <Compile Include="CrossReferenceTable.cs" />
     <Compile Include="Font.cs" />
     <Compile Include="FontMetrics.cs" />
     <Compile Include="PageLayout.cs" />

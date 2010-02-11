@@ -7,16 +7,13 @@ namespace PDFWriter
 {
     class PDFCatalog : PDFObject
     {
-        public PDFOutlines Outlines
-        {
-            get;
-            set;
-        }
+        private PDFOutlines _outlines;
+        private PDFPages _pages;
 
-        public PDFPages Pages
+        public PDFCatalog(PDFOutlines outlines, PDFPages pages)
         {
-            get;
-            set;
+            _outlines = outlines;
+            _pages = pages;
         }
 
         public override string ToInnerPDF()
@@ -30,8 +27,8 @@ namespace PDFWriter
         /Pages {2} 0 R
     >>
 endobj
-%)
-", ObjectNumber, Outlines.ObjectNumber, Pages.ObjectNumber
+% )
+", ObjectNumber, _outlines.ObjectNumber, _pages.ObjectNumber
             );
         }
 

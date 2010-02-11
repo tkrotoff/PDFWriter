@@ -7,6 +7,12 @@ namespace PDFWriter
 {
     class PDFFont : PDFObject
     {
+        public PDFFont(string fontName, string baseFont)
+        {
+            FontName = fontName;
+            BaseFont = baseFont;
+        }
+
         public string FontName
         {
             get;
@@ -17,12 +23,6 @@ namespace PDFWriter
         {
             get;
             set;
-        }
-
-        public PDFFont(string fontName, string baseFont)
-        {
-            FontName = fontName;
-            BaseFont = baseFont;
         }
 
         public override string ToInnerPDF()
@@ -38,7 +38,7 @@ namespace PDFWriter
         /Encoding /PDFDocEncoding
     >>
 endobj
-%)
+% )
 ", ObjectNumber, FontName, BaseFont
             );
         }

@@ -33,7 +33,8 @@ namespace PDFWriter
     q {0} 0 0 {0} {1} {2} cm
 {3}
     Q
-%)", _scaling, _xPos, _yPos, tmp
+% )
+", _scaling, _xPos, _yPos, tmp
             );
         }
 

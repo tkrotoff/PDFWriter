@@ -78,7 +78,8 @@ namespace PDFWriter
             tmp.AppendFormat(@"
     % remove translation margin, padding, position
     Q
-%)"
+% )
+"
             );
 
             return tmp.ToString();

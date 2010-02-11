@@ -29,7 +29,7 @@ namespace PDFWriter
         /Producer ({3})
     >>
 endobj
-%)
+% )
 ", ObjectNumber, _title, _creator, _producer
             );
 

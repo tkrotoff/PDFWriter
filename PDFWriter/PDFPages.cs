@@ -7,20 +7,12 @@ namespace PDFWriter
 {
     class PDFPages : PDFObject
     {
-        private List<PDFPage> _pages = new List<PDFPage>();
-
-        public void AddPage(PDFPage page)
-        {
-            page.Parent = this;
-            _pages.Add(page);
-        }
-
         public override string ToInnerPDF()
         {
             PageLayout layout = new PageLayout();
 
             string pages = string.Empty;
-            foreach (PDFPage page in _pages)
+            foreach (PDFPage page in Childs)
             {
                 pages += string.Format(@"
                 {0} 0 R", page.ObjectNumber);
@@ -38,8 +30,8 @@ namespace PDFWriter
         /MediaBox [0 0 {3} {4}]
     >>
 endobj
-%)
-", ObjectNumber, pages, _pages.Count, layout.Width, layout.Height
+% )
+", ObjectNumber, pages, Childs.Count, layout.Width, layout.Height
             );
         }
 

@@ -63,7 +63,7 @@ namespace PDFWriter
        {2}
        {3}
     ET
-%)
+% )
 ", rg, Tf, Td, Tj
             );
         }

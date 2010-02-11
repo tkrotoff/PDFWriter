@@ -27,7 +27,8 @@ namespace PDFWriter
     {2}
     % remove translation x=?,y=?
     Q
-%)", _xPos, _yPos, _text.ToInnerPDF()
+% )
+", _xPos, _yPos, _text.ToInnerPDF()
             );
         }
 

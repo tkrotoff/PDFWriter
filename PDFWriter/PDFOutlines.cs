@@ -16,7 +16,7 @@ namespace PDFWriter
         /Type /Outlines
     >>
 endobj
-%)
+% )
 ", ObjectNumber
             );
         }
