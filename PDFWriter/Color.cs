@@ -7,7 +7,7 @@ namespace PDFWriter
 {
     static class Color
     {
-        public static readonly string NoColor = Black;
+        public static readonly string NoColor = string.Empty;
         public static readonly string Black = "0 0 0";
         public static readonly string Blue = "0 0 1";
         public static readonly string Cyan = "0 1 1";

@@ -11,23 +11,23 @@ namespace PDFWriter
         /// <summary>
         /// Gets the largest width possible of a column.
         /// </summary>
-        /// <param name="column"></param>
+        /// <param name="columnName"></param>
         /// <returns></returns>
-        private double GetMaxColumnWidth(DataColumn column, DataTable table)
+        private double GetColumnWidth(string columnName, DataTable table)
         {
-            double maxColumnWidth = FontMetrics.GetTextWidth(column.ColumnName, defaultBoldFont);
+            double columnWidth = FontMetrics.GetTextWidth(columnName, defaultBoldFont);
             foreach (DataRow row in table.Rows)
             {
-                string rowName = row[column.ColumnName].ToString();
+                string rowName = row[columnName].ToString();
 
                 double tmp = FontMetrics.GetTextWidth(rowName, defaultFont);
-                if (tmp > maxColumnWidth)
+                if (tmp > columnWidth)
                 {
-                    maxColumnWidth = tmp;
+                    columnWidth = tmp;
                 }
             }
 
-            return maxColumnWidth;
+            return columnWidth;
         }
 
 
@@ -43,29 +43,47 @@ namespace PDFWriter
         private const double rowHeight = 13;
 
 
-        private List<PDFGraphicObject> CreateColumns(DataTable table, ref double totalRowWidth)
+        private double GetTableWidth(DataTable table)
         {
-            List<PDFGraphicObject> columns = new List<PDFGraphicObject>();
-
-            totalRowWidth = 0;
+            double tableWidth = 0;
 
             foreach (DataColumn column in table.Columns)
             {
-                double maxColumnWidth = GetMaxColumnWidth(column, table);
+                string columnName = column.ColumnName;
 
-                PDFTextBox columnBox = CreateColumn(column, maxColumnWidth);
-                columns.Add(new PDFTranslation(columnBox, totalRowWidth, 0));
+                double columnWidth = GetColumnWidth(columnName, table);
 
-                totalRowWidth += maxColumnWidth + 2;
+                tableWidth += columnWidth + 2;
+            }
+
+            return tableWidth;
+        }
+
+        private List<PDFGraphicObject> CreateColumns(DataTable table)
+        {
+            List<PDFGraphicObject> columns = new List<PDFGraphicObject>();
+
+            double tableWidth = 0;
+
+            foreach (DataColumn column in table.Columns)
+            {
+                string columnName = column.ColumnName;
+
+                double columnWidth = GetColumnWidth(columnName, table);
+
+                PDFTextBox columnBox = CreateColumn(columnName, columnWidth);
+                columns.Add(new PDFTranslation(columnBox, tableWidth, 0));
+
+                tableWidth += columnWidth + 2;
             }
 
             return columns;
         }
 
-        private PDFTextBox CreateColumn(DataColumn column, double maxColumnWidth)
+        private PDFTextBox CreateColumn(string columnName, double maxColumnWidth)
         {
             //Write all the column titles inside pdfColumnTitles
-            PDFText text = new PDFText(column.ColumnName, defaultFont);
+            PDFText text = new PDFText(columnName, defaultFont);
             double width = maxColumnWidth;
             int margin = 1;
             int padding = 1;
@@ -77,36 +95,24 @@ namespace PDFWriter
         {
             List<PDFGraphicObject> rows = new List<PDFGraphicObject>();
 
-            //Space between each row: for example "Column 1" takes 30, "Column 2" 45 ect...
-            //These numbers are aggregated inside this variable
-            double totalRowWidth = 0;
+            double yPosBox = -rowHeight;
 
-            foreach (DataColumn column in table.Columns)
+            for (int row = 0; row < table.Rows.Count; row++)
             {
-                double maxColumnWidth = GetMaxColumnWidth(column, table);
+                double tableWidth = 0;
 
-                List<PDFGraphicObject> line = CreateLineRows(column, table);
-                rows.Add(new PDFScaling(line, 1, totalRowWidth, -rowHeight));
+                for (int column = 0; column < table.Columns.Count; column++)
+                {
+                    string rowName = table.Rows[row][column].ToString();
+                    string columnName = table.Columns[column].ColumnName;
 
-                totalRowWidth += maxColumnWidth + 2;
-            }
+                    double columnWidth = GetColumnWidth(columnName, table);
 
-            return rows;
-        }
+                    PDFTextBox columnBox = CreateRow(rowName, yPosBox);
+                    rows.Add(new PDFTranslation(columnBox, tableWidth, 0));
 
-        private List<PDFGraphicObject> CreateLineRows(DataColumn column, DataTable table)
-        {
-            List<PDFGraphicObject> rows = new List<PDFGraphicObject>();
-
-            double yPosBox = 0;
-
-            foreach (DataRow row in table.Rows)
-            {
-                string rowName = row[column.ColumnName].ToString();
-
-                PDFTextBox rowBox = CreateRow(rowName, yPosBox);
-                rows.Add(rowBox);
-
+                    tableWidth += columnWidth + 2;
+                }
                 yPosBox -= rowHeight;
             }
 
@@ -142,12 +148,10 @@ namespace PDFWriter
             return box;
         }
 
-
         private List<PDFContentStream> CreateContentStreams(DataSet data)
         {
             List<PDFContentStream> contentStreams = new List<PDFContentStream>();
 
-            //There should be only one table
             foreach (DataTable table in data.Tables)
             {
                 //General algorithm:
@@ -167,21 +171,15 @@ namespace PDFWriter
                 // One could imagine to read everything horizontally but DataTable does not work this way
                 // and splits columns from rows.
 
-                //Space between each row: for example "Column 1" takes 30, "Column 2" 45 ect...
-                //These numbers are aggregated inside this variable
-                double totalRowWidth = 0;
+                double tableWidth = GetTableWidth(table);
 
-                List<PDFGraphicObject> columns = CreateColumns(table, ref totalRowWidth);
-
-                List<PDFGraphicObject> rows = CreateRows(table);
-
-                double scaling = (pageLayout.Width - (pageLayout.RightMargin + pageLayout.LeftMargin)) / (totalRowWidth);
+                double scaling = (pageLayout.Width - (pageLayout.RightMargin + pageLayout.LeftMargin)) / (tableWidth);
                 if (scaling > 1)
                 {
                     scaling = 1;
                 }
 
-                double initXPosBox = (pageLayout.Width / 2) - (totalRowWidth / 2);
+                double initXPosBox = (pageLayout.Width / 2) - (tableWidth / 2);
                 if (initXPosBox < pageLayout.LeftMargin)
                 {
                     initXPosBox = pageLayout.LeftMargin;
@@ -191,9 +189,11 @@ namespace PDFWriter
 
                 PDFContentStream contentStream = new PDFContentStream();
 
+                List<PDFGraphicObject> columns = CreateColumns(table); 
                 PDFScaling columnsScaling = new PDFScaling(columns, scaling, initXPosBox, initYPosBox);
                 contentStream.AddChild(columnsScaling);
 
+                List<PDFGraphicObject> rows = CreateRows(table);
                 PDFScaling rowsScaling = new PDFScaling(rows, scaling, initXPosBox, initYPosBox);
                 contentStream.AddChild(rowsScaling);
 
