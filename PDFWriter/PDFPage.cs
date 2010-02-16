@@ -34,11 +34,11 @@ namespace PDFWriter
             string fonts = string.Empty;
             foreach (PDFFont font in Fonts)
             {
-                fonts += string.Format(@"
+                fonts += string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
                         /{0} {1} 0 R", font.FontName, font.ObjectNumber);
             }
 
-            return string.Format(@"
+            return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
 % PDFPage (
 {0} 0 obj
     <<

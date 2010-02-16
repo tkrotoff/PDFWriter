@@ -174,8 +174,7 @@ namespace PDFWriter
         {
             DataSet data = CreateDataSet();
 
-            PDFWriter pdf = new PDFWriter();
-            PDFDocument doc = pdf.GetPDFDocument(data);
+            PDFDocument doc = PDFWriter.GetPDFDocument(data);
 
             //Write the PDF to a file
             StreamWriter file = new StreamWriter(@"C:\Users\Krotoff\Desktop\pdfwriter.pdf");

@@ -28,7 +28,7 @@ namespace PDFWriter
                 tmp += "    " + graphicObject.ToInnerPDF();
             }
 
-            return string.Format(@"
+            return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
 % PDFScaling (
     q {0} 0 0 {0} {1} {2} cm
 {3}

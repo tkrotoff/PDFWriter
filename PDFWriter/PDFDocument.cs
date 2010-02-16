@@ -39,11 +39,11 @@ namespace PDFWriter
             string pdfString = "%PDF-1.3\n";
             foreach (PDFStructureObject pdfObject in _childs)
             {
-                xref += string.Format("{0:0000000000} 00000 n\n", pdfString.Length);
+                xref += string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0000000000} 00000 n\n", pdfString.Length);
                 pdfString += pdfObject.ToInnerPDF();
             }
 
-            return string.Format(
+            return string.Format(System.Globalization.CultureInfo.InvariantCulture,
 @"{0}
 
 xref

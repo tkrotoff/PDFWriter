@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class FontMetrics
+    static class FontMetrics
     {
         /// <summary>
         /// Courier.
@@ -255,7 +255,6 @@ namespace PDFWriter
 
             foreach (char ch in text)
             {
-                int asciiCode = (int)ch;
                 double ws = 0;
                 if (ch == 32)
                 {

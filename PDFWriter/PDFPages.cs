@@ -29,11 +29,11 @@ namespace PDFWriter
             string tmp = string.Empty;
             foreach (PDFPage page in _pages)
             {
-                tmp += string.Format(@"
+                tmp += string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
                 {0} 0 R", page.ObjectNumber);
             }
 
-            return string.Format(@"
+            return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
 % PDFPages (
 {0} 0 obj
     <<

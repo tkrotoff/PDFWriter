@@ -6,21 +6,83 @@ using System.Data;
 
 namespace PDFWriter
 {
-    class PDFWriter
+    static class PDFWriter
     {
+        /// <summary>
+        /// Default font.
+        /// </summary>
+        static private Font DefaultFont
+        {
+            get { return new Font(Font.Helvetica, 9); }
+        }
+
+        /// <summary>
+        /// Default bold font.
+        /// </summary>
+        static private Font DefaultBoldFont
+        {
+            get { return new Font(Font.HelveticaBold, 9); }
+        }
+
+        /// <summary>
+        /// A PDF cellule background color, see PDFTextBox.
+        /// </summary>
+        static private string CellBackgroundColor
+        {
+            get
+            {
+                return Color.Silver;
+            }
+        }
+
+        /// <summary>
+        /// Page layout (margins, page size...).
+        /// </summary>
+        static private PageLayout PageLayout
+        {
+            get { return new PageLayout(); }
+        }
+
+        /// <summary>
+        /// Height of a row.
+        /// </summary>
+        static private double RowHeight
+        {
+            get { return 13; }
+        }
+
+        /// <summary>
+        /// Gets the list of fonts as a list of PDF objects.
+        /// </summary>
+        static private List<PDFFont> Fonts
+        {
+            get
+            {
+                List<PDFFont> fonts = new List<PDFFont>();
+                Dictionary<string, string> fontDictionary = Font.PDFFonts;
+                foreach (KeyValuePair<string, string> pair in fontDictionary)
+                {
+                    PDFFont font = new PDFFont(pair.Key, pair.Value);
+                    fonts.Add(font);
+                    
+                }
+                return fonts;
+            }
+        }
+
         /// <summary>
         /// Gets the largest width possible of a column.
         /// </summary>
         /// <param name="columnName"></param>
         /// <returns></returns>
-        private double GetColumnWidth(string columnName, DataTable table)
+        static private double GetColumnWidth(string columnName, DataTable table)
         {
-            double columnWidth = FontMetrics.GetTextWidth(columnName, defaultBoldFont);
+            double columnWidth = FontMetrics.GetTextWidth(columnName, DefaultBoldFont);
             foreach (DataRow row in table.Rows)
             {
                 string rowName = row[columnName].ToString();
 
-                double tmp = FontMetrics.GetTextWidth(rowName, defaultFont);
+                double tmp = FontMetrics.GetTextWidth(rowName, DefaultFont);
                 if (tmp > columnWidth)
                 {
                     columnWidth = tmp;
@@ -30,20 +92,7 @@ namespace PDFWriter
             return columnWidth;
         }
 
-
-        //Default fonts & colors
-        private Font defaultFont = new Font(Font.Helvetica, 9);
-        private Font defaultBoldFont = new Font(Font.HelveticaBold, 9);
-        private string cellBackgroundColor = Color.Silver;
-
-        //Page layout
-        private PageLayout pageLayout = new PageLayout();
-
-        //FIXME Height of a row
-        private const double rowHeight = 13;
-
-
-        private double GetTableWidth(DataTable table)
+        static private double GetTableWidth(DataTable table)
         {
             double tableWidth = 0;
 
@@ -59,7 +108,7 @@ namespace PDFWriter
             return tableWidth;
         }
 
-        private List<PDFGraphicObject> CreateColumns(DataTable table)
+        static private List<PDFGraphicObject> CreateColumns(DataTable table)
         {
             List<PDFGraphicObject> columns = new List<PDFGraphicObject>();
 
@@ -80,18 +129,18 @@ namespace PDFWriter
             return columns;
         }
 
-        private PDFTextBox CreateColumn(string columnName, double maxColumnWidth)
+        static private PDFTextBox CreateColumn(string columnName, double maxColumnWidth)
         {
             //Write all the column titles inside pdfColumnTitles
-            PDFText text = new PDFText(columnName, defaultFont);
+            PDFText text = new PDFText(columnName, DefaultFont);
             double width = maxColumnWidth;
             int margin = 1;
             int padding = 1;
-            PDFTextBox box = new PDFTextBox(text, margin, padding, 0, 0, cellBackgroundColor, width, rowHeight);
+            PDFTextBox box = new PDFTextBox(text, margin, padding, 0, 0, CellBackgroundColor, width, RowHeight);
             return box;
         }
 
-        private PDFTextBox CreateRow(string rowName, double yPosBox)
+        static private PDFTextBox CreateRow(string rowName, double yPosBox)
         {
             Font font = new Font(Font.Helvetica, 9, Color.Green);
 
@@ -120,43 +169,43 @@ namespace PDFWriter
             return box;
         }
 
-        public List<PDFGraphicObject> CreateHeader()
+        static public List<PDFGraphicObject> CreateHeader()
         {
             List<PDFGraphicObject> objects = new List<PDFGraphicObject>();
 
-            PDFText header = new PDFText("Report", defaultFont);
-            PDFTranslation mark = new PDFTranslation(header, pageLayout.HeaderLeftXPos, pageLayout.HeaderYPos);
+            PDFText header = new PDFText("Report", DefaultFont);
+            PDFTranslation mark = new PDFTranslation(header, PageLayout.HeaderLeftXPos, PageLayout.HeaderYPos);
             objects.Add(mark);
 
             string tmp = DateTime.Now.ToShortDateString();
-            header = new PDFText(tmp, defaultFont);
-            mark = new PDFTranslation(header, pageLayout.GetHeaderRightXPos(tmp, defaultFont), pageLayout.HeaderYPos);
+            header = new PDFText(tmp, DefaultFont);
+            mark = new PDFTranslation(header, PageLayout.GetHeaderRightXPos(tmp, DefaultFont), PageLayout.HeaderYPos);
             objects.Add(mark);
 
             return objects;
         }
 
-        public List<PDFGraphicObject> CreateFooter(int currentPageNumber, int totalPageNumber)
+        static public List<PDFGraphicObject> CreateFooter(int currentPageNumber, int totalPageNumber)
         {
             List<PDFGraphicObject> objects = new List<PDFGraphicObject>();
 
-            PDFText footer = new PDFText("Source: PDFWR (www.pdfwr.com)", defaultFont);
-            PDFTranslation mark = new PDFTranslation(footer, pageLayout.FooterLeftXPos, pageLayout.FooterYPos);
+            PDFText footer = new PDFText("Source: PDFWR (www.pdfwr.com)", DefaultFont);
+            PDFTranslation mark = new PDFTranslation(footer, PageLayout.FooterLeftXPos, PageLayout.FooterYPos);
             objects.Add(mark);
 
-            string tmp = string.Format("Page {0} out of {1}", currentPageNumber, totalPageNumber);
-            footer = new PDFText(tmp, defaultFont);
-            mark = new PDFTranslation(footer, pageLayout.GetFooterRightXPos(tmp, defaultFont), pageLayout.FooterYPos);
+            string tmp = string.Format(System.Globalization.CultureInfo.InvariantCulture, "Page {0} out of {1}", currentPageNumber, totalPageNumber);
+            footer = new PDFText(tmp, DefaultFont);
+            mark = new PDFTranslation(footer, PageLayout.GetFooterRightXPos(tmp, DefaultFont), PageLayout.FooterYPos);
             objects.Add(mark);
 
             return objects;
         }
 
-        public PDFPage CreatePage(DataTable table, PDFDocument doc, List<PDFFont> fonts, List<PDFGraphicObject> rows)
+        static public PDFPage CreatePage(DataTable table, PDFDocument doc, List<PDFGraphicObject> rows)
         {
             //Scaling
             double tableWidth = GetTableWidth(table);
-            double scaling = (pageLayout.Width - (pageLayout.RightMargin + pageLayout.LeftMargin)) / (tableWidth);
+            double scaling = (PageLayout.Width - (PageLayout.RightMargin + PageLayout.LeftMargin)) / (tableWidth);
             if (scaling > 1)
             {
                 scaling = 1;
@@ -164,12 +213,12 @@ namespace PDFWriter
             ///
 
             //Position
-            double initXPosBox = (pageLayout.Width / 2) - (tableWidth / 2);
-            if (initXPosBox < pageLayout.LeftMargin)
+            double initXPosBox = (PageLayout.Width / 2) - (tableWidth / 2);
+            if (initXPosBox < PageLayout.LeftMargin)
             {
-                initXPosBox = pageLayout.LeftMargin;
+                initXPosBox = PageLayout.LeftMargin;
             }
-            double initYPosBox = pageLayout.Height - pageLayout.TopMargin;
+            double initYPosBox = PageLayout.Height - PageLayout.TopMargin;
             ///
 
             PDFContentStream contentStream = new PDFContentStream();
@@ -188,13 +237,13 @@ namespace PDFWriter
 
             PDFPage page = new PDFPage();
             page.ContentStream = contentStream;
-            page.Fonts = fonts;
+            page.Fonts = Fonts;
             doc.AddChild(page);
 
             return page;
         }
 
-        public PDFPages CreatePages(DataSet data, PDFDocument doc, List<PDFFont> fonts)
+        static public PDFPages CreatePages(DataSet data, PDFDocument doc)
         {
             PDFPages pages = new PDFPages();
 
@@ -211,7 +260,7 @@ namespace PDFWriter
             {
                 List<PDFGraphicObject> rows = new List<PDFGraphicObject>();
 
-                double yPosBox = -rowHeight;
+                double yPosBox = -RowHeight;
 
                 for (int row = 0; row < table.Rows.Count; row++)
                 {
@@ -219,12 +268,12 @@ namespace PDFWriter
 
                     for (int column = 0; column < table.Columns.Count; column++)
                     {
-                        bool endOfPage = (-(yPosBox - rowHeight) >= (pageLayout.Height - pageLayout.BottomMargin));
+                        bool endOfPage = (-(yPosBox - RowHeight) >= (PageLayout.Height - PageLayout.BottomMargin));
 
                         //Detects the end of the page
                         if (endOfPage)
                         {
-                            PDFPage page = CreatePage(table, doc, fonts, rows);
+                            PDFPage page = CreatePage(table, doc, rows);
                             pages.AddPage(page);
 
                             //Don't do a Clear() on the list, instead
@@ -232,7 +281,7 @@ namespace PDFWriter
                             //objects referencing this list won't have their own copy
                             rows = new List<PDFGraphicObject>();
 
-                            yPosBox = -rowHeight;
+                            yPosBox = -RowHeight;
                         }
 
                         string rowName = table.Rows[row][column].ToString();
@@ -246,12 +295,12 @@ namespace PDFWriter
                         totalTableWidth += columnWidth + 2;
                     }
 
-                    yPosBox -= rowHeight;
+                    yPosBox -= RowHeight;
                 }
 
                 if (rows.Count > 0)
                 {
-                    PDFPage page = CreatePage(table, doc, fonts, rows);
+                    PDFPage page = CreatePage(table, doc, rows);
                     pages.AddPage(page);
                 }
             }
@@ -259,7 +308,7 @@ namespace PDFWriter
             return pages;
         }
 
-        public PDFDocument GetPDFDocument(DataSet data)
+        static public PDFDocument GetPDFDocument(DataSet data)
         {
             //Root
             PDFDocument doc = new PDFDocument();
@@ -272,12 +321,8 @@ namespace PDFWriter
             ///
 
             //Fonts
-            List<PDFFont> fonts = new List<PDFFont>();
-            Dictionary<string, string> fontDictionary = Font.PDFFonts;
-            foreach (KeyValuePair<string, string> pair in fontDictionary)
+            foreach (PDFFont font in Fonts)
             {
-                PDFFont font = new PDFFont(pair.Key, pair.Value);
-                fonts.Add(font);
                 doc.AddChild(font);
             }
             ///
@@ -288,7 +333,7 @@ namespace PDFWriter
             ///
 
             //Pages
-            PDFPages pages = CreatePages(data, doc, fonts);
+            PDFPages pages = CreatePages(data, doc);
             doc.AddChild(pages);
             ///
 

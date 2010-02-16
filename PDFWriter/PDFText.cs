@@ -50,12 +50,12 @@ namespace PDFWriter
 
         public override string ToInnerPDF()
         {
-            string rg = string.Format("{0} rg", _font.Color);
-            string Tf = string.Format("/{0} {1} Tf", _font.Name, _font.Size);
-            string Td = string.Format("0 {0} Td", 2);
-            string Tj = string.Format("({0}) Tj", _text);
+            string rg = string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0} rg", _font.Color);
+            string Tf = string.Format(System.Globalization.CultureInfo.InvariantCulture, "/{0} {1} Tf", _font.Name, _font.Size);
+            string Td = string.Format(System.Globalization.CultureInfo.InvariantCulture, "0 {0} Td", 2);
+            string Tj = string.Format(System.Globalization.CultureInfo.InvariantCulture, "({0}) Tj", _text);
 
-            return string.Format(@"
+            return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
 % PDFText (
     BT
        {0}

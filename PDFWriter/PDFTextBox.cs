@@ -60,18 +60,18 @@ namespace PDFWriter
                 );
             }
 
-            tmp.AppendFormat(@"
+            tmp.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, @"
     % Padding
     1 0 0 1 {0} {0} cm", _padding
             );
 
-            tmp.AppendFormat(@"
+            tmp.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, @"
     % Position
     1 0 0 1 {0} {1} cm
     {2}", _xPos, _yPos, _text.ToInnerPDF()
             );
 
-            tmp.AppendFormat(@"
+            tmp.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, @"
     Q
 % )
 "

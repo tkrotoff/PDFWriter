@@ -29,7 +29,7 @@ namespace PDFWriter
                 tmp += pdfGraphicObject.ToInnerPDF();
             }
 
-            return string.Format(@"
+            return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
 % PDFContentStream (
 {0} 0 obj
     <<

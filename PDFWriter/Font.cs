@@ -7,20 +7,20 @@ namespace PDFWriter
 {
     class Font
     {
-        public static readonly string Courier = "FC";
-        public static readonly string CourierBold = "FCB";
-        public static readonly string CourierOblique = "FCI";
-        public static readonly string CourierBoldOblique = "FCBI";
-        public static readonly string Helvetica = "FH";
-        public static readonly string HelveticaBold = "FHB";
-        public static readonly string HelveticaOblique = "FHI";
-        public static readonly string HelveticaBoldOblique = "FHBI";
-        public static readonly string TimesRoman = "FT";
-        public static readonly string TimesBold = "FTB";
-        public static readonly string TimesItalic = "FTI";
-        public static readonly string TimesBoldItalic = "FTBI";
-        public static readonly string Symbol = "FS";
-        public static readonly string ZapfDingbats = "FZ";
+        public const string Courier = "FC";
+        public const string CourierBold = "FCB";
+        public const string CourierOblique = "FCI";
+        public const string CourierBoldOblique = "FCBI";
+        public const string Helvetica = "FH";
+        public const string HelveticaBold = "FHB";
+        public const string HelveticaOblique = "FHI";
+        public const string HelveticaBoldOblique = "FHBI";
+        public const string TimesRoman = "FT";
+        public const string TimesBold = "FTB";
+        public const string TimesItalic = "FTI";
+        public const string TimesBoldItalic = "FTBI";
+        public const string Symbol = "FS";
+        public const string ZapfDingbats = "FZ";
 
         public Font(string name, double size)
             : this(name, size, PDFWriter.Color.Black)
@@ -32,6 +32,8 @@ namespace PDFWriter
             Name = name;
             Size = size;
             Color = color;
+            CharSpace = 0;
+            WordSpace = 0;
         }
 
         /// <summary>

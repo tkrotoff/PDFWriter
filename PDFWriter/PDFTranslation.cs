@@ -20,7 +20,7 @@ namespace PDFWriter
 
         public override string ToInnerPDF()
         {
-            return string.Format(@"
+            return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
 % PDFTranslation (
     % Translation
     q 1 0 0 1 {0} {1} cm
