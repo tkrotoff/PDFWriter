@@ -21,6 +21,8 @@ namespace PDFWriter
 
         public override string ToInnerPDF()
         {
+            System.Diagnostics.Trace.Assert(_childs.Count > 0);
+
             string tmp = string.Empty;
             foreach (PDFGraphicObject pdfGraphicObject in _childs)
             {

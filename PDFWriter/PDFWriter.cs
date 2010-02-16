@@ -186,7 +186,9 @@ namespace PDFWriter
             contentStream.AddChild(columnsScaling);
             ///
 
-            PDFPage page = new PDFPage(fonts, contentStream);
+            PDFPage page = new PDFPage();
+            page.ContentStream = contentStream;
+            page.Fonts = fonts;
             doc.AddChild(page);
 
             return page;
@@ -288,6 +290,9 @@ namespace PDFWriter
             //Pages
             PDFPages pages = CreatePages(data, doc, fonts);
             doc.AddChild(pages);
+            ///
+
+            //Add headers and footers
             int count = 1;
             foreach (PDFPage page in pages.Pages)
             {

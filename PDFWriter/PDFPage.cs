@@ -7,15 +7,6 @@ namespace PDFWriter
 {
     class PDFPage : PDFStructureObject
     {
-        private List<PDFFont> _fonts;
-        private PDFContentStream _contentStream;
-
-        public PDFPage(List<PDFFont> fonts, PDFContentStream contentStream)
-        {
-            _fonts = fonts;
-            _contentStream = contentStream;
-        }
-
         public PDFPages Parent
         {
             get;
@@ -24,13 +15,24 @@ namespace PDFWriter
 
         public PDFContentStream ContentStream
         {
-            get { return _contentStream; }
+            get;
+            set;
+        }
+
+        public List<PDFFont> Fonts
+        {
+            get;
+            set;
         }
 
         public override string ToInnerPDF()
         {
+            System.Diagnostics.Trace.Assert(Parent != null);
+            System.Diagnostics.Trace.Assert(ContentStream != null);
+            System.Diagnostics.Trace.Assert(Fonts.Count > 0);
+
             string fonts = string.Empty;
-            foreach (PDFFont font in _fonts)
+            foreach (PDFFont font in Fonts)
             {
                 fonts += string.Format(@"
                         /{0} {1} 0 R", font.FontName, font.ObjectNumber);
@@ -53,7 +55,7 @@ namespace PDFWriter
     >>
 endobj
 % )
-", ObjectNumber, Parent.ObjectNumber, _contentStream.ObjectNumber, fonts
+", ObjectNumber, Parent.ObjectNumber, ContentStream.ObjectNumber, fonts
             );
         }
 

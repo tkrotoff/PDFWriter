@@ -7,12 +7,6 @@ namespace PDFWriter
 {
     class PDFDocument : PDFStructureObject
     {
-        private int _count = 1;
-
-        public PDFDocument()
-        {
-        }
-
         public PDFCatalog Catalog
         {
             get;
@@ -27,6 +21,8 @@ namespace PDFWriter
 
         private List<PDFStructureObject> _childs = new List<PDFStructureObject>();
 
+        private int _count = 1;
+
         public void AddChild(PDFStructureObject pdfObject)
         {
             _childs.Add(pdfObject);
@@ -35,6 +31,10 @@ namespace PDFWriter
 
         public override string ToInnerPDF()
         {
+            System.Diagnostics.Trace.Assert(Catalog != null);
+            System.Diagnostics.Trace.Assert(Info != null);
+            System.Diagnostics.Trace.Assert(_childs.Count > 0);
+
             string xref = string.Empty;
             string pdfString = "%PDF-1.3\n";
             foreach (PDFStructureObject pdfObject in _childs)

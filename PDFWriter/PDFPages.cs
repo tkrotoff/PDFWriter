@@ -22,6 +22,8 @@ namespace PDFWriter
 
         public override string ToInnerPDF()
         {
+            System.Diagnostics.Trace.Assert(_pages.Count > 0);
+
             PageLayout layout = new PageLayout();
 
             string tmp = string.Empty;
