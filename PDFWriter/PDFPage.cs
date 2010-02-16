@@ -22,6 +22,11 @@ namespace PDFWriter
             set;
         }
 
+        public PDFContentStream ContentStream
+        {
+            get { return _contentStream; }
+        }
+
         public override string ToInnerPDF()
         {
             string fonts = string.Empty;

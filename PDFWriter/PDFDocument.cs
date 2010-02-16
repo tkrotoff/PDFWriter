@@ -5,11 +5,11 @@ using System.Text;
 
 namespace PDFWriter
 {
-    class PDFRoot : PDFStructureObject
+    class PDFDocument : PDFStructureObject
     {
         private int _count = 1;
 
-        public PDFRoot()
+        public PDFDocument()
         {
         }
 

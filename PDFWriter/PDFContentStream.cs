@@ -9,9 +9,14 @@ namespace PDFWriter
     {
         private List<PDFGraphicObject> _childs = new List<PDFGraphicObject>();
 
-        public virtual void AddChild(PDFGraphicObject pdfGraphicObject)
+        public void AddChild(PDFGraphicObject pdfGraphicObject)
         {
             _childs.Add(pdfGraphicObject);
+        }
+
+        public void AddRange(List<PDFGraphicObject> pdfGraphicObjects)
+        {
+            _childs.AddRange(pdfGraphicObjects);
         }
 
         public override string ToInnerPDF()

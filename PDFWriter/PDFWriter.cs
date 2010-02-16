@@ -63,7 +63,7 @@ namespace PDFWriter
         {
             List<PDFGraphicObject> columns = new List<PDFGraphicObject>();
 
-            double tableWidth = 0;
+            double totalTableWidth = 0;
 
             foreach (DataColumn column in table.Columns)
             {
@@ -72,9 +72,9 @@ namespace PDFWriter
                 double columnWidth = GetColumnWidth(columnName, table);
 
                 PDFTextBox columnBox = CreateColumn(columnName, columnWidth);
-                columns.Add(new PDFTranslation(columnBox, tableWidth, 0));
+                columns.Add(new PDFTranslation(columnBox, totalTableWidth, 0));
 
-                tableWidth += columnWidth + 2;
+                totalTableWidth += columnWidth + 2;
             }
 
             return columns;
@@ -89,34 +89,6 @@ namespace PDFWriter
             int padding = 1;
             PDFTextBox box = new PDFTextBox(text, margin, padding, 0, 0, cellBackgroundColor, width, rowHeight);
             return box;
-        }
-
-        private List<PDFGraphicObject> CreateRows(DataTable table)
-        {
-            List<PDFGraphicObject> rows = new List<PDFGraphicObject>();
-
-            double yPosBox = -rowHeight;
-
-            for (int row = 0; row < table.Rows.Count; row++)
-            {
-                double tableWidth = 0;
-
-                for (int column = 0; column < table.Columns.Count; column++)
-                {
-                    string rowName = table.Rows[row][column].ToString();
-                    string columnName = table.Columns[column].ColumnName;
-
-                    double columnWidth = GetColumnWidth(columnName, table);
-
-                    PDFTextBox columnBox = CreateRow(rowName, yPosBox);
-                    rows.Add(new PDFTranslation(columnBox, tableWidth, 0));
-
-                    tableWidth += columnWidth + 2;
-                }
-                yPosBox -= rowHeight;
-            }
-
-            return rows;
         }
 
         private PDFTextBox CreateRow(string rowName, double yPosBox)
@@ -148,71 +120,153 @@ namespace PDFWriter
             return box;
         }
 
-        private List<PDFContentStream> CreateContentStreams(DataSet data)
+        public List<PDFGraphicObject> CreateHeader()
         {
-            List<PDFContentStream> contentStreams = new List<PDFContentStream>();
+            List<PDFGraphicObject> objects = new List<PDFGraphicObject>();
+
+            PDFText header = new PDFText("Report", defaultFont);
+            PDFTranslation mark = new PDFTranslation(header, pageLayout.HeaderLeftXPos, pageLayout.HeaderYPos);
+            objects.Add(mark);
+
+            string tmp = DateTime.Now.ToShortDateString();
+            header = new PDFText(tmp, defaultFont);
+            mark = new PDFTranslation(header, pageLayout.GetHeaderRightXPos(tmp, defaultFont), pageLayout.HeaderYPos);
+            objects.Add(mark);
+
+            return objects;
+        }
+
+        public List<PDFGraphicObject> CreateFooter(int currentPageNumber, int totalPageNumber)
+        {
+            List<PDFGraphicObject> objects = new List<PDFGraphicObject>();
+
+            PDFText footer = new PDFText("Source: PDFWR (www.pdfwr.com)", defaultFont);
+            PDFTranslation mark = new PDFTranslation(footer, pageLayout.FooterLeftXPos, pageLayout.FooterYPos);
+            objects.Add(mark);
+
+            string tmp = string.Format("Page {0} out of {1}", currentPageNumber, totalPageNumber);
+            footer = new PDFText(tmp, defaultFont);
+            mark = new PDFTranslation(footer, pageLayout.GetFooterRightXPos(tmp, defaultFont), pageLayout.FooterYPos);
+            objects.Add(mark);
+
+            return objects;
+        }
+
+        public PDFPage CreatePage(DataTable table, PDFDocument doc, List<PDFFont> fonts, List<PDFGraphicObject> rows)
+        {
+            //Scaling
+            double tableWidth = GetTableWidth(table);
+            double scaling = (pageLayout.Width - (pageLayout.RightMargin + pageLayout.LeftMargin)) / (tableWidth);
+            if (scaling > 1)
+            {
+                scaling = 1;
+            }
+            ///
+
+            //Position
+            double initXPosBox = (pageLayout.Width / 2) - (tableWidth / 2);
+            if (initXPosBox < pageLayout.LeftMargin)
+            {
+                initXPosBox = pageLayout.LeftMargin;
+            }
+            double initYPosBox = pageLayout.Height - pageLayout.TopMargin;
+            ///
+
+            PDFContentStream contentStream = new PDFContentStream();
+            doc.AddChild(contentStream);
+
+            //Rows
+            PDFScaling rowsScaling = new PDFScaling(rows, scaling, initXPosBox, initYPosBox);
+            contentStream.AddChild(rowsScaling);
+            ///
+
+            //Columns
+            List<PDFGraphicObject> columns = CreateColumns(table);
+            PDFScaling columnsScaling = new PDFScaling(columns, scaling, initXPosBox, initYPosBox);
+            contentStream.AddChild(columnsScaling);
+            ///
+
+            PDFPage page = new PDFPage(fonts, contentStream);
+            doc.AddChild(page);
+
+            return page;
+        }
+
+        public PDFPages CreatePages(DataSet data, PDFDocument doc, List<PDFFont> fonts)
+        {
+            PDFPages pages = new PDFPages();
+
+            //    ----------------------------
+            //    | Column 1 | Column 2 | ...
+            // y  ----------------------------
+            // ^  | Row 10   | Row 11   | ...
+            // |  | Row 20   | Row 21   | ...
+            // |  | Row 30   | Row 31   | ...
+            // |  ----------------------------
+            // 0 ----> x
 
             foreach (DataTable table in data.Tables)
             {
-                //General algorithm:
-                //
-                //    ----------------------------
-                //    | Column 1 | Column 2 | ...
-                // y  ----------------------------
-                // ^  | Row 10   | Row 11   | ...
-                // |  | Row 20   | Row 21   | ...
-                // |  | Row 30   | Row 31   | ...
-                // |  ----------------------------
-                // 0 ----> x
-                //
-                // The first loop will read the horizontal line containing all the column names
-                // ("Column 1", "Column 2").
-                // Then it will read "Row 10", "Row 20", "Row 30" vertically.
-                // One could imagine to read everything horizontally but DataTable does not work this way
-                // and splits columns from rows.
+                List<PDFGraphicObject> rows = new List<PDFGraphicObject>();
 
-                double tableWidth = GetTableWidth(table);
+                double yPosBox = -rowHeight;
 
-                double scaling = (pageLayout.Width - (pageLayout.RightMargin + pageLayout.LeftMargin)) / (tableWidth);
-                if (scaling > 1)
+                for (int row = 0; row < table.Rows.Count; row++)
                 {
-                    scaling = 1;
+                    double totalTableWidth = 0;
+
+                    for (int column = 0; column < table.Columns.Count; column++)
+                    {
+                        bool endOfPage = (-(yPosBox - rowHeight) >= (pageLayout.Height - pageLayout.BottomMargin));
+
+                        //Detects the end of the page
+                        if (endOfPage)
+                        {
+                            PDFPage page = CreatePage(table, doc, fonts, rows);
+                            pages.AddPage(page);
+
+                            //Don't do a Clear() on the list, instead
+                            //creates a new copy of the list otherwise
+                            //objects referencing this list won't have their own copy
+                            rows = new List<PDFGraphicObject>();
+
+                            yPosBox = -rowHeight;
+                        }
+
+                        string rowName = table.Rows[row][column].ToString();
+                        string columnName = table.Columns[column].ColumnName;
+
+                        PDFTextBox text = CreateRow(rowName, yPosBox);
+                        PDFTranslation translation = new PDFTranslation(text, totalTableWidth, 0);
+                        rows.Add(translation);
+
+                        double columnWidth = GetColumnWidth(columnName, table);
+                        totalTableWidth += columnWidth + 2;
+                    }
+
+                    yPosBox -= rowHeight;
                 }
 
-                double initXPosBox = (pageLayout.Width / 2) - (tableWidth / 2);
-                if (initXPosBox < pageLayout.LeftMargin)
+                if (rows.Count > 0)
                 {
-                    initXPosBox = pageLayout.LeftMargin;
+                    PDFPage page = CreatePage(table, doc, fonts, rows);
+                    pages.AddPage(page);
                 }
-                double initYPosBox = pageLayout.Height - pageLayout.TopMargin;
-
-
-                PDFContentStream contentStream = new PDFContentStream();
-
-                List<PDFGraphicObject> columns = CreateColumns(table); 
-                PDFScaling columnsScaling = new PDFScaling(columns, scaling, initXPosBox, initYPosBox);
-                contentStream.AddChild(columnsScaling);
-
-                List<PDFGraphicObject> rows = CreateRows(table);
-                PDFScaling rowsScaling = new PDFScaling(rows, scaling, initXPosBox, initYPosBox);
-                contentStream.AddChild(rowsScaling);
-
-                contentStreams.Add(contentStream);
             }
 
-            return contentStreams;
+            return pages;
         }
 
-        public PDFRoot GetPDFRoot(DataSet data)
+        public PDFDocument GetPDFDocument(DataSet data)
         {
             //Root
-            PDFRoot root = new PDFRoot();
+            PDFDocument doc = new PDFDocument();
             ///
 
             //Info
             PDFInfo info = new PDFInfo("Report", "PDFWR", "PDFWR");
-            root.Info = info;
-            root.AddChild(info);
+            doc.Info = info;
+            doc.AddChild(info);
             ///
 
             //Fonts
@@ -222,62 +276,38 @@ namespace PDFWriter
             {
                 PDFFont font = new PDFFont(pair.Key, pair.Value);
                 fonts.Add(font);
-                root.AddChild(font);
+                doc.AddChild(font);
             }
             ///
 
             //Outlines
             PDFOutlines outlines = new PDFOutlines();
-            root.AddChild(outlines);
+            doc.AddChild(outlines);
             ///
 
             //Pages
-            PDFPages pages = new PDFPages();
-            root.AddChild(pages);
-            ///
-
-            //Content streams
-            int contentStreamsCount = 1;
-            List<PDFContentStream> contentStreams = CreateContentStreams(data);
-            foreach (PDFContentStream contentStream in contentStreams)
+            PDFPages pages = CreatePages(data, doc, fonts);
+            doc.AddChild(pages);
+            int count = 1;
+            foreach (PDFPage page in pages.Pages)
             {
-                //Header and footer
-                PDFText header = new PDFText("Report", defaultFont);
-                PDFTranslation mark = new PDFTranslation(header, pageLayout.HeaderLeftXPos, pageLayout.HeaderYPos);
-                contentStream.AddChild(mark);
+                List<PDFGraphicObject> header = CreateHeader();
+                page.ContentStream.AddRange(header);
 
-                string tmp = DateTime.Now.ToShortDateString();
-                header = new PDFText(tmp, defaultFont);
-                mark = new PDFTranslation(header, pageLayout.GetHeaderRightXPos(tmp, defaultFont), pageLayout.HeaderYPos);
-                contentStream.AddChild(mark);
+                List<PDFGraphicObject> footer = CreateFooter(count, pages.Pages.Count);
+                page.ContentStream.AddRange(footer);
 
-                PDFText footer = new PDFText("Source: PDFWR (www.pdfwr.com)", defaultFont);
-                mark = new PDFTranslation(footer, pageLayout.FooterLeftXPos, pageLayout.FooterYPos);
-                contentStream.AddChild(mark);
-
-                tmp = string.Format("Page {0} out of {1}", contentStreamsCount++, contentStreams.Count);
-                footer = new PDFText(tmp, defaultFont);
-                mark = new PDFTranslation(footer, pageLayout.GetFooterRightXPos(tmp, defaultFont), pageLayout.FooterYPos);
-                contentStream.AddChild(mark);
-                ///
-
-                root.AddChild(contentStream);
-
-                //Page
-                PDFPage page = new PDFPage(fonts, contentStream);
-                root.AddChild(page);
-                pages.AddPage(page);
-                ///
+                count++;
             }
             ///
 
             //Catalog
             PDFCatalog catalog = new PDFCatalog(outlines, pages);
-            root.Catalog = catalog;
-            root.AddChild(catalog);
+            doc.Catalog = catalog;
+            doc.AddChild(catalog);
             ///
 
-            return root;
+            return doc;
         }
     }
 }

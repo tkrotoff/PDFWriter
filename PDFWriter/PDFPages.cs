@@ -9,10 +9,15 @@ namespace PDFWriter
     {
         private List<PDFPage> _pages = new List<PDFPage>();
 
-        public virtual void AddPage(PDFPage page)
+        public void AddPage(PDFPage page)
         {
             page.Parent = this;
             _pages.Add(page);
+        }
+
+        public List<PDFPage> Pages
+        {
+            get { return _pages; }
         }
 
         public override string ToInnerPDF()

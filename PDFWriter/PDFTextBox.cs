@@ -52,8 +52,9 @@ namespace PDFWriter
             if (_width != 0 && _height != 0)
             {
                 tmp.AppendFormat(@"
-    % Rectangle
+    % Background color
     {0} rg
+    % Rectangle
     0 0 {1} {2} re
     f", _backgroundColor, _width, _height
                 );

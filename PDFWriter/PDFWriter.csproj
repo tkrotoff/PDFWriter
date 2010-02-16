@@ -61,7 +61,7 @@
     <Compile Include="PDFOutlines.cs" />
     <Compile Include="PDFPage.cs" />
     <Compile Include="PDFPages.cs" />
-    <Compile Include="PDFRoot.cs" />
+    <Compile Include="PDFDocument.cs" />
     <Compile Include="PDFTranslation.cs" />
     <Compile Include="PDFText.cs" />
     <Compile Include="PDFWriter.cs" />
