@@ -7,8 +7,18 @@ namespace PDFWriter
 {
     /// <summary>
     /// Displays a box (rectangle) with a text inside it.
-    /// The box accepts background color and other parameters.
     /// </summary>
+    /// 
+    /// <remarks>
+    /// The box accepts a background color and other parameters.
+    /// <code>
+    /// -----------------------
+    /// |                     |
+    /// | Text inside the box |
+    /// |                     |
+    /// -----------------------
+    /// </code>
+    /// </remarks>
     class PDFTextBox : PDFGraphicObject
     {
         private PDFText _text;

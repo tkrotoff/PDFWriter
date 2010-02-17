@@ -7,6 +7,9 @@ using System.Data;
 
 namespace PDFWriter
 {
+    /// <summary>
+    /// Entrance point of PDFWriter.
+    /// </summary>
     class Program
     {
         static DataSet CreateDataSet()

@@ -7,6 +7,7 @@ namespace PDFWriter
 {
     /// <summary>
     /// Represents the PDF and links to all the other PDF objects.
+    /// This class is pretty important.
     /// </summary>
     /// 
     /// <remarks>

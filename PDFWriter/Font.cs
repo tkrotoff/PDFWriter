@@ -67,6 +67,9 @@ namespace PDFWriter
             set;
         }
 
+        /// <summary>
+        /// Character spacing: a number expressed in unscaled text space units.
+        /// </summary>
         public double CharSpace
         {
             get;
@@ -82,8 +85,13 @@ namespace PDFWriter
             set;
         }
 
-        //Key = abreviation
-        //Value = PDF font name
+        /// <summary>
+        /// The list of available fonts.
+        /// </summary>
+        /// 
+        /// <remarks>
+        /// Key = abreviation, Value = PDF font name
+        /// </remarks>
         static private Dictionary<string, string> _fonts = new Dictionary<string, string>();
 
         static private void InitPDFFonts()

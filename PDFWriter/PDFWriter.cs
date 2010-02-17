@@ -6,13 +6,26 @@ using System.Data;
 
 namespace PDFWriter
 {
+    /*!
+     * @mainpage
+     * 
+     * PDF writer library: generates a PDF file from a DataSet.
+     * See PDFWriter and PDFDocument.
+     */
+
     /// <summary>
-    /// Library PDFWriter.
-    /// Takes a DataSet and generates a PDF file from it.
+    /// PDF writer library: generates a PDF file from a DataSet.
     /// </summary>
     /// 
-    /// Wikipedia page: http://en.wikipedia.org/wiki/PDF_format
+    /// <remarks>
+    /// See <a href="http://wiki/wiki/index.php/PDFWriter">Wiki page about PDFWriter</a><br/>
+    /// See <a href="http://en.wikipedia.org/wiki/PDF_format">Wikipedia page about PDF</a><br/>
     /// For more technical informations about the PDF format, see PDFDocument.
+    /// 
+    /// This class implements the algorithms that use PDFGraphicObjects and PDFStructureObjects
+    /// in order to create a PDF file.
+    /// The main difficulty is to split DataSet rows on several pages.
+    /// </remarks>
     static class PDFWriter
     {
         /// <summary>
@@ -287,21 +300,29 @@ namespace PDFWriter
         /// <summary>
         /// Creates the pages contained inside the PDF.
         /// </summary>
+        /// 
+        /// <remarks>
+        /// This method contains the main PDF algorithm.
+        /// It splits DataSet rows into several PDF pages.
+        /// 
+        /// <code>
+        ///    ----------------------------
+        ///    | Column 1 | Column 2 | ...
+        /// y  ----------------------------
+        /// ^  | Row 10   | Row 11   | ...
+        /// |  | Row 20   | Row 21   | ...
+        /// |  | Row 30   | Row 31   | ...
+        /// |  ----------------------------
+        /// 0 ----> x
+        /// </code>
+        /// </remarks>
+        /// 
         /// <param name="data">DataSet</param>
         /// <param name="doc">Main PDF document</param>
         /// <returns>The PDF pages (a list of PDFPage)</returns>
         static public PDFPages CreatePages(DataSet data, PDFDocument doc)
         {
             PDFPages pages = new PDFPages();
-
-            //    ----------------------------
-            //    | Column 1 | Column 2 | ...
-            // y  ----------------------------
-            // ^  | Row 10   | Row 11   | ...
-            // |  | Row 20   | Row 21   | ...
-            // |  | Row 30   | Row 31   | ...
-            // |  ----------------------------
-            // 0 ----> x
 
             foreach (DataTable table in data.Tables)
             {
