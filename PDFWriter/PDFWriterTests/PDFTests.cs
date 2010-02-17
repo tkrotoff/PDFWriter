@@ -20,13 +20,15 @@ namespace PDFWriterTests
             DataSet data = new DataSet("Sample");
             data.ReadXml("../../1page.xml");
 
-            PDFWriter.PDFWriter.PageLayout = new PageLayout();
+            PDFWriter.PageLayout pageLayout = new PageLayout();
+            pageLayout.RightHeader = "Current Date";
+            PDFWriter.PDFWriter.PageLayout = pageLayout;
 
             string tmp = PDFWriter.PDFWriter.GetPDF(data);
 
-            StreamWriter fileWriter = new StreamWriter("../../1page.pdf");
+            /*StreamWriter fileWriter = new StreamWriter("../../1page.pdf");
             fileWriter.Write(tmp);
-            fileWriter.Close();
+            fileWriter.Close();*/
 
             StreamReader file = new StreamReader("../../1page.pdf");
             string pdf = file.ReadToEnd();
@@ -38,6 +40,24 @@ namespace PDFWriterTests
         [Test]
         public void Test2PagesPDF()
         {
+            DataSet data = new DataSet("Sample");
+            data.ReadXml("../../2pages.xml");
+
+            PDFWriter.PageLayout pageLayout = new PageLayout();
+            pageLayout.RightHeader = "Current Date";
+            PDFWriter.PDFWriter.PageLayout = pageLayout;
+
+            string tmp = PDFWriter.PDFWriter.GetPDF(data);
+
+            /*StreamWriter fileWriter = new StreamWriter("../../2pages.pdf");
+            fileWriter.Write(tmp);
+            fileWriter.Close();*/
+
+            StreamReader file = new StreamReader("../../2pages.pdf");
+            string pdf = file.ReadToEnd();
+            file.Close();
+
+            Assert.AreEqual(pdf, tmp);
         }
 
         [Test]
