@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PDFWriter
 {
+    /// <summary>
+    /// All the pages (a list of PDFPage) inside the PDF file
+    /// </summary>
     class PDFPages : PDFStructureObject
     {
         private List<PDFPage> _pages = new List<PDFPage>();

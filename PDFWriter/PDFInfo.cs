@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PDFWriter
 {
+    /// <summary>
+    /// Contains information about the PDF file (title, creator...).
+    /// </summary>
     class PDFInfo : PDFStructureObject
     {
         private string _title;

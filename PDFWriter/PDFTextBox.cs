@@ -5,6 +5,10 @@ using System.Text;
 
 namespace PDFWriter
 {
+    /// <summary>
+    /// Displays a box (rectangle) with a text inside it.
+    /// The box accepts background color and other parameters.
+    /// </summary>
     class PDFTextBox : PDFGraphicObject
     {
         private PDFText _text;

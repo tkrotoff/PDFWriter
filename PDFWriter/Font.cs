@@ -5,6 +5,10 @@ using System.Text;
 
 namespace PDFWriter
 {
+    /// <summary>
+    /// A PDF font.
+    /// </summary>
+    /// <see cref="PDFText"/>
     class Font
     {
         public const string Courier = "FC";
@@ -69,6 +73,9 @@ namespace PDFWriter
             set;
         }
 
+        /// <summary>
+        /// Word spacing: a number expressed in unscaled text space units.
+        /// </summary>
         public double WordSpace
         {
             get;

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PDFWriter
 {
+    /// <summary>
+    /// A page layout contains information about margins, width, height... of a PDF page.
+    /// </summary>
     class PageLayout
     {
         public PageLayout()

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PDFWriter
 {
+    /// <summary>
+    /// Computes the metrics of a font.
+    /// </summary>
     static class FontMetrics
     {
         /// <summary>
@@ -249,6 +252,12 @@ namespace PDFWriter
             .278, .874, .760, .946, .771, .865, .771, .888, .967, .888, .831, .873, .927, .970, .918, .278,
         };
 
+        /// <summary>
+        /// Gets the width (for a PDF file of course) taken by a string/text given a font.
+        /// </summary>
+        /// <param name="text">text to use to compute its width</param>
+        /// <param name="font">font used for the text</param>
+        /// <returns>text width</returns>
         public static double GetTextWidth(string text, Font font)
         {
             double width = 0;

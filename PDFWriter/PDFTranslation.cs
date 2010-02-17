@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PDFWriter
 {
+    /// <summary>
+    /// Performs a translation on a PDF graphical object.
+    /// </summary>
     class PDFTranslation : PDFGraphicObject
     {
         private PDFGraphicObject _graphicObject;

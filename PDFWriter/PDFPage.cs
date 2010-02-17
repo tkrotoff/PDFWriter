@@ -5,20 +5,33 @@ using System.Text;
 
 namespace PDFWriter
 {
+    /// <summary>
+    /// A page inside the PDF.
+    /// </summary>
     class PDFPage : PDFStructureObject
     {
+        /// <summary>
+        /// Links to the list of pages: PDFPages.
+        /// </summary>
         public PDFPages Parent
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Links to the content stream that contains text, graphics...
+        /// (so the real content of the PDF).
+        /// </summary>
         public PDFContentStream ContentStream
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Fonts available for use inside this PDF page.
+        /// </summary>
         public List<PDFFont> Fonts
         {
             get;

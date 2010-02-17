@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PDFWriter
 {
+    /// <summary>
+    /// Performs a scaling on a PDF graphical object.
+    /// </summary>
     class PDFScaling : PDFGraphicObject
     {
         private List<PDFGraphicObject> _graphicObjects;

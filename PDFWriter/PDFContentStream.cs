@@ -5,6 +5,11 @@ using System.Text;
 
 namespace PDFWriter
 {
+    /// <summary>
+    /// Contains all the graphic primitives (text, translation, graphics...) to display inside the PDF file.
+    /// 
+    /// This class is pretty important, it contains a list of all the PDFGraphicObjects to display.
+    /// </summary>
     class PDFContentStream : PDFStructureObject
     {
         private List<PDFGraphicObject> _childs = new List<PDFGraphicObject>();
