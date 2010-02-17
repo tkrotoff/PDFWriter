@@ -26,7 +26,7 @@ namespace PDFWriter
     /// in order to create a PDF file.
     /// The main difficulty is to split DataSet rows on several pages.
     /// </remarks>
-    static class PDFWriter
+    static public class PDFWriter
     {
         /// <summary>
         /// Default font.
@@ -55,12 +55,27 @@ namespace PDFWriter
             }
         }
 
+        static private PageLayout _pageLayout;
+
         /// <summary>
         /// Page layout (margins, page size...).
         /// </summary>
-        static private PageLayout PageLayout
+        static public PageLayout PageLayout
         {
-            get { return new PageLayout(); }
+            get
+            {
+                if (_pageLayout == null)
+                {
+                    //Sets a default page layout if none provided by the user
+                    _pageLayout = new PageLayout();
+                }
+                return _pageLayout;
+            }
+
+            set
+            {
+                _pageLayout = value;
+            }
         }
 
         /// <summary>
@@ -211,17 +226,16 @@ namespace PDFWriter
         /// Creates the PDF page header (some text at the top of the page).
         /// </summary>
         /// <returns>The PDF page header as PDFGraphicObjects</returns>
-        static public List<PDFGraphicObject> CreateHeader()
+        static private List<PDFGraphicObject> CreateHeader()
         {
             List<PDFGraphicObject> objects = new List<PDFGraphicObject>();
 
-            PDFText header = new PDFText("Report", DefaultFont);
+            PDFText header = new PDFText(PageLayout.LeftHeader, DefaultFont);
             PDFTranslation mark = new PDFTranslation(header, PageLayout.HeaderLeftXPos, PageLayout.HeaderYPos);
             objects.Add(mark);
 
-            string tmp = DateTime.Now.ToShortDateString();
-            header = new PDFText(tmp, DefaultFont);
-            mark = new PDFTranslation(header, PageLayout.GetHeaderRightXPos(tmp, DefaultFont), PageLayout.HeaderYPos);
+            header = new PDFText(PageLayout.RightHeader, DefaultFont);
+            mark = new PDFTranslation(header, PageLayout.GetHeaderRightXPos(PageLayout.RightHeader, DefaultFont), PageLayout.HeaderYPos);
             objects.Add(mark);
 
             return objects;
@@ -233,11 +247,11 @@ namespace PDFWriter
         /// <param name="currentPageNumber">current page number</param>
         /// <param name="totalPageNumber">total number of pages</param>
         /// <returns>The PDF page footer as PDFGraphicObjects</returns>
-        static public List<PDFGraphicObject> CreateFooter(int currentPageNumber, int totalPageNumber)
+        static private List<PDFGraphicObject> CreateFooter(int currentPageNumber, int totalPageNumber)
         {
             List<PDFGraphicObject> objects = new List<PDFGraphicObject>();
 
-            PDFText footer = new PDFText("Source: PDFWR (www.pdfwr.com)", DefaultFont);
+            PDFText footer = new PDFText(PageLayout.LeftFooter, DefaultFont);
             PDFTranslation mark = new PDFTranslation(footer, PageLayout.FooterLeftXPos, PageLayout.FooterYPos);
             objects.Add(mark);
 
@@ -257,7 +271,7 @@ namespace PDFWriter
         /// <param name="columns">columns to show inside the PDF</param>
         /// <param name="rows">rows to show inside the PDF</param>
         /// <returns>The PDF page created</returns>
-        static public PDFPage CreatePage(PDFDocument doc, double tableWidth, List<PDFGraphicObject> columns, List<PDFGraphicObject> rows)
+        static private PDFPage CreatePage(PDFDocument doc, double tableWidth, List<PDFGraphicObject> columns, List<PDFGraphicObject> rows)
         {
             //Scaling
             double scaling = (PageLayout.Width - (PageLayout.RightMargin + PageLayout.LeftMargin)) / (tableWidth);
@@ -320,7 +334,7 @@ namespace PDFWriter
         /// <param name="data">DataSet</param>
         /// <param name="doc">Main PDF document</param>
         /// <returns>The PDF pages (a list of PDFPage)</returns>
-        static public PDFPages CreatePages(DataSet data, PDFDocument doc)
+        static private PDFPages CreatePages(DataSet data, PDFDocument doc)
         {
             PDFPages pages = new PDFPages();
 
@@ -391,7 +405,7 @@ namespace PDFWriter
         /// </summary>
         /// <param name="data">DataSet to convert into a PDF</param>
         /// <returns>The PDF</returns>
-        static public PDFDocument GetPDFDocument(DataSet data)
+        static public string GetPDF(DataSet data)
         {
             //Root
             PDFDocument doc = new PDFDocument();
@@ -440,7 +454,7 @@ namespace PDFWriter
             doc.AddChild(catalog);
             ////
 
-            return doc;
+            return doc.ToInnerPDF();
         }
     }
 }

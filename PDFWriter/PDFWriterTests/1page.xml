@@ -1,0 +1,43 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Sample>
+    <Symbol>AAAA</Symbol>
+    <Desc>AAAA</Desc>
+    <Weight>0.10</Weight>
+    <Price>100</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>10</Sct>
+    <Sector>ALPHA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>BBBB</Symbol>
+    <Desc>BBBB</Desc>
+    <Weight>0.20</Weight>
+    <Price>150</Price>
+    <Cty>CA</Cty>
+    <Country>CANADA</Country>
+    <Sct>20</Sct>
+    <Sector>BETA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>CCCC</Symbol>
+    <Desc>CCCC</Desc>
+    <Weight>0.30</Weight>
+    <Price>300</Price>
+    <Cty>CA</Cty>
+    <Country>CANADA</Country>
+    <Sct>20</Sct>
+    <Sector>BETA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>DDDD</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+</NewDataSet>

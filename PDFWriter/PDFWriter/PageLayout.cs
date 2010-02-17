@@ -8,8 +8,11 @@ namespace PDFWriter
     /// <summary>
     /// A page layout contains information about margins, width, height... of a PDF page.
     /// </summary>
-    class PageLayout
+    public class PageLayout
     {
+        /// <summary>
+        /// Creates a default page layout.
+        /// </summary>
         public PageLayout()
         {
             Width = 612;
@@ -28,40 +31,63 @@ namespace PDFWriter
             FooterYPos = 15;
             FooterLeftXPos = HeaderLeftXPos;
             FooterRightXLimit = HeaderRightXLimit;
+
+            LeftHeader = "Report";
+            RightHeader = DateTime.Now.ToShortDateString();
+            LeftFooter = "Source: PDFWR (www.pdfwr.com)";
         }
 
-        public double Width
+        /// <summary>
+        /// Width of a PDF page.
+        /// </summary>
+        internal double Width
         {
             get;
             set;
         }
 
-        public double Height
+        /// <summary>
+        /// Height of a PDF page.
+        /// </summary>
+        internal double Height
         {
             get;
             set;
         }
 
         #region Margins
-        public double LeftMargin
+
+        /// <summary>
+        /// Left margin inside a PDF page, default is 25.
+        /// </summary>
+        internal double LeftMargin
         {
             get;
             set;
         }
 
-        public double RightMargin
+        /// <summary>
+        /// Right margin inside a PDF page, default is 25.
+        /// </summary>
+        internal double RightMargin
         {
             get;
             set;
         }
 
-        public double TopMargin
+        /// <summary>
+        /// Top margin inside a PDF page, default is 55.
+        /// </summary>
+        internal double TopMargin
         {
             get;
             set;
         }
 
-        public double BottomMargin
+        /// <summary>
+        /// Bottom margin inside a PDF page, default is 55.
+        /// </summary>
+        internal double BottomMargin
         {
             get;
             set;
@@ -69,55 +95,89 @@ namespace PDFWriter
         #endregion
 
         #region Header
-        public double HeaderYPos
+        internal double HeaderYPos
         {
             get;
             set;
         }
 
-        public double HeaderLeftXPos
+        internal double HeaderLeftXPos
         {
             get;
             set;
         }
 
-        public double HeaderRightXLimit
+        internal double HeaderRightXLimit
         {
             get;
             set;
         }
 
-        public double GetHeaderRightXPos(string text, Font font)
+        internal double GetHeaderRightXPos(string text, Font font)
         {
             double textWidth = FontMetrics.GetTextWidth(text, font);
             return HeaderRightXLimit - textWidth;
         }
+
+        /// <summary>
+        /// String used as the page header, left part.
+        /// </summary>
+        public string LeftHeader
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// String used as the page header, right part.
+        /// </summary>
+        public string RightHeader
+        {
+            get;
+            set;
+        }
         #endregion
 
         #region Footer
-        public double FooterYPos
+        internal double FooterYPos
         {
             get;
             set;
         }
 
-        public double FooterLeftXPos
+        internal double FooterLeftXPos
         {
             get;
             set;
         }
 
-        public double FooterRightXLimit
+        internal double FooterRightXLimit
         {
             get;
             set;
         }
 
-        public double GetFooterRightXPos(string text, Font font)
+        internal double GetFooterRightXPos(string text, Font font)
         {
             double textWidth = FontMetrics.GetTextWidth(text, font);
             return FooterRightXLimit - textWidth;
         }
+
+        /// <summary>
+        /// String used as the page footer, left part.
+        /// </summary>
+        public string LeftFooter
+        {
+            get;
+            set;
+        }
+
+        /*TODO not used
+        public string RightFooter
+        {
+            get;
+            set;
+        }*/
         #endregion
     }
 }

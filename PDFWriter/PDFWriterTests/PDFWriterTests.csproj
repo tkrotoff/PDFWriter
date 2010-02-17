@@ -53,6 +53,12 @@
     <Compile Include="PDFTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PDFWriter\PDFWriter.csproj">
+      <Project>{7DE6DF5E-E01C-473C-B1E7-C9AAB434C614}</Project>
+      <Name>PDFWriter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

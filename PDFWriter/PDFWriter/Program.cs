@@ -177,11 +177,11 @@ namespace PDFWriter
         {
             DataSet data = CreateDataSet();
 
-            PDFDocument doc = PDFWriter.GetPDFDocument(data);
+            string pdf = PDFWriter.GetPDF(data);
 
             //Write the PDF to a file
             StreamWriter file = new StreamWriter(@"C:\Users\Krotoff\Desktop\pdfwriter.pdf");
-            file.Write(doc.ToInnerPDF());
+            file.Write(pdf);
             file.Close();
             ////
         }
