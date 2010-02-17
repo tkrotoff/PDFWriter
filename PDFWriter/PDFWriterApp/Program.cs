@@ -226,8 +226,8 @@ namespace PDFWriterApp
             dataSet.WriteXml("data.xml");
 
             DataSet newDataSet = new DataSet("Sample");
-            //newDataSet.ReadXml("data.xml");
-            newDataSet.ReadXml("MSPAENG.xml");
+            newDataSet.ReadXml("data.xml");
+            //newDataSet.ReadXml("MSPAENG.xml");
 
             return newDataSet;
         }
@@ -239,7 +239,7 @@ namespace PDFWriterApp
             string pdf = PDFWriter.PDFWriter.GetPDF(data);
 
             //Write the PDF to a file
-            StreamWriter file = new StreamWriter(@"C:\Users\Krotoff\Desktop\pdfwriter.pdf");
+            StreamWriter file = new StreamWriter("pdfwriter.pdf");
             file.Write(pdf);
             file.Close();
             ////

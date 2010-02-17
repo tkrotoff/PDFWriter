@@ -1,0 +1,1453 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Sample>
+    <Symbol>AAAA</Symbol>
+    <Desc>AAAA</Desc>
+    <Weight>0.10</Weight>
+    <Price>100</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>10</Sct>
+    <Sector>ALPHA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>BBBB</Symbol>
+    <Desc>BBBB</Desc>
+    <Weight>0.20</Weight>
+    <Price>150</Price>
+    <Cty>CA</Cty>
+    <Country>CANADA</Country>
+    <Sct>20</Sct>
+    <Sector>BETA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>CCCC</Symbol>
+    <Desc>CCCC</Desc>
+    <Weight>0.30</Weight>
+    <Price>300</Price>
+    <Cty>CA</Cty>
+    <Country>CANADA</Country>
+    <Sct>20</Sct>
+    <Sector>BETA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>DDDD</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>0</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>1</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>2</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>3</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>4</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>5</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>6</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>7</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>8</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>9</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>10</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>11</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>12</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>13</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>14</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>15</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>16</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>17</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>18</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>19</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>20</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>21</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>22</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>23</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>24</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>25</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>26</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>27</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>28</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>29</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>30</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>31</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>32</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>33</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>34</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>35</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>36</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>37</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>38</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>39</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>40</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>41</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>42</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>43</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>44</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>45</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>46</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>47</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>48</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>49</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>50</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>51</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>52</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>53</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>54</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>55</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>56</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>57</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>58</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>59</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>60</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>61</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>62</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>63</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>64</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>65</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>66</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>67</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>68</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>69</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>70</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>71</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>72</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>73</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>74</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>75</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>76</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>77</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>78</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>79</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>80</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>81</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>82</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>83</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>84</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>85</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>86</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>87</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>88</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>89</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>90</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>91</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>92</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>93</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>94</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>95</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>96</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>97</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>98</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>99</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>100</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>101</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>102</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>103</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>104</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>105</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>106</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>107</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>108</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>109</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>110</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>111</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>112</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>113</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>114</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>115</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>116</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>117</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>118</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>119</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>120</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>121</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>122</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>123</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>124</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>125</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>126</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>127</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>128</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>129</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>130</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>131</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>132</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>133</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>134</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>135</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>136</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>137</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>138</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>139</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+  <Sample>
+    <Symbol>140</Symbol>
+    <Desc>DDDD</Desc>
+    <Weight>0.40</Weight>
+    <Price>450</Price>
+    <Cty>US</Cty>
+    <Country>UNITED STATES</Country>
+    <Sct>30</Sct>
+    <Sector>DELTA</Sector>
+  </Sample>
+</NewDataSet>
