@@ -5,10 +5,12 @@ using System.Text;
 using System.IO;
 using System.Data;
 
-namespace PDFWriter
+using PDFWriter;
+
+namespace PDFWriterApp
 {
     /// <summary>
-    /// Entrance point of PDFWriter.
+    /// PDFWriter application (.exe above PDFWriter.dll).
     /// </summary>
     class Program
     {
@@ -146,6 +148,63 @@ namespace PDFWriter
             rows.Add("81,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
             rows.Add("82,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
             rows.Add("83,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("84,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("85,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("86,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("87,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("88,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("89,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("90,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("91,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("92,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("93,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("94,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("95,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("96,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("97,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("98,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("99,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("100,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("101,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("102,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("103,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("104,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("105,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("106,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("107,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("108,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("109,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("110,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("111,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("112,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("113,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("114,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("115,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("116,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("117,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("118,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("119,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("120,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("121,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("122,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("123,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("124,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("125,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("126,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("127,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("128,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("129,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("130,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("131,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("132,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("133,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("134,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("135,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("136,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("137,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("138,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("139,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
+            rows.Add("140,DDDD,0.40,450,US,UNITED STATES,30,DELTA");
 
             foreach (string rowStr in rows)
             {
@@ -177,7 +236,7 @@ namespace PDFWriter
         {
             DataSet data = CreateDataSet();
 
-            string pdf = PDFWriter.GetPDF(data);
+            string pdf = PDFWriter.PDFWriter.GetPDF(data);
 
             //Write the PDF to a file
             StreamWriter file = new StreamWriter(@"C:\Users\Krotoff\Desktop\pdfwriter.pdf");

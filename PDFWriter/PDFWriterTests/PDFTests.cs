@@ -63,6 +63,24 @@ namespace PDFWriterTests
         [Test]
         public void Test3PagesPDF()
         {
+            DataSet data = new DataSet("Sample");
+            data.ReadXml("../../3pages.xml");
+
+            PDFWriter.PageLayout pageLayout = new PageLayout();
+            pageLayout.RightHeader = "Current Date";
+            PDFWriter.PDFWriter.PageLayout = pageLayout;
+
+            string tmp = PDFWriter.PDFWriter.GetPDF(data);
+
+            StreamWriter fileWriter = new StreamWriter("../../3pages.pdf");
+            fileWriter.Write(tmp);
+            fileWriter.Close();
+
+            StreamReader file = new StreamReader("../../3pages.pdf");
+            string pdf = file.ReadToEnd();
+            file.Close();
+
+            Assert.AreEqual(pdf, tmp);
         }
     }
 }

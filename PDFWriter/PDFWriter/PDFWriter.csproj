@@ -6,7 +6,7 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7DE6DF5E-E01C-473C-B1E7-C9AAB434C614}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PDFWriter</RootNamespace>
     <AssemblyName>PDFWriter</AssemblyName>
@@ -85,7 +85,6 @@
     <Compile Include="PDFTranslation.cs" />
     <Compile Include="PDFText.cs" />
     <Compile Include="PDFWriter.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
