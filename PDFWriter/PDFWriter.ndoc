@@ -4,7 +4,7 @@
     </assemblies>
     <documenters>
         <documenter name="MSDN">
-            <property name="OutputDirectory" value=".\ndoc\" />
+            <property name="OutputDirectory" value=".\doc\ndoc\" />
             <property name="HtmlHelpName" value="Documentation" />
             <property name="Title" value="PDFWriter Class Library" />
             <property name="DocumentInternals" value="True" />
