@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PDFWriter
+namespace PDF
 {
     /// <summary>
     /// Contains information about the PDF file (title, creator...).

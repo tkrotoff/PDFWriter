@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PDFWriter
+namespace PDF
 {
     /// <summary>
     /// Graphical primitives for displaying text and graphics inside a PDF file.

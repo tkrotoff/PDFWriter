@@ -7,9 +7,9 @@ using System.Data;
 
 using NUnit.Framework;
 
-using PDFWriter;
+using PDF;
 
-namespace PDFWriterTests
+namespace PDFTests
 {
     [TestFixture]
     class PDFTests
@@ -20,11 +20,11 @@ namespace PDFWriterTests
             DataSet data = new DataSet("Sample");
             data.ReadXml("../../1page.xml");
 
-            PDFWriter.PageLayout pageLayout = new PageLayout();
+            PageLayout pageLayout = new PageLayout();
             pageLayout.RightHeader = "Current Date";
-            PDFWriter.PDFWriter.PageLayout = pageLayout;
+            PDFWriter.PageLayout = pageLayout;
 
-            string tmp = PDFWriter.PDFWriter.GetPDF(data);
+            string tmp = PDFWriter.GetPDF(data);
 
             /*StreamWriter fileWriter = new StreamWriter("../../1page.pdf");
             fileWriter.Write(tmp);
@@ -43,11 +43,11 @@ namespace PDFWriterTests
             DataSet data = new DataSet("Sample");
             data.ReadXml("../../2pages.xml");
 
-            PDFWriter.PageLayout pageLayout = new PageLayout();
+            PageLayout pageLayout = new PageLayout();
             pageLayout.RightHeader = "Current Date";
-            PDFWriter.PDFWriter.PageLayout = pageLayout;
+            PDFWriter.PageLayout = pageLayout;
 
-            string tmp = PDFWriter.PDFWriter.GetPDF(data);
+            string tmp = PDFWriter.GetPDF(data);
 
             /*StreamWriter fileWriter = new StreamWriter("../../2pages.pdf");
             fileWriter.Write(tmp);
@@ -66,17 +66,41 @@ namespace PDFWriterTests
             DataSet data = new DataSet("Sample");
             data.ReadXml("../../3pages.xml");
 
-            PDFWriter.PageLayout pageLayout = new PageLayout();
+            PageLayout pageLayout = new PageLayout();
             pageLayout.RightHeader = "Current Date";
-            PDFWriter.PDFWriter.PageLayout = pageLayout;
+            PDFWriter.PageLayout = pageLayout;
 
-            string tmp = PDFWriter.PDFWriter.GetPDF(data);
+            string tmp = PDFWriter.GetPDF(data);
 
-            StreamWriter fileWriter = new StreamWriter("../../3pages.pdf");
+            PDFInfo info = new PDFInfo("toto", "toto", "toto");
+
+            /*StreamWriter fileWriter = new StreamWriter("../../3pages.pdf");
             fileWriter.Write(tmp);
-            fileWriter.Close();
+            fileWriter.Close();*/
 
             StreamReader file = new StreamReader("../../3pages.pdf");
+            string pdf = file.ReadToEnd();
+            file.Close();
+
+            Assert.AreEqual(pdf, tmp);
+        }
+
+        public void TestTableScaling()
+        {
+            DataSet data = new DataSet("Sample");
+            data.ReadXml("../../tablescaling.xml");
+
+            PageLayout pageLayout = new PageLayout();
+            pageLayout.RightHeader = "Current Date";
+            PDFWriter.PageLayout = pageLayout;
+
+            string tmp = PDFWriter.GetPDF(data);
+
+            /*StreamWriter fileWriter = new StreamWriter("../../tablescaling.pdf");
+            fileWriter.Write(tmp);
+            fileWriter.Close();*/
+
+            StreamReader file = new StreamReader("../../tablescaling.pdf");
             string pdf = file.ReadToEnd();
             file.Close();
 

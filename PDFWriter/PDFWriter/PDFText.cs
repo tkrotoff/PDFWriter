@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PDFWriter
+namespace PDF
 {
     /// <summary>
     /// Writes a text/string inside a PDF document.

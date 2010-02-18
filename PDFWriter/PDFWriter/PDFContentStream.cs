@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PDFWriter
+namespace PDF
 {
     /// <summary>
     /// Contains all the graphic primitives (text, translation, graphics...) to display inside the PDF file.

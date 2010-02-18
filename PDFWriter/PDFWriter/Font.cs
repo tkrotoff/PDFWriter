@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PDFWriter
+namespace PDF
 {
     /// <summary>
     /// A PDF font.
@@ -27,7 +27,7 @@ namespace PDFWriter
         public const string ZapfDingbats = "FZ";
 
         public Font(string name, double size)
-            : this(name, size, PDFWriter.Color.Black)
+            : this(name, size, PDF.Color.Black)
         {
         }
 
