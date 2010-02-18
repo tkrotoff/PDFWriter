@@ -26,9 +26,9 @@ namespace PDFTests
 
             string tmp = PDFWriter.GetPDF(data);
 
-            /*StreamWriter fileWriter = new StreamWriter("../../1page.pdf");
+            StreamWriter fileWriter = new StreamWriter("../../1page_generated.pdf");
             fileWriter.Write(tmp);
-            fileWriter.Close();*/
+            fileWriter.Close();
 
             StreamReader file = new StreamReader("../../1page.pdf");
             string pdf = file.ReadToEnd();
@@ -49,9 +49,9 @@ namespace PDFTests
 
             string tmp = PDFWriter.GetPDF(data);
 
-            /*StreamWriter fileWriter = new StreamWriter("../../2pages.pdf");
+            StreamWriter fileWriter = new StreamWriter("../../2pages_generated.pdf");
             fileWriter.Write(tmp);
-            fileWriter.Close();*/
+            fileWriter.Close();
 
             StreamReader file = new StreamReader("../../2pages.pdf");
             string pdf = file.ReadToEnd();
@@ -72,11 +72,9 @@ namespace PDFTests
 
             string tmp = PDFWriter.GetPDF(data);
 
-            PDFInfo info = new PDFInfo("toto", "toto", "toto");
-
-            /*StreamWriter fileWriter = new StreamWriter("../../3pages.pdf");
+            StreamWriter fileWriter = new StreamWriter("../../3pages_generated.pdf");
             fileWriter.Write(tmp);
-            fileWriter.Close();*/
+            fileWriter.Close();
 
             StreamReader file = new StreamReader("../../3pages.pdf");
             string pdf = file.ReadToEnd();
@@ -85,6 +83,7 @@ namespace PDFTests
             Assert.AreEqual(pdf, tmp);
         }
 
+        [Test]
         public void TestTableScaling()
         {
             DataSet data = new DataSet("Sample");
@@ -96,9 +95,9 @@ namespace PDFTests
 
             string tmp = PDFWriter.GetPDF(data);
 
-            /*StreamWriter fileWriter = new StreamWriter("../../tablescaling.pdf");
+            StreamWriter fileWriter = new StreamWriter("../../tablescaling_generated.pdf");
             fileWriter.Write(tmp);
-            fileWriter.Close();*/
+            fileWriter.Close();
 
             StreamReader file = new StreamReader("../../tablescaling.pdf");
             string pdf = file.ReadToEnd();
