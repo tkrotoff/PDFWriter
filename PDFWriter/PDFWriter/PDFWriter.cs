@@ -33,6 +33,7 @@ namespace PDF
         /// </summary>
         static private Font DefaultFont
         {
+            //TODO use a style template to get this property
             get { return new Font(Font.Helvetica, 9); }
         }
 
@@ -41,6 +42,7 @@ namespace PDF
         /// </summary>
         static private Font DefaultBoldFont
         {
+            //TODO use a style template to get this property
             get { return new Font(Font.HelveticaBold, 9); }
         }
 
@@ -51,6 +53,7 @@ namespace PDF
         {
             get
             {
+                //TODO use a style template to get this property
                 return Color.Silver;
             }
         }
@@ -64,6 +67,7 @@ namespace PDF
         {
             get
             {
+                //TODO use a style template to get this property
                 if (_pageLayout == null)
                 {
                     //Sets a default page layout if none provided by the user
@@ -83,6 +87,7 @@ namespace PDF
         /// </summary>
         static private double RowHeight
         {
+            //TODO compute it using font metrics
             get { return 13; }
         }
 
@@ -99,7 +104,6 @@ namespace PDF
                 {
                     PDFFont font = new PDFFont(pair.Key, pair.Value);
                     fonts.Add(font);
-                    
                 }
                 return fonts;
             }
@@ -266,7 +270,7 @@ namespace PDF
         /// <summary>
         /// Creates a PDF page given the main PDF document and a list of rows.
         /// </summary>
-        /// <param name="doc"></param>
+        /// <param name="doc">PDFDocument: the main PDF object</param>
         /// <param name="tableWidth">width of the DataTable (needed for scaling the table to fit inside the page)</param>
         /// <param name="columns">columns to show inside the PDF</param>
         /// <param name="rows">rows to show inside the PDF</param>
@@ -334,12 +338,21 @@ namespace PDF
         /// <param name="data">DataSet</param>
         /// <param name="doc">Main PDF document</param>
         /// <returns>The PDF pages (a list of PDFPage)</returns>
-        static private PDFPages CreatePages(DataSet data, PDFDocument doc)
+        static private PDFPages CreatePages(DataSet data, PDFDocument doc, PDFOutlines outlines)
         {
             PDFPages pages = new PDFPages();
 
             foreach (DataTable table in data.Tables)
             {
+                PDFOutline currentOutline = null;
+                if (data.Tables.Count > 1)
+                {
+                    //More than 1 DataTable thus lets create outlines
+                    currentOutline = new PDFOutline(table.TableName);
+                    doc.AddChild(currentOutline);
+                    outlines.AddOutline(currentOutline);
+                }
+
                 List<PDFGraphicObject> rows = new List<PDFGraphicObject>();
 
                 double yPos = -RowHeight;
@@ -359,6 +372,16 @@ namespace PDF
                             double tableWidth = GetTableWidth(table);
                             PDFPage page = CreatePage(doc, tableWidth, columns, rows);
                             pages.AddPage(page);
+                            ////
+
+                            //Add the page to the outlines
+                            if (currentOutline != null)
+                            {
+                                if (currentOutline.Page == null)
+                                {
+                                    currentOutline.Page = page;
+                                }
+                            }
                             ////
 
                             //Don't do a Clear() on the list, instead
@@ -393,6 +416,16 @@ namespace PDF
                     double tableWidth = GetTableWidth(table);
                     PDFPage page = CreatePage(doc, tableWidth, columns, rows);
                     pages.AddPage(page);
+                    ////
+
+                    //Add the page to the outlines
+                    if (currentOutline != null)
+                    {
+                        if (currentOutline.Page == null)
+                        {
+                            currentOutline.Page = page;
+                        }
+                    }
                     ////
                 }
             }
@@ -430,7 +463,7 @@ namespace PDF
             ////
 
             //Pages
-            PDFPages pages = CreatePages(data, doc);
+            PDFPages pages = CreatePages(data, doc, outlines);
             doc.AddChild(pages);
             ////
 

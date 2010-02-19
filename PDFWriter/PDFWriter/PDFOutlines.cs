@@ -57,18 +57,49 @@ namespace PDF
     /// </remarks>
     class PDFOutlines : PDFStructureObject
     {
+        private List<PDFOutline> _outlines = new List<PDFOutline>();
+
+        public void AddOutline(PDFOutline outline)
+        {
+            outline.Parent = this;
+            if (_outlines.Count > 0)
+            {
+                outline.PrevOutline = _outlines.Last();
+                _outlines.Last().NextOutline = outline;
+            }
+            _outlines.Add(outline);
+        }
+
         public override string ToInnerPDF()
         {
+            //There can be 0 outlines
+            //System.Diagnostics.Trace.Assert(_outlines.Count > 0);
+
+            string first = string.Empty;
+            string last = string.Empty;
+            if (_outlines.Count > 0)
+            {
+                System.Diagnostics.Trace.Assert(_outlines.First().ObjectNumber > 0);
+                first = string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                        "/First {0} 0 R", _outlines.First().ObjectNumber);
+
+                System.Diagnostics.Trace.Assert(_outlines.Last().ObjectNumber > 0);
+                last = string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                        "/Last {0} 0 R", _outlines.Last().ObjectNumber);
+            }
+
             return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
 % PDFOutlines (
 {0} 0 obj
     <<
         /Type /Outlines
-        /Count 0
+        {1}
+        {2}
+        /Count {3}
     >>
 endobj
 % )
-", ObjectNumber
+", ObjectNumber, first, last, _outlines.Count
             );
         }
 
