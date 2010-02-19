@@ -15,7 +15,21 @@ namespace PDF
     /// In addition, it contains information about how the document should be displayed
     /// on the screen, such as whether its outline and thumbnail page images should be
     /// displayed automatically and whether some location other than the first page
-    /// should be shown when the document is opened.
+    /// should be shown when the document is opened.<br/>
+    /// <br/>
+    /// Example:<br/>
+    /// <code>
+    /// <![CDATA[
+    /// 1 0 obj
+    ///     <<
+    ///         /Type /Catalog
+    ///         /Pages 2 0 R
+    ///         /Outlines 3 0 R
+    ///         /PageMode /UseOutlines
+    ///     >>
+    /// endobj
+    /// ]]>
+    /// </code>
     /// </remarks>
     class PDFCatalog : PDFStructureObject
     {

@@ -29,6 +29,31 @@ namespace PDF
     /// <br/>
     /// The root of a document's outline hierarchy is an outline dictionary specified by
     /// the Outlines entry in the document catalog.<br/>
+    /// <br/>
+    /// Example:
+    /// <code>
+    /// <![CDATA[
+    /// 21 0 obj
+    ///     <<
+    ///         /Count 6
+    ///         /First 22 0 R
+    ///         /Last 29 0 R
+    ///     >>
+    /// endobj
+    /// 
+    /// 22 0 obj
+    ///     <<
+    ///         /Title (Chapter 1)
+    ///         /Parent 21 0 R
+    ///         /Next 26 0 R
+    ///         /First 23 0 R
+    ///         /Last 25 0 R
+    ///         /Count 3
+    ///         /Dest [3 0 R /XYZ 0 792 0]
+    ///     >>
+    /// endobj
+    /// ]]>
+    /// </code>
     /// </remarks>
     class PDFOutlines : PDFStructureObject
     {
