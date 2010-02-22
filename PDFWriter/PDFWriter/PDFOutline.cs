@@ -54,18 +54,31 @@ namespace PDF
             set;
         }
 
+        /// <summary>
+        /// Points to the previous PDFOutline.
+        /// Done by PDFOutlines.AddOutline().
+        /// </summary>
+        /// <see cref="PDFOutlines"/>
         public PDFOutline PrevOutline
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Points to the next PDFOutline.
+        /// Done by PDFOutlines.AddOutline().
+        /// </summary>
+        /// <see cref="PDFOutlines"/>
         public PDFOutline NextOutline
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// PDFPage the outline/bookmark points to.
+        /// </summary>
         public PDFPage Page
         {
             get;
