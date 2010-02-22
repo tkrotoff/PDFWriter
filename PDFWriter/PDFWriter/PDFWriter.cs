@@ -25,6 +25,8 @@ namespace PDF
     /// This class implements the algorithms that use PDFGraphicObjects and PDFStructureObjects
     /// in order to create a PDF file.
     /// The main difficulty is to split DataSet rows on several pages.
+    /// 
+    /// Main method is CreatePages(), other methods are just helper methods.
     /// </remarks>
     static public class PDFWriter
     {
@@ -44,6 +46,15 @@ namespace PDF
         {
             //TODO use a style template to get this property
             get { return new Font(Font.HelveticaBold, 9); }
+        }
+
+        /// <summary>
+        /// Title font.
+        /// </summary>
+        static private Font TitleFont
+        {
+            //TODO use a style template to get this property
+            get { return new Font(Font.HelveticaBold, 14, Color.Green); }
         }
 
         /// <summary>
@@ -92,7 +103,7 @@ namespace PDF
         }
 
         /// <summary>
-        /// Gets the list of fonts as a list of PDF objects.
+        /// Gets the list of available fonts as a list of PDF objects.
         /// </summary>
         static private List<PDFFont> Fonts
         {
@@ -112,6 +123,10 @@ namespace PDF
         /// <summary>
         /// Gets the largest width (in the context of a PDF element of course) possible of a column.
         /// </summary>
+        /// <remarks>
+        /// This method could be merged with CreatePages() in order to avoid unwanted loops.
+        /// Unfortunately this would make the source code less readable.
+        /// </remarks>
         /// <param name="column">The column</param>
         /// <param name="table">The DataTable so we can iterates over the rows for the given column</param>
         /// <returns>Largest possible width of the given column</returns>
@@ -135,6 +150,10 @@ namespace PDF
         /// <summary>
         /// Gets the width (width of the PDF element of course) of a given DataTable.
         /// </summary>
+        /// <remarks>
+        /// This method could be merged with CreatePages() in order to avoid unwanted loops.
+        /// Unfortunately this would make the source code less readable.
+        /// </remarks>
         /// <param name="table">DataTable</param>
         /// <returns>Witdh of the DataTable</returns>
         static private double GetTableWidth(DataTable table)
@@ -154,6 +173,10 @@ namespace PDF
         /// <summary>
         /// Gets the columns as PDFGraphicObjects from a given DataTable.
         /// </summary>
+        /// <remarks>
+        /// This method could be merged with CreatePages() in order to avoid unwanted loops.
+        /// Unfortunately this would make the source code less readable.
+        /// </remarks>
         /// <param name="table">The DataTable from which to extract the columns</param>
         /// <returns>The DataTable columns</returns>
         static private List<PDFGraphicObject> CreateColumns(DataTable table)
@@ -274,8 +297,9 @@ namespace PDF
         /// <param name="tableWidth">width of the DataTable (needed for scaling the table to fit inside the page)</param>
         /// <param name="columns">columns to show inside the PDF</param>
         /// <param name="rows">rows to show inside the PDF</param>
+        /// <param name="title">page title, can be on several lines</param>
         /// <returns>The PDF page created</returns>
-        static private PDFPage CreatePage(PDFDocument doc, double tableWidth, List<PDFGraphicObject> columns, List<PDFGraphicObject> rows)
+        static private PDFPage CreatePage(PDFDocument doc, double tableWidth, List<PDFGraphicObject> columns, List<PDFGraphicObject> rows, List<string> title)
         {
             //Scaling
             double scaling = (PageLayout.Width - (PageLayout.RightMargin + PageLayout.LeftMargin)) / (tableWidth);
@@ -285,25 +309,51 @@ namespace PDF
             }
             ////
 
-            //Position
-            double initXPosBox = (PageLayout.Width / 2) - (tableWidth / 2);
-            if (initXPosBox < PageLayout.LeftMargin)
+            //Top position
+            double topXPos = (PageLayout.Width / 2) - (tableWidth / 2);
+            if (topXPos < PageLayout.LeftMargin)
             {
-                initXPosBox = PageLayout.LeftMargin;
+                topXPos = PageLayout.LeftMargin;
             }
-            double initYPosBox = PageLayout.Height - PageLayout.TopMargin;
+            double topYPos = PageLayout.Height - PageLayout.TopMargin;
             ////
 
             PDFContentStream contentStream = new PDFContentStream();
             doc.AddChild(contentStream);
 
+            double lineYPos = 0;
+
+            //Page title if any
+            List<PDFGraphicObject> fakeList = new List<PDFGraphicObject>(); 
+            foreach (string line in title)
+            {
+                //Title position
+                double lineWidth = FontMetrics.GetTextWidth(line, TitleFont);
+                double lineXPos = (PageLayout.Width / scaling / 2) - (lineWidth / 2);
+                if (lineXPos < PageLayout.LeftMargin)
+                {
+                    lineXPos = PageLayout.LeftMargin;
+                }
+                ////
+
+                fakeList.Add(CreatePageTitle(line, lineXPos, lineYPos));
+
+                lineYPos -= RowHeight;
+            }
+            PDFScaling titleScaling = new PDFScaling(fakeList, scaling, 0, topYPos);
+            contentStream.AddChild(titleScaling);
+            ////
+
+            //Rows and columns should be below the title
+            topYPos -= RowHeight * (title.Count + 1) * scaling;
+
             //Rows
-            PDFScaling rowsScaling = new PDFScaling(rows, scaling, initXPosBox, initYPosBox);
+            PDFScaling rowsScaling = new PDFScaling(rows, scaling, topXPos, topYPos);
             contentStream.AddChild(rowsScaling);
             ////
 
             //Columns
-            PDFScaling columnsScaling = new PDFScaling(columns, scaling, initXPosBox, initYPosBox);
+            PDFScaling columnsScaling = new PDFScaling(columns, scaling, topXPos, topYPos);
             contentStream.AddChild(columnsScaling);
             ////
 
@@ -313,6 +363,14 @@ namespace PDF
             doc.AddChild(page);
 
             return page;
+        }
+
+        static private PDFGraphicObject CreatePageTitle(string title, double xPos, double yPos)
+        {
+            PDFText pdfTitle = new PDFText(title, TitleFont);
+            PDFTranslation mark = new PDFTranslation(pdfTitle, xPos, yPos);
+
+            return mark;
         }
 
         /// <summary>
@@ -337,6 +395,7 @@ namespace PDF
         /// 
         /// <param name="data">DataSet</param>
         /// <param name="doc">Main PDF document</param>
+        /// <param name="outlines">PDF outlines so we can add the page to the "bookmarks"/outlines</param>
         /// <returns>The PDF pages (a list of PDFPage)</returns>
         static private PDFPages CreatePages(DataSet data, PDFDocument doc, PDFOutlines outlines)
         {
@@ -357,6 +416,13 @@ namespace PDF
 
                 double yPos = -RowHeight;
 
+                //Page title
+                List<string> title = new List<string>();
+                title.Add("TITLE");
+                title.Add("title");
+                title.Add(table.TableName);
+                ////
+
                 for (int row = 0; row < table.Rows.Count; row++)
                 {
                     double totalTableWidth = 0;
@@ -370,11 +436,11 @@ namespace PDF
                             //Creates the page
                             List<PDFGraphicObject> columns = CreateColumns(table);
                             double tableWidth = GetTableWidth(table);
-                            PDFPage page = CreatePage(doc, tableWidth, columns, rows);
+                            PDFPage page = CreatePage(doc, tableWidth, columns, rows, title);
                             pages.AddPage(page);
                             ////
 
-                            //Add the page to the outlines
+                            //Add the page to the outline
                             if (currentOutline != null)
                             {
                                 if (currentOutline.Page == null)
@@ -414,7 +480,7 @@ namespace PDF
                     //Creates the page
                     List<PDFGraphicObject> columns = CreateColumns(table);
                     double tableWidth = GetTableWidth(table);
-                    PDFPage page = CreatePage(doc, tableWidth, columns, rows);
+                    PDFPage page = CreatePage(doc, tableWidth, columns, rows, title);
                     pages.AddPage(page);
                     ////
 
