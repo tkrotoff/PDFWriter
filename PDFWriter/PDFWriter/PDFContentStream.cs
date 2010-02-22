@@ -28,10 +28,12 @@ namespace PDF
         {
             System.Diagnostics.Trace.Assert(_childs.Count > 0);
 
-            string tmp = string.Empty;
+            //Faster when using StringBuilder instead of string
+            //See http://dotnetperls.com/stringbuilder-1
+            StringBuilder tmp = new StringBuilder();
             foreach (PDFGraphicObject pdfGraphicObject in _childs)
             {
-                tmp += pdfGraphicObject.ToInnerPDF();
+                tmp.Append(pdfGraphicObject.ToInnerPDF());
             }
 
             return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"

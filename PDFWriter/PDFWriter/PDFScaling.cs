@@ -25,10 +25,12 @@ namespace PDF
 
         public override string ToInnerPDF()
         {
-            string tmp = string.Empty;
+            //Faster when using StringBuilder instead of string
+            //See http://dotnetperls.com/stringbuilder-1
+            StringBuilder tmp = new StringBuilder();
             foreach (PDFGraphicObject graphicObject in _graphicObjects)
             {
-                tmp += "    " + graphicObject.ToInnerPDF();
+                tmp.Append("    " + graphicObject.ToInnerPDF());
             }
 
             return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"

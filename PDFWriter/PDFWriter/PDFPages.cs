@@ -29,11 +29,13 @@ namespace PDF
 
             PageLayout layout = new PageLayout();
 
-            string tmp = string.Empty;
+            //Faster when using StringBuilder instead of string
+            //See http://dotnetperls.com/stringbuilder-1
+            StringBuilder tmp = new StringBuilder();
             foreach (PDFPage page in _pages)
             {
-                tmp += string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
-                {0} 0 R", page.ObjectNumber);
+                tmp.Append(string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
+                {0} 0 R", page.ObjectNumber));
             }
 
             return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"

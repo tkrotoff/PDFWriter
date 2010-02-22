@@ -44,11 +44,13 @@ namespace PDF
             System.Diagnostics.Trace.Assert(ContentStream != null);
             System.Diagnostics.Trace.Assert(Fonts.Count > 0);
 
-            string fonts = string.Empty;
+            //Faster when using StringBuilder instead of string
+            //See http://dotnetperls.com/stringbuilder-1
+            StringBuilder fonts = new StringBuilder();
             foreach (PDFFont font in Fonts)
             {
-                fonts += string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
-                        /{0} {1} 0 R", font.FontName, font.ObjectNumber);
+                fonts.Append(string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
+                        /{0} {1} 0 R", font.FontName, font.ObjectNumber));
             }
 
             return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"

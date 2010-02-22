@@ -175,12 +175,14 @@ namespace PDF
             System.Diagnostics.Trace.Assert(Info != null);
             System.Diagnostics.Trace.Assert(_childs.Count > 0);
 
-            string xref = string.Empty;
-            string pdfString = "%PDF-1.3\n";
+            //Faster when using StringBuilder instead of string
+            //See http://dotnetperls.com/stringbuilder-1
+            StringBuilder xref = new StringBuilder();
+            StringBuilder pdfString = new StringBuilder("%PDF-1.3\n");
             foreach (PDFStructureObject pdfObject in _childs)
             {
-                xref += string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0000000000} 00000 n\n", pdfString.Length);
-                pdfString += pdfObject.ToInnerPDF();
+                xref.Append(string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0000000000} 00000 n\n", pdfString.Length));
+                pdfString.Append(pdfObject.ToInnerPDF());
             }
 
             return string.Format(System.Globalization.CultureInfo.InvariantCulture,
