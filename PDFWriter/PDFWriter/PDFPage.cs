@@ -49,8 +49,8 @@ namespace PDF
             StringBuilder fonts = new StringBuilder();
             foreach (PDFFont font in Fonts)
             {
-                fonts.Append(string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
-                        /{0} {1} 0 R", font.FontName, font.ObjectNumber));
+                fonts.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, @"
+                        /{0} {1} 0 R", font.FontName, font.ObjectNumber);
             }
 
             return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"

@@ -34,8 +34,8 @@ namespace PDF
             StringBuilder tmp = new StringBuilder();
             foreach (PDFPage page in _pages)
             {
-                tmp.Append(string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
-                {0} 0 R", page.ObjectNumber));
+                tmp.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, @"
+                {0} 0 R", page.ObjectNumber);
             }
 
             return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"

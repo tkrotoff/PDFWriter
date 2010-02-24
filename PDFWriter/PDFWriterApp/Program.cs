@@ -5,7 +5,9 @@ using System.Text;
 using System.IO;
 using System.Data;
 
-namespace PDF
+using PDF;
+
+namespace PDFWriterApp
 {
     /// <summary>
     /// PDFWriter application (.exe above PDFWriter.dll).

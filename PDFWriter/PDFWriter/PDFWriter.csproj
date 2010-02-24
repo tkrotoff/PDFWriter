@@ -70,6 +70,7 @@
     <Compile Include="Font.cs" />
     <Compile Include="FontMetrics.cs" />
     <Compile Include="IPDFSerialization.cs" />
+    <Compile Include="Page.cs" />
     <Compile Include="PageLayout.cs" />
     <Compile Include="PDFOutline.cs" />
     <Compile Include="PDFScaling.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="PDFText.cs" />
     <Compile Include="PDFWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Table.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

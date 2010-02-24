@@ -181,7 +181,7 @@ namespace PDF
             StringBuilder pdfString = new StringBuilder("%PDF-1.3\n");
             foreach (PDFStructureObject pdfObject in _childs)
             {
-                xref.Append(string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0000000000} 00000 n\n", pdfString.Length));
+                xref.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, "{0:0000000000} 00000 n\n", pdfString.Length);
                 pdfString.Append(pdfObject.ToInnerPDF());
             }
 
