@@ -1,6 +1,6 @@
 <project SchemaVersion="1.3">
     <assemblies>
-        <assembly location=".\PDFWriter\bin\Debug\PDFWriter.dll" documentation=".\PDFWriter\bin\Release\PDFWriter.XML" />
+        <assembly location=".\PDFWriter\bin\Release\PDFWriter.dll" documentation=".\PDFWriter\bin\Release\PDFWriter.XML" />
     </assemblies>
     <documenters>
         <documenter name="MSDN">
