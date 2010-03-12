@@ -9,7 +9,7 @@ namespace PDF
     /// A PDF object inside the PDF.
     /// Each of them is uniquely numbered inside the PDF file.
     /// </summary>
-    abstract class PDFStructureObject : IPDFSerialization
+    public abstract class PDFStructureObject : IPDFSerialization
     {
         /// <summary>
         /// Unique number of the PDF object.

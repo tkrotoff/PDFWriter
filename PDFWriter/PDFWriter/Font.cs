@@ -9,7 +9,7 @@ namespace PDF
     /// A PDF font.
     /// </summary>
     /// <see cref="PDFText"/>
-    class Font
+    public class Font
     {
         public const string Courier = "FC";
         public const string CourierBold = "FCB";
@@ -92,9 +92,9 @@ namespace PDF
         /// <remarks>
         /// Key = abreviation, Value = PDF font name
         /// </remarks>
-        static private Dictionary<string, string> _fonts = new Dictionary<string, string>();
+        private static Dictionary<string, string> _fonts = new Dictionary<string, string>();
 
-        static private void InitPDFFonts()
+        private static void InitPDFFonts()
         {
             if (_fonts.Count == 0)
             {
@@ -116,7 +116,7 @@ namespace PDF
             }
         }
 
-        static public Dictionary<string, string> PDFFonts
+        public static Dictionary<string, string> PDFFonts
         {
             get
             {

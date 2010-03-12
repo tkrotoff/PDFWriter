@@ -22,7 +22,7 @@ namespace PDFTests
 
             PageLayout pageLayout = new PageLayout();
             pageLayout.RightHeader = "Current Date";
-            PDFWriter.PageLayout = pageLayout;
+            Page.PageLayout = pageLayout;
 
             string tmp = PDFWriter.GetPDF(data);
 
@@ -45,7 +45,7 @@ namespace PDFTests
 
             PageLayout pageLayout = new PageLayout();
             pageLayout.RightHeader = "Current Date";
-            PDFWriter.PageLayout = pageLayout;
+            Page.PageLayout = pageLayout;
 
             string tmp = PDFWriter.GetPDF(data);
 
@@ -68,7 +68,7 @@ namespace PDFTests
 
             PageLayout pageLayout = new PageLayout();
             pageLayout.RightHeader = "Current Date";
-            PDFWriter.PageLayout = pageLayout;
+            Page.PageLayout = pageLayout;
 
             string tmp = PDFWriter.GetPDF(data);
 
@@ -91,7 +91,7 @@ namespace PDFTests
 
             PageLayout pageLayout = new PageLayout();
             pageLayout.RightHeader = "Current Date";
-            PDFWriter.PageLayout = pageLayout;
+            Page.PageLayout = pageLayout;
 
             string tmp = PDFWriter.GetPDF(data);
 

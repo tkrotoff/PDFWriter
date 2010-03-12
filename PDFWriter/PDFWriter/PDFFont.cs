@@ -8,7 +8,7 @@ namespace PDF
     /// <summary>
     /// Represents a font in the PDF world.
     /// </summary>
-    class PDFFont : PDFStructureObject
+    public class PDFFont : PDFStructureObject
     {
         public PDFFont(string fontName, string baseFont)
         {

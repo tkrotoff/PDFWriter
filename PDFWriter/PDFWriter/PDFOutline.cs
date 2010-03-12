@@ -121,7 +121,7 @@ namespace PDF
     >>
 endobj
 % )
-", ObjectNumber, _title, Parent.ObjectNumber, prev, next, Page.ObjectNumber, PDFWriter.PageLayout.Height
+", ObjectNumber, _title, Parent.ObjectNumber, prev, next, Page.ObjectNumber, PDF.Page.PageLayout.Height
             );
         }
     }
