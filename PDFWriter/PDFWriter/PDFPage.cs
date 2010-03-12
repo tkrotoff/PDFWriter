@@ -73,6 +73,5 @@ endobj
 ", ObjectNumber, Parent.ObjectNumber, ContentStream.ObjectNumber, fonts
             );
         }
-
     }
 }

@@ -54,33 +54,28 @@ namespace PDF
         {
             StringBuilder tmp = new StringBuilder();
             tmp.AppendLine(@"
-% PDFBox (
+% PDFTextBox (
     q"
             );
 
             tmp.AppendFormat(@"
-    % Margin
     1 0 0 1 {0} {0} cm", _margin
             );
 
             if (_width != 0 && _height != 0)
             {
                 tmp.AppendFormat(@"
-    % Background color
     {0} rg
-    % Rectangle
     0 0 {1} {2} re
     f", _backgroundColor, _width, _height
                 );
             }
 
             tmp.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, @"
-    % Padding
     1 0 0 1 {0} {0} cm", _padding
             );
 
             tmp.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, @"
-    % Position
     1 0 0 1 {0} {1} cm
     {2}", _xPos, _yPos, _text.ToInnerPDF()
             );
@@ -93,6 +88,5 @@ namespace PDF
 
             return tmp.ToString();
         }
-
     }
 }

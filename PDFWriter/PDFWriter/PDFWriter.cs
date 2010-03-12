@@ -26,13 +26,66 @@ namespace PDF
     /// <remarks>
     /// See <a href="http://wiki/wiki/index.php/PDFWriter">Wiki page about PDFWriter</a><br/>
     /// See <a href="http://en.wikipedia.org/wiki/PDF_format">Wikipedia page about PDF</a><br/>
-    /// For more technical informations about the PDF format, see PDFDocument.
+    /// For more technical informations about the PDF format, see PDFDocument.<br/>
+    /// <br/>
+    /// PDFWriter has been tested with Acrobat Reader 9.1.0, Foxit Reader 2.3 and Sumatra PDF 1.0.1<br/>
+    /// <br/>
     /// 
+    /// Other C# PDF libraries:<br/>
+    /// <code>
+    /// http://csharp-source.net/open-source/pdf-libraries
+    /// 
+    /// ** iTextSharp
+    /// Affero GNU Public License/Commercial license
+    /// http://sourceforge.net/projects/itextsharp/
+    /// Last version: 5.0.0 2009-12-08
+    /// Last commit: 2010-01-04
+    /// 93% of 141 users recommend this project
+    /// 
+    /// ** Report.NET
+    /// LGPL
+    /// http://sourceforge.net/projects/report/
+    /// Last version: 0.09.05 2006-11-13
+    /// No repository
+    /// 100% of 8 users recommend this project
+    /// 
+    /// ** PDFsharp
+    /// MIT
+    /// http://www.pdfsharp.net/
+    /// http://sourceforge.net/projects/pdfsharp/
+    /// http://pdfsharp.codeplex.com/
+    /// Last version: 1.31 2009-12-09
+    /// No repository?
+    /// 90% of 20 users recommend this project
+    /// 
+    /// ** PDFjet for .NET
+    /// http://pdfjet.com/net/index.html
+    /// Evaluation License
+    /// 
+    /// ** ASP.NET FO PDF
+    /// LGPL
+    /// http://sourceforge.net/projects/npdf/
+    /// Last version: 1.0.1439.19630 2003-12-16
+    /// No repository
+    /// 100% of 1 user recommends this project
+    /// 
+    /// ** PDF Clown
+    /// LGPL
+    /// http://sourceforge.net/projects/clown/
+    /// Last version: 0.0.7-Alpha 2009-01-02
+    /// No repository
+    /// 75% of 4 users recommend this project
+    /// 
+    /// Export dataset to PDF in .Net
+    /// http://www.eggheadcafe.com/community/aspnet/2/10041208/export-dataset-to-pdf-in.aspx
+    /// </code>
+    /// 
+    /// <br/>
     /// This class implements the algorithms that use PDFGraphicObjects and PDFStructureObjects
-    /// in order to create a PDF file.
-    /// The main difficulty is to split DataSet rows on several pages.
-    /// 
-    /// Main method is CreatePages(), other methods are just helper methods.
+    /// in order to create a PDF file. The main difficulty is to split DataSet rows on several pages.
+    /// <br/>
+    /// Main method is Page.CreatePages(), other methods available inside classes Page and Table
+    /// are just helper methods.
     /// </remarks>
     public static class PDFWriter
     {
@@ -128,7 +181,7 @@ namespace PDF
             ////
 
             //Add headers and footers
-            int count = 1;
+            /*int count = 1;
             foreach (PDFPage page in pages.Pages)
             {
                 List<PDFGraphicObject> header = Page.CreateHeader();
@@ -138,7 +191,7 @@ namespace PDF
                 page.ContentStream.AddRange(footer);
 
                 count++;
-            }
+            }*/
             ////
 
             //Catalog

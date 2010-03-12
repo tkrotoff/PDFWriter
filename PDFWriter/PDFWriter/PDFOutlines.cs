@@ -102,6 +102,5 @@ endobj
 ", ObjectNumber, first, last, _outlines.Count
             );
         }
-
     }
 }

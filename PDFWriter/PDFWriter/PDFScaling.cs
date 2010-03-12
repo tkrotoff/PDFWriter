@@ -42,6 +42,5 @@ namespace PDF
 ", _scaling, _xPos, _yPos, tmp
             );
         }
-
     }
 }

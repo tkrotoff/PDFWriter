@@ -25,7 +25,6 @@ namespace PDF
         {
             return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
 % PDFTranslation (
-    % Translation
     q 1 0 0 1 {0} {1} cm
     {2}
     Q
@@ -33,6 +32,5 @@ namespace PDF
 ", _xPos, _yPos, _graphicObject.ToInnerPDF()
             );
         }
-
     }
 }

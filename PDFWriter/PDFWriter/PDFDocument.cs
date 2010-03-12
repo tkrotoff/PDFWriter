@@ -147,6 +147,9 @@ namespace PDF
     /// </remarks>
     class PDFDocument : PDFStructureObject
     {
+        /// <summary>
+        /// The catalog object for the PDF document contained in the file.
+        /// </summary>
         public PDFCatalog Catalog
         {
             get;
@@ -161,6 +164,10 @@ namespace PDF
 
         private List<PDFStructureObject> _childs = new List<PDFStructureObject>();
 
+        /// <summary>
+        /// Total number of entries in the file's cross-reference table[...] this
+        /// value is 1 greater than the highest object number used in the file.
+        /// </summary>
         private int _count = 1;
 
         public void AddChild(PDFStructureObject pdfObject)
@@ -187,30 +194,20 @@ namespace PDF
 
             return string.Format(System.Globalization.CultureInfo.InvariantCulture,
 @"{0}
-
 xref
 0 {1}
 0000000000 65535 f
 {2}
-
 trailer
     <<
-        % Total number of entries in the file's cross-reference table[...] this
-        % value is 1 greater than the highest object number used in the file.
         /Size {3}
-
-        % The catalog object for the PDF document
-        % contained in the file
         /Root {4} 0 R
-
         /Info {5} 0 R
     >>
-
 startxref
 {6}
-
 %%EOF
-", pdfString, _count - 1, xref, _count, Catalog.ObjectNumber, Info.ObjectNumber, pdfString.Length
+", pdfString, _count, xref, _count, Catalog.ObjectNumber, Info.ObjectNumber, pdfString.Length
             );
         }
     }

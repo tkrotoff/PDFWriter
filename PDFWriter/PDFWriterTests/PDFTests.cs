@@ -15,6 +15,29 @@ namespace PDFTests
     class PDFTests
     {
         [Test]
+        public void TestMinimumDataSet()
+        {
+            DataSet data = new DataSet("Sample");
+            data.ReadXml("../../minimumdataset.xml");
+
+            /*PageLayout pageLayout = new PageLayout();
+            pageLayout.RightHeader = "Current Date";
+            Page.PageLayout = pageLayout;*/
+
+            string tmp = PDFWriter.GetPDF(data);
+
+            StreamWriter fileWriter = new StreamWriter("../../minimumdataset_generated.pdf");
+            fileWriter.Write(tmp);
+            fileWriter.Close();
+
+            StreamReader file = new StreamReader("../../minimumdataset.pdf");
+            string pdf = file.ReadToEnd();
+            file.Close();
+
+            Assert.AreEqual(pdf, tmp);
+        }
+
+        [Test]
         public void Test1PagePDF()
         {
             DataSet data = new DataSet("Sample");
