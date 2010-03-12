@@ -192,7 +192,7 @@ endobj
 % PDFContentStream (
 17 0 obj
     <<
-        /Length 29631
+        /Length 29623
     >>
 stream
 
@@ -312,7 +312,7 @@ stream
     
 % PDFText (
     BT
-       0 0.5 0 rg
+       0 0 1 rg
        /FH 9 Tf
        0 2 Td
        (0.10) Tj
@@ -787,7 +787,7 @@ stream
     
 % PDFText (
     BT
-       0 0.5 0 rg
+       0 0 1 rg
        /FH 9 Tf
        0 2 Td
        (0.20) Tj
@@ -1262,7 +1262,7 @@ stream
     
 % PDFText (
     BT
-       0 0.5 0 rg
+       0 0 1 rg
        /FH 9 Tf
        0 2 Td
        (0.30) Tj
@@ -1737,7 +1737,7 @@ stream
     
 % PDFText (
     BT
-       0 0.5 0 rg
+       0 0 1 rg
        /FH 9 Tf
        0 2 Td
        (0.40) Tj
@@ -2827,9 +2827,9 @@ xref
 0000002589 00000 n
 0000002776 00000 n
 0000002897 00000 n
-0000032635 00000 n
-0000033430 00000 n
-0000033582 00000 n
+0000032627 00000 n
+0000033422 00000 n
+0000033574 00000 n
 
 trailer
     <<
@@ -2838,5 +2838,5 @@ trailer
         /Info 1 0 R
     >>
 startxref
-33712
+33704
 %%EOF

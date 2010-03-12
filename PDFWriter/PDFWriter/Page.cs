@@ -213,6 +213,8 @@ namespace PDF
                 double yPos = -Table.RowHeight;
 
                 //Page title
+                //FIXME this is hardcoded
+                const double TITLE_HEIGHT = 30;
                 List<string> title = new List<string>();
                 title.Add("TITLE");
                 title.Add("title");
@@ -225,8 +227,10 @@ namespace PDF
 
                     for (int col = 0; col < table.Columns.Count; col++)
                     {
-                        //Detects the end of the page
-                        bool endOfPage = (-(yPos - Table.RowHeight) >= (PageLayout.Height - PageLayout.BottomMargin));
+                        double pageHeightLimit = PageLayout.Height - PageLayout.BottomMargin - PageLayout.TopMargin - TITLE_HEIGHT;
+
+                        //Detects end of page
+                        bool endOfPage = (-(yPos - Table.RowHeight) >= pageHeightLimit);
                         if (endOfPage)
                         {
                             //Creates the page
