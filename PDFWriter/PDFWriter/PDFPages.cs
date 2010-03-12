@@ -25,7 +25,8 @@ namespace PDF
 
         public override string ToInnerPDF()
         {
-            System.Diagnostics.Trace.Assert(_pages.Count > 0);
+            //0 pages is possible
+            //System.Diagnostics.Trace.Assert(_pages.Count > 0);
 
             PageLayout layout = new PageLayout();
 
@@ -34,8 +35,13 @@ namespace PDF
             StringBuilder tmp = new StringBuilder();
             foreach (PDFPage page in _pages)
             {
-                tmp.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, @"
-                {0} 0 R", page.ObjectNumber);
+                tmp.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, "{0} 0 R ", page.ObjectNumber);
+            }
+
+            string kids = string.Empty;
+            if (tmp.Length > 0)
+            {
+                kids = string.Format("/Kids[{0}]", tmp);
             }
 
             return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"
@@ -43,17 +49,14 @@ namespace PDF
 {0} 0 obj
     <<
         /Type /Pages
-        /Kids
-            [{1}
-            ]
+        {1}
         /Count {2}
         /MediaBox [0 0 {3} {4}]
     >>
 endobj
 % )
-", ObjectNumber, tmp, _pages.Count, layout.Width, layout.Height
+", ObjectNumber, kids, _pages.Count, layout.Width, layout.Height
             );
         }
-
     }
 }

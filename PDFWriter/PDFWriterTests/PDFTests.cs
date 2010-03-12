@@ -15,14 +15,37 @@ namespace PDFTests
     class PDFTests
     {
         [Test]
+        public void TestEmptyDataSet()
+        {
+            DataSet data = new DataSet("Sample");
+            data.ReadXml("../../emptydataset.xml");
+
+            PageLayout pageLayout = new PageLayout();
+            pageLayout.RightHeader = "Current Date";
+            Page.PageLayout = pageLayout;
+
+            string tmp = PDFWriter.GetPDF(data);
+
+            StreamWriter fileWriter = new StreamWriter("../../emptydataset_generated.pdf");
+            fileWriter.Write(tmp);
+            fileWriter.Close();
+
+            StreamReader file = new StreamReader("../../emptydataset.pdf");
+            string pdf = file.ReadToEnd();
+            file.Close();
+
+            Assert.AreEqual(pdf, tmp);
+        }
+
+        [Test]
         public void TestMinimumDataSet()
         {
             DataSet data = new DataSet("Sample");
             data.ReadXml("../../minimumdataset.xml");
 
-            /*PageLayout pageLayout = new PageLayout();
+            PageLayout pageLayout = new PageLayout();
             pageLayout.RightHeader = "Current Date";
-            Page.PageLayout = pageLayout;*/
+            Page.PageLayout = pageLayout;
 
             string tmp = PDFWriter.GetPDF(data);
 

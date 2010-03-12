@@ -185,10 +185,11 @@ namespace PDF
             //Faster when using StringBuilder instead of string
             //See http://dotnetperls.com/stringbuilder-1
             StringBuilder xref = new StringBuilder();
-            StringBuilder pdfString = new StringBuilder("%PDF-1.3\n");
+            StringBuilder pdfString = new StringBuilder();
+            pdfString.AppendLine("%PDF-1.3");
             foreach (PDFStructureObject pdfObject in _childs)
             {
-                xref.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, "{0:0000000000} 00000 n\n", pdfString.Length);
+                xref.AppendLine(string.Format("{0:0000000000} 00000 n", pdfString.Length));
                 pdfString.Append(pdfObject.ToInnerPDF());
             }
 
