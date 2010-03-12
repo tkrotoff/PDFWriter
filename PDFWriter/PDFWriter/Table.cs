@@ -134,18 +134,20 @@ namespace PDF
 
             //A string should be green
             int rowNameInt32;
-            bool result = Int32.TryParse(rowName, out rowNameInt32);
-            if (result)
+            bool resultInt32 = Int32.TryParse(rowName, out rowNameInt32);
+            double rowNameDouble;
+            bool resultDouble = Double.TryParse(rowName, out rowNameDouble);
+            if (resultInt32 || resultDouble)
             {
-                if (rowNameInt32 >= 0)
-                {
-                    //A positive number should be blue
-                    font.Color = Color.Blue;
-                }
-                else
+                if (rowNameInt32 < 0 || rowNameDouble < 0)
                 {
                     //A negative number should be red
                     font.Color = Color.Red;
+                }
+                else
+                {
+                    //A positive number should be blue
+                    font.Color = Color.Blue;
                 }
             }
             PDFText text = new PDFText(rowName, font);
