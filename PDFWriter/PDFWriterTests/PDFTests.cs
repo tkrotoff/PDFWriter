@@ -15,6 +15,29 @@ namespace PDFTests
     class PDFTests
     {
         [Test]
+        public void TestBigDataSet()
+        {
+            DataSet data = new DataSet("Sample");
+            data.ReadXml("../../bigdataset.xml");
+
+            PageLayout pageLayout = new PageLayout();
+            pageLayout.RightHeader = "Current Date";
+            Page.PageLayout = pageLayout;
+
+            string tmp = PDFWriter.GetPDF(data);
+
+            StreamWriter fileWriter = new StreamWriter("../../bigdataset_generated.pdf");
+            fileWriter.Write(tmp);
+            fileWriter.Close();
+
+            StreamReader file = new StreamReader("../../bigdataset.pdf");
+            string pdf = file.ReadToEnd();
+            file.Close();
+
+            Assert.AreEqual(pdf, tmp);
+        }
+
+        [Test]
         public void TestEmptyDataSet()
         {
             DataSet data = new DataSet("Sample");

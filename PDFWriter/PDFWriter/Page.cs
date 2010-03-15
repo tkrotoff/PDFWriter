@@ -6,6 +6,17 @@ using System.Data;
 
 namespace PDF
 {
+    /// <summary>
+    /// Functions related to a page.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// This class implements the algorithms that use PDFGraphicObjects and PDFStructureObjects
+    /// in order to create a PDF file. The main difficulty is to split DataSet rows on several pages.
+    /// <br/>
+    /// Main method is Page.CreatePages(), other methods available inside classes Page and Table
+    /// are just helper methods.
+    /// </remarks>
     static class Page
     {
         private static PageLayout _pageLayout;
@@ -214,11 +225,11 @@ namespace PDF
 
                 //Page title
                 //FIXME this is hardcoded
-                const double TITLE_HEIGHT = 30;
                 List<string> title = new List<string>();
                 title.Add("TITLE");
                 title.Add("title");
                 title.Add(table.TableName);
+                double TITLE_HEIGHT = title.Count * Table.RowHeight;
                 ////
 
                 for (int row = 0; row < table.Rows.Count; row++)

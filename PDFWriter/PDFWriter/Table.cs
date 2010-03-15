@@ -6,6 +6,17 @@ using System.Data;
 
 namespace PDF
 {
+    /// <summary>
+    /// Functions related to a table.
+    /// </summary>
+    /// 
+    /// <remarks>
+    /// This class implements the algorithms that use PDFGraphicObjects and PDFStructureObjects
+    /// in order to create a PDF file. The main difficulty is to split DataSet rows on several pages.
+    /// <br/>
+    /// Main method is Page.CreatePages(), other methods available inside classes Page and Table
+    /// are just helper methods.
+    /// </remarks>
     static class Table
     {
         /// <summary>

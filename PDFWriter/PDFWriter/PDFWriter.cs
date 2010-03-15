@@ -42,17 +42,17 @@ namespace PDF
     /// Last commit: 2010-01-04<br/>
     /// 93% of 141 users recommend this project<br/>
     /// <br/>
-    /// - <a href="http://sourceforge.net/projects/report/">Report.NET</a><br/>
-    /// LGPL<br/>
-    /// Last version: 0.09.05 2006-11-13<br/>
-    /// No repository<br/>
-    /// 100% of 8 users recommend this project<br/>
-    /// <br/>
     /// - <a href="http://www.pdfsharp.net/">PDFsharp</a><br/>
     /// MIT<br/>
     /// Last version: 1.31 2009-12-09<br/>
     /// No repository?<br/>
     /// 90% of 20 users recommend this project<br/>
+    /// <br/>
+    /// - <a href="http://sourceforge.net/projects/report/">Report.NET</a><br/>
+    /// LGPL<br/>
+    /// Last version: 0.09.05 2006-11-13<br/>
+    /// No repository<br/>
+    /// 100% of 8 users recommend this project<br/>
     /// <br/>
     /// - <a href="http://pdfjet.com/net/index.html">PDFjet for .NET</a><br/>
     /// Evaluation License<br/>
