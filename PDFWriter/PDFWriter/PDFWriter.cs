@@ -76,7 +76,9 @@ namespace PDF
     /// in order to create a PDF file. The main difficulty is to split DataSet rows on several pages.
     /// <br/>
     /// Main method is Page.CreatePages(), other methods available inside classes Page and Table
-    /// are just helper methods.
+    /// are just helper methods.<br/>
+    /// <br/>
+    /// TODO: remove hardcoded values, add compression, add templates.
     /// </remarks>
     public static class PDFWriter
     {

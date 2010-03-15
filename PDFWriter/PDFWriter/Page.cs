@@ -223,13 +223,24 @@ namespace PDF
 
                 double yPos = -Table.RowHeight;
 
+                double tableWidth = Table.GetTableWidth(table);
+
+                //Scaling
+                double scaling =
+                    (PageLayout.Width - (PageLayout.RightMargin + PageLayout.LeftMargin)) / (tableWidth);
+                if (scaling > 1)
+                {
+                    scaling = 1;
+                }
+                ////
+
                 //Page title
                 //FIXME this is hardcoded
                 List<string> title = new List<string>();
                 title.Add("TITLE");
                 title.Add("title");
                 title.Add(table.TableName);
-                double TITLE_HEIGHT = title.Count * Table.RowHeight;
+                double titleHeight = title.Count * Table.RowHeight * scaling;
                 ////
 
                 for (int row = 0; row < table.Rows.Count; row++)
@@ -238,15 +249,14 @@ namespace PDF
 
                     for (int col = 0; col < table.Columns.Count; col++)
                     {
-                        double pageHeightLimit = PageLayout.Height - PageLayout.BottomMargin - PageLayout.TopMargin - TITLE_HEIGHT;
+                        double pageHeightLimit = PageLayout.Height - PageLayout.BottomMargin - PageLayout.TopMargin - titleHeight;
 
                         //Detects end of page
-                        bool endOfPage = (-(yPos - Table.RowHeight) >= pageHeightLimit);
+                        bool endOfPage = (-(yPos - Table.RowHeight) * scaling >= pageHeightLimit);
                         if (endOfPage)
                         {
                             //Creates the page
                             List<PDFGraphicObject> columns = Table.CreateColumns(table);
-                            double tableWidth = Table.GetTableWidth(table);
                             PDFPage page = Page.CreatePage(doc, tableWidth, columns, rows, title);
                             pages.AddPage(page);
                             ////
@@ -290,7 +300,6 @@ namespace PDF
                 {
                     //Creates the page
                     List<PDFGraphicObject> columns = Table.CreateColumns(table);
-                    double tableWidth = Table.GetTableWidth(table);
                     PDFPage page = Page.CreatePage(doc, tableWidth, columns, rows, title);
                     pages.AddPage(page);
                     ////
@@ -310,6 +319,13 @@ namespace PDF
             return pages;
         }
 
+        /// <summary>
+        /// Creates the PDF page title (some text at the top of the page).
+        /// </summary>
+        /// <param name="title">PDF page title</param>
+        /// <param name="xPos">PDF page title X position</param>
+        /// <param name="yPos">PDF page title Y position</param>
+        /// <returns>The PDF page title as a PDFGraphicObject</returns>
         private static PDFGraphicObject CreatePageTitle(string title, double xPos, double yPos)
         {
             PDFText pdfTitle = new PDFText(title, PDFWriter.TitleFont);
