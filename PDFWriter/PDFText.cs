@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PDF
+﻿namespace PDF
 {
     /// <summary>
     /// Writes a text/string inside a PDF document.
     /// </summary>
     class PDFText : PDFGraphicObject
     {
-        private string _text;
-        private Font _font;
+        private readonly string _text;
+        private readonly Font _font;
 
         public PDFText(string text, Font font)
         {

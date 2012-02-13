@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PDF
+﻿namespace PDF
 {
     /// <summary>
     /// Performs a translation on a PDF graphical object.
     /// </summary>
     class PDFTranslation : PDFGraphicObject
     {
-        private PDFGraphicObject _graphicObject;
-        private double _xPos;
-        private double _yPos;
+        private readonly PDFGraphicObject _graphicObject;
+        private readonly double _xPos;
+        private readonly double _yPos;
 
         public PDFTranslation(PDFGraphicObject graphicObject, double xPos, double yPos)
         {

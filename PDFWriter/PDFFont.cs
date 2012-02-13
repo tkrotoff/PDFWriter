@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PDF
+﻿namespace PDF
 {
     /// <summary>
     /// Represents a font in the PDF world.

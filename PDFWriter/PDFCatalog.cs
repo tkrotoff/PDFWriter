@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PDF
+﻿namespace PDF
 {
     /// <summary>
     /// PDF catalog.
@@ -33,8 +28,8 @@ namespace PDF
     /// </remarks>
     class PDFCatalog : PDFStructureObject
     {
-        private PDFOutlines _outlines;
-        private PDFPages _pages;
+        private readonly PDFOutlines _outlines;
+        private readonly PDFPages _pages;
 
         public PDFCatalog(PDFOutlines outlines, PDFPages pages)
         {

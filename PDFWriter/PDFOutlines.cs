@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace PDF
 {
@@ -57,7 +55,7 @@ namespace PDF
     /// </remarks>
     class PDFOutlines : PDFStructureObject
     {
-        private List<PDFOutline> _outlines = new List<PDFOutline>();
+        private readonly List<PDFOutline> _outlines = new List<PDFOutline>();
 
         public void AddOutline(PDFOutline outline)
         {

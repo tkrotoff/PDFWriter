@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace PDF
 {
@@ -92,7 +89,7 @@ namespace PDF
         /// <remarks>
         /// Key = abreviation, Value = PDF font name
         /// </remarks>
-        private static Dictionary<string, string> _fonts = new Dictionary<string, string>();
+        private static readonly Dictionary<string, string> _fonts = new Dictionary<string, string>();
 
         private static void InitPDFFonts()
         {

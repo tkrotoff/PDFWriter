@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 
 namespace PDF
@@ -118,8 +116,8 @@ namespace PDF
         {
             PDFText text = new PDFText(columnName, PDFWriter.DefaultFont);
             double width = columnWidth;
-            int margin = 1;
-            int padding = 1;
+            const int margin = 1;
+            const int padding = 1;
             PDFTextBox box = new PDFTextBox(
                 text,
                 margin,
@@ -128,7 +126,7 @@ namespace PDF
                 0,
                 PDFWriter.CellBackgroundColor,
                 width,
-                Table.RowHeight
+                RowHeight
             );
             return box;
         }
@@ -162,8 +160,8 @@ namespace PDF
                 }
             }
             PDFText text = new PDFText(rowName, font);
-            int margin = 1;
-            int padding = 1;
+            const int margin = 1;
+            const int padding = 1;
             PDFTextBox box = new PDFTextBox(text, margin, padding, 0, yPos);
             return box;
         }

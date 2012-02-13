@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PDF
+﻿namespace PDF
 {
     /// <summary>
     /// Graphical primitives for displaying text and graphics inside a PDF file.

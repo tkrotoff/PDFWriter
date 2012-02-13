@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PDF
+﻿namespace PDF
 {
     /// <summary>
     /// An outline item.
@@ -38,7 +33,7 @@ namespace PDF
     /// </remarks>
     class PDFOutline : PDFStructureObject
     {
-        private string _title;
+        private readonly string _title;
 
         public PDFOutline(string title)
         {

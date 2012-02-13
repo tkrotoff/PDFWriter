@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Data;
 
 namespace PDF
@@ -121,7 +118,7 @@ namespace PDF
             }
         }
 
-        private static List<PDFFont> _fonts = new List<PDFFont>();
+        private static readonly List<PDFFont> _fonts = new List<PDFFont>();
 
         /// <summary>
         /// Gets the list of available fonts as a list of PDF objects.

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace PDF
@@ -12,7 +10,7 @@ namespace PDF
     /// </summary>
     class PDFContentStream : PDFStructureObject
     {
-        private List<PDFGraphicObject> _childs = new List<PDFGraphicObject>();
+        private readonly List<PDFGraphicObject> _childs = new List<PDFGraphicObject>();
 
         public void AddChild(PDFGraphicObject pdfGraphicObject)
         {

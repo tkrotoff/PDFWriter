@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 namespace PDF
 {
@@ -21,15 +18,15 @@ namespace PDF
     /// </remarks>
     class PDFTextBox : PDFGraphicObject
     {
-        private PDFText _text;
-        private int _margin;
-        private int _padding;
-        private double _xPos;
-        private double _yPos;
+        private readonly PDFText _text;
+        private readonly int _margin;
+        private readonly int _padding;
+        private readonly double _xPos;
+        private readonly double _yPos;
 
-        private string _backgroundColor;
-        private double _width;
-        private double _height;
+        private readonly string _backgroundColor;
+        private readonly double _width;
+        private readonly double _height;
 
         public PDFTextBox(PDFText text, int margin, int padding, double xPos, double yPos,
                 string backgroundColor, double width, double height)

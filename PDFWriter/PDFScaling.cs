@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace PDF
@@ -10,10 +8,10 @@ namespace PDF
     /// </summary>
     class PDFScaling : PDFGraphicObject
     {
-        private List<PDFGraphicObject> _graphicObjects;
-        private double _scaling;
-        private double _xPos;
-        private double _yPos;
+        private readonly List<PDFGraphicObject> _graphicObjects;
+        private readonly double _scaling;
+        private readonly double _xPos;
+        private readonly double _yPos;
 
         public PDFScaling(List<PDFGraphicObject> graphicObjects, double scaling, double xPos, double yPos)
         {

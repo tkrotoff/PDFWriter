@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFWriter", "PDFWriter\PDFWriter.csproj", "{7DE6DF5E-E01C-473C-B1E7-C9AAB434C614}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFWriterTests", "PDFWriterTests\PDFWriterTests.csproj", "{412D5821-2546-4E8E-8449-CC62845C8EC8}"

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace PDF
@@ -10,7 +8,7 @@ namespace PDF
     /// </summary>
     class PDFPages : PDFStructureObject
     {
-        private List<PDFPage> _pages = new List<PDFPage>();
+        private readonly List<PDFPage> _pages = new List<PDFPage>();
 
         public void AddPage(PDFPage page)
         {

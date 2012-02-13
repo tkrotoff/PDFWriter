@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PDF
+﻿namespace PDF
 {
     /// <summary>
     /// Contains information about the PDF file (title, creator...).
     /// </summary>
     class PDFInfo : PDFStructureObject
     {
-        private string _title;
-        private string _creator;
-        private string _producer;
+        private readonly string _title;
+        private readonly string _creator;
+        private readonly string _producer;
 
         public PDFInfo(string title, string creator, string producer)
         {

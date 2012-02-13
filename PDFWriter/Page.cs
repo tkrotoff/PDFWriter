@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Data;
 
 namespace PDF
@@ -257,7 +254,7 @@ namespace PDF
                         {
                             //Creates the page
                             List<PDFGraphicObject> columns = Table.CreateColumns(table);
-                            PDFPage page = Page.CreatePage(doc, tableWidth, columns, rows, title);
+                            PDFPage page = CreatePage(doc, tableWidth, columns, rows, title);
                             pages.AddPage(page);
                             ////
 
@@ -300,7 +297,7 @@ namespace PDF
                 {
                     //Creates the page
                     List<PDFGraphicObject> columns = Table.CreateColumns(table);
-                    PDFPage page = Page.CreatePage(doc, tableWidth, columns, rows, title);
+                    PDFPage page = CreatePage(doc, tableWidth, columns, rows, title);
                     pages.AddPage(page);
                     ////
 

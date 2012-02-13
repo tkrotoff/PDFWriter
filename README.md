@@ -21,6 +21,6 @@ Example
 
 Implementation
 --------------
-The implementation is experimental. Still the source code is clean, documented and should be pretty stable.
+The implementation is experimental. Still the source code is simple, clean, documented and should be pretty stable.
 A number of unit tests come with the source code.
 No external dependencies, PDFWriter creates PDF files from scratch.

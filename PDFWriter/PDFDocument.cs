@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace PDF
@@ -162,7 +160,7 @@ namespace PDF
             set;
         }
 
-        private List<PDFStructureObject> _childs = new List<PDFStructureObject>();
+        private readonly List<PDFStructureObject> _childs = new List<PDFStructureObject>();
 
         /// <summary>
         /// Total number of entries in the file's cross-reference table[...] this
