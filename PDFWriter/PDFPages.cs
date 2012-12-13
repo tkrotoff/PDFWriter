@@ -37,7 +37,7 @@
             string kids = string.Empty;
             if (tmp.Length > 0)
             {
-                kids = string.Format("/Kids[{0}]", tmp);
+                kids = string.Format(System.Globalization.CultureInfo.InvariantCulture, "/Kids[{0}]", tmp);
             }
 
             return string.Format(System.Globalization.CultureInfo.InvariantCulture, @"

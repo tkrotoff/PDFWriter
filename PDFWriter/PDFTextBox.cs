@@ -54,12 +54,12 @@
 % PDFTextBox (
     q");
 
-            tmp.AppendFormat(@"
+            tmp.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, @"
     1 0 0 1 {0} {0} cm", _margin);
 
             if (_width != 0 && _height != 0)
             {
-                tmp.AppendFormat(@"
+                tmp.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, @"
     {0} rg
     0 0 {1} {2} re
     f", _backgroundColor, _width, _height);

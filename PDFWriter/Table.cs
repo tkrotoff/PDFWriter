@@ -142,9 +142,9 @@
 
             // A string should be green
             int rowNameInt32;
-            bool resultInt32 = int.TryParse(rowName, out rowNameInt32);
+            bool resultInt32 = Int32.TryParse(rowName, System.Globalization.NumberStyles.Number, System.Globalization.CultureInfo.InvariantCulture, out rowNameInt32);
             double rowNameDouble;
-            bool resultDouble = double.TryParse(rowName, out rowNameDouble);
+            bool resultDouble = Double.TryParse(rowName, System.Globalization.NumberStyles.Number, System.Globalization.CultureInfo.InvariantCulture, out rowNameDouble);
             if (resultInt32 || resultDouble)
             {
                 if (rowNameInt32 < 0 || rowNameDouble < 0)

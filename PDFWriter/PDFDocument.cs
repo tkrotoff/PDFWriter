@@ -185,7 +185,7 @@
             pdfString.AppendLine("%PDF-1.3");
             foreach (PDFStructureObject pdfObject in _childs)
             {
-                xref.AppendLine(string.Format("{0:0000000000} 00000 n", pdfString.Length));
+                xref.AppendLine(string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0000000000} 00000 n", pdfString.Length));
                 pdfString.Append(pdfObject.ToInnerPDF());
             }
 
