@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace PDF
+﻿namespace PDF
 {
+    using System.Collections.Generic;
+    using System.Text;
+
     /// <summary>
     /// A page inside the PDF.
     /// </summary>
-    class PDFPage : PDFStructureObject
+    internal class PDFPage : PDFStructureObject
     {
         /// <summary>
         /// Links to the list of pages: PDFPages.
@@ -42,8 +42,6 @@ namespace PDF
             System.Diagnostics.Trace.Assert(ContentStream != null);
             System.Diagnostics.Trace.Assert(Fonts.Count > 0);
 
-            //Faster when using StringBuilder instead of string
-            //See http://dotnetperls.com/stringbuilder-1
             StringBuilder fonts = new StringBuilder();
             foreach (PDFFont font in Fonts)
             {
@@ -68,8 +66,7 @@ namespace PDF
     >>
 endobj
 % )
-", ObjectNumber, Parent.ObjectNumber, ContentStream.ObjectNumber, fonts
-            );
+", ObjectNumber, Parent.ObjectNumber, ContentStream.ObjectNumber, fonts);
         }
     }
 }

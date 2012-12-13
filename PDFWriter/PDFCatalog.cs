@@ -26,7 +26,7 @@
     /// ]]>
     /// </code>
     /// </remarks>
-    class PDFCatalog : PDFStructureObject
+    internal class PDFCatalog : PDFStructureObject
     {
         private readonly PDFOutlines _outlines;
         private readonly PDFPages _pages;
@@ -49,9 +49,7 @@
     >>
 endobj
 % )
-", ObjectNumber, _outlines.ObjectNumber, _pages.ObjectNumber
-            );
+", ObjectNumber, _outlines.ObjectNumber, _pages.ObjectNumber);
         }
-
     }
 }

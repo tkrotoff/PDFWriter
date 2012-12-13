@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace PDF
+﻿namespace PDF
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// A PDF font.
     /// </summary>
@@ -95,7 +95,7 @@ namespace PDF
         {
             if (_fonts.Count == 0)
             {
-                //Lazy initialization
+                // Lazy initialization
                 _fonts.Add(Courier, "Courier");
                 _fonts.Add(CourierBold, "Courier-Bold");
                 _fonts.Add(CourierOblique, "Courier-Oblique");

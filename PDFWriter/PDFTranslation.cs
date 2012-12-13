@@ -3,7 +3,7 @@
     /// <summary>
     /// Performs a translation on a PDF graphical object.
     /// </summary>
-    class PDFTranslation : PDFGraphicObject
+    internal class PDFTranslation : PDFGraphicObject
     {
         private readonly PDFGraphicObject _graphicObject;
         private readonly double _xPos;
@@ -24,8 +24,7 @@
     {2}
     Q
 % )
-", _xPos, _yPos, _graphicObject.ToInnerPDF()
-            );
+", _xPos, _yPos, _graphicObject.ToInnerPDF());
         }
     }
 }

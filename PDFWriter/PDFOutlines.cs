@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace PDF
+﻿namespace PDF
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     /// <summary>
     /// PDF outlines.
     /// </summary>
@@ -53,7 +53,7 @@ namespace PDF
     /// ]]>
     /// </code>
     /// </remarks>
-    class PDFOutlines : PDFStructureObject
+    internal class PDFOutlines : PDFStructureObject
     {
         private readonly List<PDFOutline> _outlines = new List<PDFOutline>();
 
@@ -70,7 +70,7 @@ namespace PDF
 
         public override string ToInnerPDF()
         {
-            //There can be 0 outlines
+            // There can be 0 outlines
             //System.Diagnostics.Trace.Assert(_outlines.Count > 0);
 
             string first = string.Empty;
@@ -97,8 +97,7 @@ namespace PDF
     >>
 endobj
 % )
-", ObjectNumber, first, last, _outlines.Count
-            );
+", ObjectNumber, first, last, _outlines.Count);
         }
     }
 }

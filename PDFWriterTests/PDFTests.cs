@@ -1,14 +1,14 @@
-﻿using System.IO;
-using System.Data;
-
-using NUnit.Framework;
-
-using PDF;
-
-namespace PDFTests
+﻿namespace PDFTests
 {
+    using System.Data;
+    using System.IO;
+
+    using NUnit.Framework;
+
+    using PDF;
+
     [TestFixture]
-    class PDFTests
+    internal class PDFTests
     {
         [Test]
         public void TestBigDataSet()

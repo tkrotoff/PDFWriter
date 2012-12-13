@@ -3,7 +3,7 @@
     /// <summary>
     /// Contains information about the PDF file (title, creator...).
     /// </summary>
-    class PDFInfo : PDFStructureObject
+    internal class PDFInfo : PDFStructureObject
     {
         private readonly string _title;
         private readonly string _creator;
@@ -28,9 +28,7 @@
     >>
 endobj
 % )
-", ObjectNumber, _title, _creator, _producer
-            );
-
+", ObjectNumber, _title, _creator, _producer);
         }
     }
 }

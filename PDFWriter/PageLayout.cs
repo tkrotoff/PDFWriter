@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace PDF
+﻿namespace PDF
 {
+    using System;
+
     /// <summary>
     /// A page layout contains information about margins, width, height... of a PDF page.
     /// </summary>
@@ -169,7 +169,7 @@ namespace PDF
             set;
         }
 
-        /*TODO not used
+        /* TODO not used
         public string RightFooter
         {
             get;

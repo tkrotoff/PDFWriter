@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Data;
-
-namespace PDF
+﻿namespace PDF
 {
+    using System.Collections.Generic;
+    using System.Data;
+
     /// <summary>
     /// PDF writer library: generates a PDF file from a DataSet, see PDFWriter and PDFDocument for more documentation.
     /// </summary>
@@ -12,8 +12,8 @@ namespace PDF
     /// @mainpage
     public static class NamespaceDoc
     {
-        //Special trick to document the namespace
-        //See http://stackoverflow.com/questions/793210/c-xml-documentation-for-a-namespace
+        // Special trick to document the namespace
+        // See http://stackoverflow.com/questions/793210/c-xml-documentation-for-a-namespace
     }
 
     /// <summary>
@@ -84,7 +84,7 @@ namespace PDF
         /// </summary>
         public static Font DefaultFont
         {
-            //TODO use a style template to get this property
+            // TODO use a style template to get this property
             get { return new Font(Font.Helvetica, 9); }
         }
 
@@ -93,7 +93,7 @@ namespace PDF
         /// </summary>
         public static Font DefaultBoldFont
         {
-            //TODO use a style template to get this property
+            // TODO use a style template to get this property
             get { return new Font(Font.HelveticaBold, 9); }
         }
 
@@ -102,7 +102,7 @@ namespace PDF
         /// </summary>
         public static Font TitleFont
         {
-            //TODO use a style template to get this property
+            // TODO use a style template to get this property
             get { return new Font(Font.HelveticaBold, 14, Color.Green); }
         }
 
@@ -113,7 +113,7 @@ namespace PDF
         {
             get
             {
-                //TODO use a style template to get this property
+                // TODO use a style template to get this property
                 return Color.Silver;
             }
         }
@@ -143,38 +143,38 @@ namespace PDF
         /// <summary>
         /// Main function: gets the PDF given a DataSet.
         /// </summary>
-        /// <param name="data">DataSet to convert into a PDF</param>
-        /// <returns>The PDF</returns>
+        /// <param name="data">DataSet to convert into a PDF.</param>
+        /// <returns>The PDF.</returns>
         public static string GetPDF(DataSet data)
         {
-            //Root
+            // Root
             PDFDocument doc = new PDFDocument();
             ////
 
-            //Info
+            // Info
             PDFInfo info = new PDFInfo("Report", "PDFWR", "PDFWR");
             doc.Info = info;
             doc.AddChild(info);
             ////
 
-            //Fonts
+            // Fonts
             foreach (PDFFont font in Fonts)
             {
                 doc.AddChild(font);
             }
             ////
 
-            //Outlines
+            // Outlines
             PDFOutlines outlines = new PDFOutlines();
             doc.AddChild(outlines);
             ////
 
-            //Pages
+            // Pages
             PDFPages pages = Page.CreatePages(data, doc, outlines);
             doc.AddChild(pages);
             ////
 
-            //Add headers and footers
+            // Add headers and footers
             int count = 1;
             foreach (PDFPage page in pages.Pages)
             {
@@ -188,7 +188,7 @@ namespace PDF
             }
             ////
 
-            //Catalog
+            // Catalog
             PDFCatalog catalog = new PDFCatalog(outlines, pages);
             doc.Catalog = catalog;
             doc.AddChild(catalog);

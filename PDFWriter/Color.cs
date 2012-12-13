@@ -3,9 +3,9 @@
     /// <summary>
     /// Provides a list of colors for the PDF format.
     /// </summary>
-    static class Color
+    internal static class Color
     {
-        public const string NoColor = "";   //Empty string
+        public const string NoColor = "";   // Empty string
         public const string Black = "0 0 0";
         public const string Blue = "0 0 1";
         public const string Cyan = "0 1 1";

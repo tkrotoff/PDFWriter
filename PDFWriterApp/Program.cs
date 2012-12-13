@@ -1,17 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.IO;
-using System.Data;
-
-using PDF;
-
-namespace PDFWriterApp
+﻿namespace PDFWriterApp
 {
+    using System;
+    using System.Data;
+    using System.IO;
+    using System.Linq;
+
+    using PDF;
+
     /// <summary>
     /// PDFWriter application that takes an .xml file (DataSet)
     /// and generates a PDF file.
     /// </summary>
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {

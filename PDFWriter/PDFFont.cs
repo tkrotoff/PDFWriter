@@ -37,8 +37,7 @@
     >>
 endobj
 % )
-", ObjectNumber, FontName, BaseFont
-            );
+", ObjectNumber, FontName, BaseFont);
         }
     }
 }

@@ -3,7 +3,7 @@
     /// <summary>
     /// Computes the metrics of a font.
     /// </summary>
-    static class FontMetrics
+    internal static class FontMetrics
     {
         /// <summary>
         /// Courier.
@@ -250,9 +250,9 @@
         /// <summary>
         /// Gets the width (for a PDF file of course) taken by a string/text given a font.
         /// </summary>
-        /// <param name="text">text to use to compute its width</param>
-        /// <param name="font">font used for the text</param>
-        /// <returns>text width</returns>
+        /// <param name="text">Text to use to compute its width.</param>
+        /// <param name="font">Font used for the text.</param>
+        /// <returns>Text width.</returns>
         public static double GetTextWidth(string text, Font font)
         {
             double width = 0;
@@ -262,7 +262,7 @@
                 double ws = 0;
                 if (ch == 32)
                 {
-                    //Width of a space character
+                    // Width of a space character
                     ws = font.WordSpace;
                 }
                 double charWidth = 0;

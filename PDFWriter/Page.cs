@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Data;
-
-namespace PDF
+﻿namespace PDF
 {
+    using System.Collections.Generic;
+    using System.Data;
+
     /// <summary>
     /// Functions related to a page.
     /// </summary>
@@ -14,7 +14,7 @@ namespace PDF
     /// Main method is Page.CreatePages(), other methods available inside classes Page and Table
     /// are just helper methods.
     /// </remarks>
-    static class Page
+    internal static class Page
     {
         private static PageLayout _pageLayout;
 
@@ -25,10 +25,10 @@ namespace PDF
         {
             get
             {
-                //TODO use a style template to get this property
+                // TODO use a style template to get this property
                 if (_pageLayout == null)
                 {
-                    //Sets a default page layout if none provided by the user
+                    // Sets a default page layout if none provided by the user
                     _pageLayout = new PageLayout();
                 }
                 return _pageLayout;
@@ -43,25 +43,23 @@ namespace PDF
         /// <summary>
         /// Creates the PDF page header (some text at the top of the page).
         /// </summary>
-        /// <returns>The PDF page header as PDFGraphicObjects</returns>
+        /// <returns>The PDF page header as PDFGraphicObjects.</returns>
         public static List<PDFGraphicObject> CreateHeader()
         {
             List<PDFGraphicObject> objects = new List<PDFGraphicObject>();
 
             PDFText header = new PDFText(PageLayout.LeftHeader, PDFWriter.DefaultFont);
             PDFTranslation mark = new PDFTranslation(
-                header,
-                PageLayout.HeaderLeftXPos,
-                PageLayout.HeaderYPos
-            );
+                                            header,
+                                            PageLayout.HeaderLeftXPos,
+                                            PageLayout.HeaderYPos);
             objects.Add(mark);
 
             header = new PDFText(PageLayout.RightHeader, PDFWriter.DefaultFont);
             mark = new PDFTranslation(
-                header,
-                PageLayout.GetHeaderRightXPos(PageLayout.RightHeader, PDFWriter.DefaultFont),
-                PageLayout.HeaderYPos
-            );
+                                header,
+                                PageLayout.GetHeaderRightXPos(PageLayout.RightHeader, PDFWriter.DefaultFont),
+                                PageLayout.HeaderYPos);
             objects.Add(mark);
 
             return objects;
@@ -70,32 +68,29 @@ namespace PDF
         /// <summary>
         /// Creates the PDF page footer (some text at the bottom of the page).
         /// </summary>
-        /// <param name="currentPageNumber">current page number</param>
-        /// <param name="totalPageNumber">total number of pages</param>
-        /// <returns>The PDF page footer as PDFGraphicObjects</returns>
+        /// <param name="currentPageNumber">Current page number.</param>
+        /// <param name="totalPageNumber">Total number of pages.</param>
+        /// <returns>The PDF page footer as PDFGraphicObjects.</returns>
         public static List<PDFGraphicObject> CreateFooter(int currentPageNumber, int totalPageNumber)
         {
             List<PDFGraphicObject> objects = new List<PDFGraphicObject>();
 
             PDFText footer = new PDFText(PageLayout.LeftFooter, PDFWriter.DefaultFont);
             PDFTranslation mark = new PDFTranslation(
-                footer,
-                PageLayout.FooterLeftXPos,
-                PageLayout.FooterYPos
-            );
+                                            footer,
+                                            PageLayout.FooterLeftXPos,
+                                            PageLayout.FooterYPos);
             objects.Add(mark);
 
             string tmp = string.Format(
-                System.Globalization.CultureInfo.InvariantCulture,
-                "Page {0} out of {1}",
-                currentPageNumber, totalPageNumber
-            );
+                                System.Globalization.CultureInfo.InvariantCulture,
+                                "Page {0} out of {1}",
+                                currentPageNumber, totalPageNumber);
             footer = new PDFText(tmp, PDFWriter.DefaultFont);
             mark = new PDFTranslation(
-                footer,
-                PageLayout.GetFooterRightXPos(tmp, PDFWriter.DefaultFont),
-                PageLayout.FooterYPos
-            );
+                                footer,
+                                PageLayout.GetFooterRightXPos(tmp, PDFWriter.DefaultFont),
+                                PageLayout.FooterYPos);
             objects.Add(mark);
 
             return objects;
@@ -104,24 +99,23 @@ namespace PDF
         /// <summary>
         /// Creates a PDF page given the main PDF document and a list of rows.
         /// </summary>
-        /// <param name="doc">PDFDocument: the main PDF object</param>
-        /// <param name="tableWidth">width of the DataTable (needed for scaling the table to fit inside the page)</param>
-        /// <param name="columns">columns to show inside the PDF</param>
-        /// <param name="rows">rows to show inside the PDF</param>
-        /// <param name="title">page title, can be on several lines</param>
-        /// <returns>The PDF page created</returns>
+        /// <param name="doc">PDFDocument: the main PDF object.</param>
+        /// <param name="tableWidth">Width of the DataTable (needed for scaling the table to fit inside the page).</param>
+        /// <param name="columns">Columns to show inside the PDF.</param>
+        /// <param name="rows">Rows to show inside the PDF.</param>
+        /// <param name="title">Page title, can be on several lines.</param>
+        /// <returns>The PDF page created.</returns>
         private static PDFPage CreatePage(PDFDocument doc, double tableWidth, List<PDFGraphicObject> columns, List<PDFGraphicObject> rows, List<string> title)
         {
-            //Scaling
-            double scaling =
-                (PageLayout.Width - (PageLayout.RightMargin + PageLayout.LeftMargin)) / (tableWidth);
+            // Scaling
+            double scaling = (PageLayout.Width - (PageLayout.RightMargin + PageLayout.LeftMargin)) / tableWidth;
             if (scaling > 1)
             {
                 scaling = 1;
             }
             ////
 
-            //Top position
+            // Top position
             double topXPos = (PageLayout.Width / 2) - (tableWidth / 2);
             if (topXPos < PageLayout.LeftMargin)
             {
@@ -135,11 +129,11 @@ namespace PDF
 
             double lineYPos = 0;
 
-            //Page title if any
+            // Page title if any
             List<PDFGraphicObject> fakeList = new List<PDFGraphicObject>();
             foreach (string line in title)
             {
-                //Title position
+                // Title position
                 double lineWidth = FontMetrics.GetTextWidth(line, PDFWriter.TitleFont);
                 double lineXPos = (PageLayout.Width / scaling / 2) - (lineWidth / 2);
                 if (lineXPos < PageLayout.LeftMargin)
@@ -156,15 +150,15 @@ namespace PDF
             contentStream.AddChild(titleScaling);
             ////
 
-            //Rows and columns should be below the title
+            // Rows and columns should be below the title
             topYPos -= Table.RowHeight * (title.Count + 1) * scaling;
 
-            //Rows
+            // Rows
             PDFScaling rowsScaling = new PDFScaling(rows, scaling, topXPos, topYPos);
             contentStream.AddChild(rowsScaling);
             ////
 
-            //Columns
+            // Columns
             PDFScaling columnsScaling = new PDFScaling(columns, scaling, topXPos, topYPos);
             contentStream.AddChild(columnsScaling);
             ////
@@ -197,10 +191,10 @@ namespace PDF
         /// </code>
         /// </remarks>
         /// 
-        /// <param name="data">DataSet</param>
-        /// <param name="doc">Main PDF document</param>
-        /// <param name="outlines">PDF outlines so we can add the page to the "bookmarks"/outlines</param>
-        /// <returns>The PDF pages (a list of PDFPage)</returns>
+        /// <param name="data">DataSet.</param>
+        /// <param name="doc">Main PDF document.</param>
+        /// <param name="outlines">PDF outlines so we can add the page to the "bookmarks"/outlines.</param>
+        /// <returns>The PDF pages (a list of PDFPage).</returns>
         public static PDFPages CreatePages(DataSet data, PDFDocument doc, PDFOutlines outlines)
         {
             PDFPages pages = new PDFPages();
@@ -210,7 +204,7 @@ namespace PDF
                 PDFOutline currentOutline = null;
                 if (data.Tables.Count > 1)
                 {
-                    //More than 1 DataTable thus lets create outlines
+                    // More than 1 DataTable thus lets create outlines
                     currentOutline = new PDFOutline(table.TableName);
                     doc.AddChild(currentOutline);
                     outlines.AddOutline(currentOutline);
@@ -222,17 +216,16 @@ namespace PDF
 
                 double tableWidth = Table.GetTableWidth(table);
 
-                //Scaling
-                double scaling =
-                    (PageLayout.Width - (PageLayout.RightMargin + PageLayout.LeftMargin)) / (tableWidth);
+                // Scaling
+                double scaling = (PageLayout.Width - (PageLayout.RightMargin + PageLayout.LeftMargin)) / tableWidth;
                 if (scaling > 1)
                 {
                     scaling = 1;
                 }
                 ////
 
-                //Page title
-                //FIXME this is hardcoded
+                // Page title
+                // FIXME this is hardcoded
                 List<string> title = new List<string>();
                 title.Add("TITLE");
                 title.Add("title");
@@ -248,17 +241,17 @@ namespace PDF
                     {
                         double pageHeightLimit = PageLayout.Height - PageLayout.BottomMargin - PageLayout.TopMargin - titleHeight;
 
-                        //Detects end of page
-                        bool endOfPage = (-(yPos - Table.RowHeight) * scaling >= pageHeightLimit);
+                        // Detects end of page
+                        bool endOfPage = -(yPos - Table.RowHeight) * scaling >= pageHeightLimit;
                         if (endOfPage)
                         {
-                            //Creates the page
+                            // Creates the page
                             List<PDFGraphicObject> columns = Table.CreateColumns(table);
                             PDFPage page = CreatePage(doc, tableWidth, columns, rows, title);
                             pages.AddPage(page);
                             ////
 
-                            //Add the page to the outline
+                            // Add the page to the outline
                             if (currentOutline != null)
                             {
                                 if (currentOutline.Page == null)
@@ -268,16 +261,16 @@ namespace PDF
                             }
                             ////
 
-                            //Don't do a Clear() on the list, instead
-                            //creates a new copy of the list otherwise
-                            //objects referencing this list won't have their own copy
+                            // Don't do a Clear() on the list, instead
+                            // creates a new copy of the list otherwise
+                            // objects referencing this list won't have their own copy
                             rows = new List<PDFGraphicObject>();
 
                             yPos = -Table.RowHeight;
                         }
                         ////
 
-                        //Create a row
+                        // Create a row
                         string rowName = table.Rows[row][col].ToString();
                         PDFTextBox text = Table.CreateRow(rowName, yPos);
                         PDFTranslation translation = new PDFTranslation(text, totalTableWidth, 0);
@@ -289,19 +282,19 @@ namespace PDF
                         totalTableWidth += columnWidth + 2;
                     }
 
-                    //Change Y position inside the coordinate system of PDF
+                    // Change Y position inside the coordinate system of PDF
                     yPos -= Table.RowHeight;
                 }
 
                 if (rows.Count > 0)
                 {
-                    //Creates the page
+                    // Creates the page
                     List<PDFGraphicObject> columns = Table.CreateColumns(table);
                     PDFPage page = CreatePage(doc, tableWidth, columns, rows, title);
                     pages.AddPage(page);
                     ////
 
-                    //Add the page to the outlines
+                    // Add the page to the outlines
                     if (currentOutline != null)
                     {
                         if (currentOutline.Page == null)
@@ -319,10 +312,10 @@ namespace PDF
         /// <summary>
         /// Creates the PDF page title (some text at the top of the page).
         /// </summary>
-        /// <param name="title">PDF page title</param>
-        /// <param name="xPos">PDF page title X position</param>
-        /// <param name="yPos">PDF page title Y position</param>
-        /// <returns>The PDF page title as a PDFGraphicObject</returns>
+        /// <param name="title">PDF page title.</param>
+        /// <param name="xPos">PDF page title X position.</param>
+        /// <param name="yPos">PDF page title Y position.</param>
+        /// <returns>The PDF page title as a PDFGraphicObject.</returns>
         private static PDFGraphicObject CreatePageTitle(string title, double xPos, double yPos)
         {
             PDFText pdfTitle = new PDFText(title, PDFWriter.TitleFont);

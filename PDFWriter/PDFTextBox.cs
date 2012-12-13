@@ -1,7 +1,7 @@
-﻿using System.Text;
-
-namespace PDF
+﻿namespace PDF
 {
+    using System.Text;
+
     /// <summary>
     /// Displays a box (rectangle) with a text inside it.
     /// </summary>
@@ -16,7 +16,7 @@ namespace PDF
     /// -----------------------
     /// </code>
     /// </remarks>
-    class PDFTextBox : PDFGraphicObject
+    internal class PDFTextBox : PDFGraphicObject
     {
         private readonly PDFText _text;
         private readonly int _margin;
@@ -52,36 +52,30 @@ namespace PDF
             StringBuilder tmp = new StringBuilder();
             tmp.AppendLine(@"
 % PDFTextBox (
-    q"
-            );
+    q");
 
             tmp.AppendFormat(@"
-    1 0 0 1 {0} {0} cm", _margin
-            );
+    1 0 0 1 {0} {0} cm", _margin);
 
             if (_width != 0 && _height != 0)
             {
                 tmp.AppendFormat(@"
     {0} rg
     0 0 {1} {2} re
-    f", _backgroundColor, _width, _height
-                );
+    f", _backgroundColor, _width, _height);
             }
 
             tmp.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, @"
-    1 0 0 1 {0} {0} cm", _padding
-            );
+    1 0 0 1 {0} {0} cm", _padding);
 
             tmp.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, @"
     1 0 0 1 {0} {1} cm
-    {2}", _xPos, _yPos, _text.ToInnerPDF()
-            );
+    {2}", _xPos, _yPos, _text.ToInnerPDF());
 
             tmp.AppendFormat(System.Globalization.CultureInfo.InvariantCulture, @"
     Q
 % )
-"
-            );
+");
 
             return tmp.ToString();
         }

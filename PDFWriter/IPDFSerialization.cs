@@ -15,7 +15,7 @@
         /// PDF string of the PDF object.
         /// This method produces a valid PDF piece of text for each PDF object.
         /// </summary>
-        /// <returns>string of the PDF object</returns>
+        /// <returns>String of the PDF object.</returns>
         string ToInnerPDF();
     }
 }

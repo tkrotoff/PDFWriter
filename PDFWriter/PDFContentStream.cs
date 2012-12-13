@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace PDF
+﻿namespace PDF
 {
+    using System.Collections.Generic;
+    using System.Text;
+
     /// <summary>
     /// Contains all the graphic primitives (text, translation, graphics...) to display inside the PDF file.
     /// 
     /// This class is pretty important, it contains a list of all the PDFGraphicObjects to display.
     /// </summary>
-    class PDFContentStream : PDFStructureObject
+    internal class PDFContentStream : PDFStructureObject
     {
         private readonly List<PDFGraphicObject> _childs = new List<PDFGraphicObject>();
 
@@ -26,8 +26,6 @@ namespace PDF
         {
             System.Diagnostics.Trace.Assert(_childs.Count > 0);
 
-            //Faster when using StringBuilder instead of string
-            //See http://dotnetperls.com/stringbuilder-1
             StringBuilder tmp = new StringBuilder();
             foreach (PDFGraphicObject pdfGraphicObject in _childs)
             {
@@ -45,9 +43,7 @@ stream
 endstream
 endobj
 % )
-", ObjectNumber, tmp.Length, tmp
-            );
+", ObjectNumber, tmp.Length, tmp);
         }
-
     }
 }

@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace PDF
+﻿namespace PDF
 {
+    using System.Collections.Generic;
+    using System.Text;
+
     /// <summary>
     /// All the pages (a list of PDFPage) inside the PDF file.
     /// </summary>
-    class PDFPages : PDFStructureObject
+    internal class PDFPages : PDFStructureObject
     {
         private readonly List<PDFPage> _pages = new List<PDFPage>();
 
@@ -23,13 +23,11 @@ namespace PDF
 
         public override string ToInnerPDF()
         {
-            //0 pages is possible
+            // 0 pages is possible
             //System.Diagnostics.Trace.Assert(_pages.Count > 0);
 
             PageLayout layout = new PageLayout();
 
-            //Faster when using StringBuilder instead of string
-            //See http://dotnetperls.com/stringbuilder-1
             StringBuilder tmp = new StringBuilder();
             foreach (PDFPage page in _pages)
             {
@@ -53,8 +51,7 @@ namespace PDF
     >>
 endobj
 % )
-", ObjectNumber, kids, _pages.Count, layout.Width, layout.Height
-            );
+", ObjectNumber, kids, _pages.Count, layout.Width, layout.Height);
         }
     }
 }

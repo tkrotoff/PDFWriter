@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-
-namespace PDF
+﻿namespace PDF
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+
     /// <summary>
     /// Functions related to a table.
     /// </summary>
@@ -22,7 +22,7 @@ namespace PDF
         /// </summary>
         public static double RowHeight
         {
-            //TODO compute it using font metrics
+            // TODO compute it using font metrics
             get { return 13; }
         }
 
@@ -33,9 +33,9 @@ namespace PDF
         /// This method could be merged with CreatePages() in order to avoid unwanted loops.
         /// Unfortunately this would make the source code less readable.
         /// </remarks>
-        /// <param name="column">The column</param>
-        /// <param name="table">The DataTable so we can iterates over the rows for the given column</param>
-        /// <returns>Largest possible width of the given column</returns>
+        /// <param name="column">The column.</param>
+        /// <param name="table">The DataTable so we can iterates over the rows for the given column.</param>
+        /// <returns>Largest possible width of the given column.</returns>
         public static double GetColumnWidth(DataColumn column, DataTable table)
         {
             double columnWidth = FontMetrics.GetTextWidth(column.ColumnName, PDFWriter.DefaultBoldFont);
@@ -60,8 +60,8 @@ namespace PDF
         /// This method could be merged with CreatePages() in order to avoid unwanted loops.
         /// Unfortunately this would make the source code less readable.
         /// </remarks>
-        /// <param name="table">DataTable</param>
-        /// <returns>Witdh of the DataTable</returns>
+        /// <param name="table">DataTable.</param>
+        /// <returns>Width of the DataTable.</returns>
         public static double GetTableWidth(DataTable table)
         {
             double tableWidth = 0;
@@ -83,8 +83,8 @@ namespace PDF
         /// This method could be merged with CreatePages() in order to avoid unwanted loops.
         /// Unfortunately this would make the source code less readable.
         /// </remarks>
-        /// <param name="table">The DataTable from which to extract the columns</param>
-        /// <returns>The DataTable columns</returns>
+        /// <param name="table">The DataTable from which to extract the columns.</param>
+        /// <returns>The DataTable columns.</returns>
         public static List<PDFGraphicObject> CreateColumns(DataTable table)
         {
             List<PDFGraphicObject> columns = new List<PDFGraphicObject>();
@@ -109,9 +109,9 @@ namespace PDF
         /// <summary>
         /// Creates a column as a PDFGraphicObject.
         /// </summary>
-        /// <param name="columnName">Title/name of the column</param>
-        /// <param name="columnWidth">Column width</param>
-        /// <returns>A PDFGraphicObject representing the column</returns>
+        /// <param name="columnName">Title/name of the column.</param>
+        /// <param name="columnWidth">Column width.</param>
+        /// <returns>A PDFGraphicObject representing the column.</returns>
         private static PDFTextBox CreateColumn(string columnName, double columnWidth)
         {
             PDFText text = new PDFText(columnName, PDFWriter.DefaultFont);
@@ -126,36 +126,35 @@ namespace PDF
                 0,
                 PDFWriter.CellBackgroundColor,
                 width,
-                RowHeight
-            );
+                RowHeight);
             return box;
         }
 
         /// <summary>
         /// Creates a row as a PDFGraphicObject.
         /// </summary>
-        /// <param name="rowName">Title/name of the row</param>
-        /// <param name="yPos">Y position of the row inside the PDF page</param>
-        /// <returns>A PDFGraphicObject representing the row</returns>
+        /// <param name="rowName">Title/name of the row.</param>
+        /// <param name="yPos">Y position of the row inside the PDF page.</param>
+        /// <returns>A PDFGraphicObject representing the row.</returns>
         public static PDFTextBox CreateRow(string rowName, double yPos)
         {
             Font font = new Font(Font.Helvetica, 9, Color.Green);
 
-            //A string should be green
+            // A string should be green
             int rowNameInt32;
-            bool resultInt32 = Int32.TryParse(rowName, out rowNameInt32);
+            bool resultInt32 = int.TryParse(rowName, out rowNameInt32);
             double rowNameDouble;
-            bool resultDouble = Double.TryParse(rowName, out rowNameDouble);
+            bool resultDouble = double.TryParse(rowName, out rowNameDouble);
             if (resultInt32 || resultDouble)
             {
                 if (rowNameInt32 < 0 || rowNameDouble < 0)
                 {
-                    //A negative number should be red
+                    // A negative number should be red
                     font.Color = Color.Red;
                 }
                 else
                 {
-                    //A positive number should be blue
+                    // A positive number should be blue
                     font.Color = Color.Blue;
                 }
             }

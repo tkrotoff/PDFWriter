@@ -31,7 +31,7 @@
     /// ]]>
     /// </code>
     /// </remarks>
-    class PDFOutline : PDFStructureObject
+    internal class PDFOutline : PDFStructureObject
     {
         private readonly string _title;
 
@@ -82,13 +82,13 @@
 
         public override string ToInnerPDF()
         {
-            //At least one of previous / next outline must exist
+            // At least one of previous / next outline must exist
             System.Diagnostics.Trace.Assert((PrevOutline != null) || (NextOutline != null));
 
             System.Diagnostics.Trace.Assert(Page != null);
             System.Diagnostics.Trace.Assert(Parent != null);
 
-            //Gets the previous outline, sometimes there is simply no previous outline
+            // Gets the previous outline, sometimes there is simply no previous outline
             string prev = string.Empty;
             if (PrevOutline != null)
             {
@@ -96,7 +96,7 @@
                     "/Prev {0} 0 R", PrevOutline.ObjectNumber);
             }
 
-            //Gets the next outline, sometimes there is simply no next outline
+            // Gets the next outline, sometimes there is simply no next outline
             string next = string.Empty;
             if (NextOutline != null)
             {
@@ -116,8 +116,7 @@
     >>
 endobj
 % )
-", ObjectNumber, _title, Parent.ObjectNumber, prev, next, Page.ObjectNumber, PDF.Page.PageLayout.Height
-            );
+", ObjectNumber, _title, Parent.ObjectNumber, prev, next, Page.ObjectNumber, PDF.Page.PageLayout.Height);
         }
     }
 }

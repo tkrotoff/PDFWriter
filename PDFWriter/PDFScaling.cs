@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace PDF
+﻿namespace PDF
 {
+    using System.Collections.Generic;
+    using System.Text;
+
     /// <summary>
     /// Performs a scaling on a PDF graphical object.
     /// </summary>
-    class PDFScaling : PDFGraphicObject
+    internal class PDFScaling : PDFGraphicObject
     {
         private readonly List<PDFGraphicObject> _graphicObjects;
         private readonly double _scaling;
@@ -23,8 +23,6 @@ namespace PDF
 
         public override string ToInnerPDF()
         {
-            //Faster when using StringBuilder instead of string
-            //See http://dotnetperls.com/stringbuilder-1
             StringBuilder tmp = new StringBuilder();
             foreach (PDFGraphicObject graphicObject in _graphicObjects)
             {
@@ -37,8 +35,7 @@ namespace PDF
 {3}
     Q
 % )
-", _scaling, _xPos, _yPos, tmp
-            );
+", _scaling, _xPos, _yPos, tmp);
         }
     }
 }

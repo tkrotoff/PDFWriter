@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace PDF
+﻿namespace PDF
 {
+    using System.Collections.Generic;
+    using System.Text;
+
     /// <summary>
     /// Represents the PDF and links to all the other PDF objects.
     /// This class is pretty important.
@@ -143,7 +143,7 @@ namespace PDF
     /// ]]>
     /// </code>
     /// </remarks>
-    class PDFDocument : PDFStructureObject
+    internal class PDFDocument : PDFStructureObject
     {
         /// <summary>
         /// The catalog object for the PDF document contained in the file.
@@ -180,8 +180,6 @@ namespace PDF
             System.Diagnostics.Trace.Assert(Info != null);
             System.Diagnostics.Trace.Assert(_childs.Count > 0);
 
-            //Faster when using StringBuilder instead of string
-            //See http://dotnetperls.com/stringbuilder-1
             StringBuilder xref = new StringBuilder();
             StringBuilder pdfString = new StringBuilder();
             pdfString.AppendLine("%PDF-1.3");
@@ -206,8 +204,7 @@ trailer
 startxref
 {6}
 %%EOF
-", pdfString, _count, xref, _count, Catalog.ObjectNumber, Info.ObjectNumber, pdfString.Length
-            );
+", pdfString, _count, xref, _count, Catalog.ObjectNumber, Info.ObjectNumber, pdfString.Length);
         }
     }
 }
